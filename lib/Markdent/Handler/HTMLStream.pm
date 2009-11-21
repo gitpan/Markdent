@@ -1,0 +1,348 @@
+package Markdent::Handler::HTMLStream;
+
+use strict;
+use warnings;
+
+our $VERSION = '0.01';
+
+use HTML::Stream;
+use MooseX::Params::Validate qw( validated_list validated_hash );
+use Markdent::Types qw( Bool Str OutputStream HeaderLevel );
+
+use namespace::autoclean;
+use Moose;
+use MooseX::SemiAffordanceAccessor;
+
+with 'Markdent::Role::EventsAsMethods';
+
+has title => (
+    is       => 'ro',
+    isa      => Str,
+    required => 1,
+);
+
+has _output => (
+    is       => 'ro',
+    isa      => OutputStream,
+    required => 1,
+    init_arg => 'output',
+);
+
+has _stream => (
+    is       => 'ro',
+    isa      => 'HTML::Stream',
+    init_arg => undef,
+    lazy     => 1,
+    default  => sub { HTML::Stream->new( $_[0]->_output() ) },
+);
+
+my $Doctype = <<'EOF';
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+EOF
+
+sub start_document {
+    my $self = shift;
+
+    $self->_output()->print($Doctype);
+    $self->_stream()->tag('html');
+    $self->_stream()->tag('head');
+    $self->_stream()->tag('title');
+    $self->_stream()->text( $self->title() );
+    $self->_stream()->tag('_title');
+    $self->_stream()->tag('_head');
+    $self->_stream()->tag('body');
+}
+
+sub end_document {
+    my $self = shift;
+
+    $self->_stream()->tag('_body');
+    $self->_stream()->tag('_html');
+}
+
+sub start_header {
+    my $self  = shift;
+    my ($level) = validated_list( \@_,
+                                  level => { isa => HeaderLevel },
+                                );
+
+    my $tag = 'h' . $level;
+
+    $self->_stream()->tag($tag);
+}
+
+sub end_header {
+    my $self  = shift;
+    my ($level) = validated_list( \@_,
+                                  level => { isa => HeaderLevel },
+                                );
+
+    my $tag = '_h' . $level;
+
+    $self->_stream()->tag($tag);
+}
+
+sub start_blockquote {
+    my $self  = shift;
+
+    $self->_stream()->tag('blockquote');
+}
+
+sub end_blockquote {
+    my $self  = shift;
+
+    $self->_stream()->tag('_blockquote');
+}
+
+sub start_unordered_list {
+    my $self  = shift;
+
+    $self->_stream()->tag('ul');
+}
+
+sub end_unordered_list {
+    my $self  = shift;
+
+    $self->_stream()->tag('_ul');
+}
+
+sub start_ordered_list {
+    my $self  = shift;
+
+    $self->_stream()->tag('ol');
+}
+
+sub end_ordered_list {
+    my $self  = shift;
+
+    $self->_stream()->tag('_ol');
+}
+
+sub start_list_item {
+    my $self  = shift;
+
+    $self->_stream()->tag('li');
+}
+
+sub end_list_item {
+    my $self  = shift;
+
+    $self->_stream()->tag('_li');
+}
+
+sub preformatted {
+    my $self = shift;
+    my ($text) = validated_list( \@_, content => { isa => Str }, );
+
+    $self->_stream()->tag('pre');
+    $self->_stream()->tag('code');
+    $self->_stream()->text($text);
+    $self->_stream()->tag('_code');
+    $self->_stream()->tag('_pre');
+}
+
+sub start_paragraph {
+    my $self  = shift;
+
+    $self->_stream()->tag('p');
+}
+
+sub end_paragraph {
+    my $self  = shift;
+
+    $self->_stream()->tag('_p');
+}
+
+sub start_emphasis {
+    my $self = shift;
+
+    $self->_stream()->tag('em');
+}
+
+sub end_emphasis {
+    my $self = shift;
+
+    $self->_stream()->tag('_em');
+}
+
+sub start_strong {
+    my $self = shift;
+
+    $self->_stream()->tag('strong');
+}
+
+sub end_strong {
+    my $self = shift;
+
+    $self->_stream()->tag('_strong');
+}
+
+sub start_code {
+    my $self = shift;
+
+    $self->_stream()->tag('code');
+}
+
+sub end_code {
+    my $self = shift;
+
+    $self->_stream()->tag('_code');
+}
+
+sub auto_link {
+    my $self = shift;
+    my ($uri)    = validated_list(
+        \@_,
+        uri => { isa => Str, optional => 1 },
+    );
+
+    $self->_stream()->tag( 'a', href => $uri );
+    $self->_stream()->text($uri);
+    $self->_stream()->tag('_a');
+}
+
+sub start_link {
+    my $self = shift;
+    my %p    = validated_hash(
+        \@_,
+        uri         => { isa => Str },
+        title       => { isa => Str,  optional => 1 },
+        id          => { isa => Str,  optional => 1 },
+        implicit_id => { isa => Bool, optional => 1 },
+    );
+
+    delete @p{ grep { ! defined $p{$_} } keys %p };
+
+    $self->_stream()->tag(
+        'a', href => $p{uri},
+        exists $p{title} ? ( title => $p{title} ) : (),
+    );
+}
+
+sub end_link {
+    my $self = shift;
+
+    $self->_stream()->tag('_a');
+}
+
+sub text {
+    my $self = shift;
+    my ($text) = validated_list( \@_, content => { isa => Str }, );
+
+    $self->_stream()->text($text);
+}
+
+sub html {
+    my $self = shift;
+    my ($html) = validated_list( \@_, content => { isa => Str }, );
+
+    $self->_output()->print($html);
+}
+
+sub html_entity {
+    my $self = shift;
+    my ($entity) = validated_list( \@_, entity => { isa => Str }, );
+
+    $self->_stream()->ent($entity);
+}
+
+sub html_block {
+    my $self = shift;
+    my ($html) = validated_list( \@_, content => { isa => Str }, );
+
+    $self->_output()->print($html);
+}
+
+sub image {
+    my $self = shift;
+    my %p    = validated_hash(
+        \@_,
+        alt_text    => { isa => Str },
+        uri         => { isa => Str, optional => 1 },
+        title       => { isa => Str, optional => 1 },
+        id          => { isa => Str, optional => 1 },
+        implicit_id => { isa => Bool, optional => 1 },
+    );
+
+    delete @p{ grep { ! defined $p{$_} } keys %p };
+
+    $self->_stream()->tag(
+        'img', src => $p{uri},
+        ( exists $p{alt_text} ? ( alt   => $p{alt_text} ) : () ),
+        ( exists $p{title}    ? ( title => $p{title} )    : () ),
+    );
+}
+
+sub hr {
+    my $self = shift;
+
+    $self->_stream()->tag('hr');
+}
+
+__PACKAGE__->meta()->make_immutable();
+
+1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Markdent::Handler::HTMLStream - A Markdent handler which generates HTML
+
+=head1 DESCRIPTION
+
+This class implements an event receiver which in turn generates a stream of
+HTML output based on those events.
+
+=head1 METHODS
+
+This class provides the following methods:
+
+=head2 Markdent::Handler::HTMLStream->new(...)
+
+This method creates a new handler. It accepts the following parameters:
+
+=over 4
+
+=item * title => $title
+
+The title of the document. This is required.
+
+=item * output => $fh
+
+The file handle to which HTML output will be streamed. If you want to capture
+the output in a string, you can open a filehandle to a string:
+
+  my $buffer = q{};
+  open my $fh, '>', \$buffer;
+
+=back
+
+=head1 ROLES
+
+This class does the L<Markdent::Role::EventsAsMethods> and
+L<Markdent::Role::Handler> roles.
+
+=head1 AUTHOR
+
+Dave Rolsky, E<gt>autarch@urth.orgE<lt>
+
+=head1 BUGS
+
+See L<Markdent> for bug reporting details.
+
+=head1 AUTHOR
+
+Dave Rolsky, E<lt>autarch@urth.orgE<gt>
+
+=head1 COPYRIGHT & LICENSE
+
+Copyright 2009 Dave Rolsky, All Rights Reserved.
+
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

@@ -1,0 +1,81 @@
+---
+name: Markdent
+version: 0.01
+author:
+  - 'Dave Rolsky, E<gt>autarch@urth.orgE<lt>'
+  - 'Dave Rolsky, E<lt>autarch@urth.orgE<gt>'
+abstract: An event-based Markdown parser toolkit
+license: perl
+resources:
+  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Markdent
+  license: http://dev.perl.org/licenses/
+  repository: http://hg.urth.org/hg/Markdent
+build_requires:
+  Test::Deep: 0
+  Test::Differences: 0
+  Test::More: 0
+requires:
+  Digest::SHA1: 0
+  HTML::Stream: 0
+  Moose: 0.92
+  MooseX::Params::Validate: 0.12
+  MooseX::SemiAffordanceAccessor: 0.05
+  MooseX::StrictConstructor: 0.08
+  MooseX::Types: 0.20
+  Tree::Simple: 0
+  namespace::autoclean: 0.09
+configure_requires:
+  Module::Build: 0.35
+provides:
+  Markdent:
+    file: lib/Markdent.pm
+    version: 0.01
+  Markdent::Dialect::Standard::BlockParser:
+    file: lib/Markdent/Dialect/Standard/BlockParser.pm
+    version: 0.01
+  Markdent::Dialect::Standard::SpanParser:
+    file: lib/Markdent/Dialect/Standard/SpanParser.pm
+    version: 0.01
+  Markdent::Event:
+    file: lib/Markdent/Event.pm
+    version: 0.01
+  Markdent::Handler::HTMLStream:
+    file: lib/Markdent/Handler/HTMLStream.pm
+    version: 0.01
+  Markdent::Handler::MinimalTree:
+    file: lib/Markdent/Handler/MinimalTree.pm
+    version: 0.01
+  Markdent::Parser:
+    file: lib/Markdent/Parser.pm
+    version: 0.01
+  Markdent::Role::AnyParser:
+    file: lib/Markdent/Role/AnyParser.pm
+    version: 0.01
+  Markdent::Role::BlockParser:
+    file: lib/Markdent/Role/BlockParser.pm
+    version: 0.01
+  Markdent::Role::DebugPrinter:
+    file: lib/Markdent/Role/DebugPrinter.pm
+    version: 0.01
+  Markdent::Role::EventsAsMethods:
+    file: lib/Markdent/Role/EventsAsMethods.pm
+    version: 0.01
+  Markdent::Role::Handler:
+    file: lib/Markdent/Role/Handler.pm
+    version: 0.01
+  Markdent::Role::SpanParser:
+    file: lib/Markdent/Role/SpanParser.pm
+    version: 0.01
+  Markdent::Simple:
+    file: lib/Markdent/Simple.pm
+    version: 0.01
+  Markdent::Types:
+    file: lib/Markdent/Types.pm
+    version: 0.01
+  Markdent::Types::Internal:
+    file: lib/Markdent/Types/Internal.pm
+    version: 0.01
+generated_by: Module::Build version 0.35
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
