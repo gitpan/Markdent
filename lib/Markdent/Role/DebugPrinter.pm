@@ -3,7 +3,7 @@ package Markdent::Role::DebugPrinter;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Markdent::Types qw( Bool );
 
@@ -79,10 +79,6 @@ C<< $object->_print_debug() >>.
 =head2 $object->_print_debug($text)
 
 This warns out the provided text along with a delimiter above the message.
-
-=head1 AUTHOR
-
-Dave Rolsky, E<gt>autarch@urth.orgE<lt>
 
 =head1 BUGS
 

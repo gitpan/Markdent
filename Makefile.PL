@@ -6,6 +6,7 @@ WriteMakefile
           'VERSION_FROM' => 'lib/Markdent.pm',
           'PREREQ_PM' => {
                            'Digest::SHA1' => '0',
+                           'File::Slurp' => '0',
                            'HTML::Stream' => '0',
                            'Moose' => '0.92',
                            'MooseX::Params::Validate' => '0.12',
@@ -16,6 +17,7 @@ WriteMakefile
                            'Test::Differences' => '0',
                            'Test::More' => '0',
                            'Tree::Simple' => '0',
+                           'Tree::Simple::Visitor::ToNestedArray' => '0',
                            'namespace::autoclean' => '0.09'
                          },
           'INSTALLDIRS' => 'site',

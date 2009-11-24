@@ -3,7 +3,7 @@ package Markdent::Simple;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Markdent::Handler::HTMLStream;
 use Markdent::Parser;
@@ -72,10 +72,6 @@ Creates a new Markdent::Simple object.
 
 This method turns Markdown into HTML. You must provide a title as well, which
 will be used as the C<< <title> >> for the resulting HTML document.
-
-=head1 AUTHOR
-
-Dave Rolsky, E<gt>autarch@urth.orgE<lt>
 
 =head1 BUGS
 

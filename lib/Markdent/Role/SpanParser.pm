@@ -3,7 +3,7 @@ package Markdent::Role::SpanParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Moose::Role;
 
@@ -42,10 +42,6 @@ span-level markup.
 
 This class does the L<Markdent::Role::AnyParser> and
 L<Markdent::Role::DebugPrinter> roles.
-
-=head1 AUTHOR
-
-Dave Rolsky, E<gt>autarch@urth.orgE<lt>
 
 =head1 BUGS
 

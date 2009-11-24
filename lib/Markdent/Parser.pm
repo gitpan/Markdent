@@ -3,7 +3,7 @@ package Markdent::Parser;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Markdent::Dialect::Standard::BlockParser;
 use Markdent::Dialect::Standard::SpanParser;
@@ -116,17 +116,11 @@ sub parse {
 
     $self->_clean_text(\$text);
 
-    $self->handler()->handle_event(
-        type => 'start',
-        name => 'document',
-    );
+    $self->_send_event('StartDocument');
 
     $self->_block_parser()->parse_document(\$text);
 
-    $self->handler()->handle_event(
-        type => 'end',
-        name => 'document',
-    );
+    $self->_send_event('EndDocument');
 
     return;
 }
@@ -210,10 +204,6 @@ fired which will be passed to the parser's handler.
 
 This class does the L<Markdent::Role::EventsAsMethods> and
 L<Markdent::Role::Handler> roles.
-
-=head1 AUTHOR
-
-Dave Rolsky, E<gt>autarch@urth.orgE<lt>
 
 =head1 BUGS
 

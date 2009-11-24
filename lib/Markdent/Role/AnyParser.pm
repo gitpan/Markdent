@@ -3,7 +3,7 @@ package Markdent::Role::AnyParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Moose::Role;
 
@@ -14,6 +14,21 @@ has handler => (
     does     => 'Markdent::Role::Handler',
     required => 1,
 );
+
+sub _send_event {
+    my $self = shift;
+
+    $self->handler()->handle_event( $self->_make_event(@_) );
+}
+
+sub _make_event {
+    my $self  = shift;
+    my $class = shift;
+
+    my $real_class = $class =~ /::/ ? $class : 'Markdent::Event::' . $class;
+
+    return $real_class->new(@_);
+}
 
 sub _detab_text {
     my $self = shift;
@@ -66,10 +81,6 @@ replaces tabs with spaces.
 =head1 ROLES
 
 This class does the L<Markdent::Role::DebugPrinter> role.
-
-=head1 AUTHOR
-
-Dave Rolsky, E<gt>autarch@urth.orgE<lt>
 
 =head1 BUGS
 

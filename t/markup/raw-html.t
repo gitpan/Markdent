@@ -1,9 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More;
-
-plan 'no_plan';
+use Test::More tests => 12;
 
 use lib 't/lib';
 
@@ -23,15 +21,18 @@ EOF
                 type => 'text',
                 text => 'Some random ',
             }, {
-                type => 'html',
-                html => q{<span class="foo">},
-            }, {
-                type => 'text',
-                text => 'html in',
-            }, {
-                type => 'html',
-                html => q{</span>},
-            }, {
+                type       => 'start_html_tag',
+                tag        => 'span',
+                attributes => {
+                    class => 'foo',
+                },
+            },
+            [
+                {
+                    type => 'text',
+                    text => 'html in',
+                },
+            ], {
                 type => 'text',
                 text => " my text!\n",
             },
@@ -215,18 +216,19 @@ EOF
         },
         [
             {
-                'text' => "Some text\n",
-                'type' => 'text'
+                type => 'text',
+                text => "Some text\n",
             }, {
-                'html' => '<div>',
-                'type' => 'html'
-            }, {
-                'text' => "\nAn arbitrary chunk of html.\n",
-                'type' => 'text'
-            }, {
-                'html' => '</div>',
-                'type' => 'html'
-            }, {
+                type       => 'start_html_tag',
+                tag        => 'div',
+                attributes => {},
+            },
+            [
+                {
+                    type => 'text',
+                    text => "\nAn arbitrary chunk of html.\n",
+                },
+            ], {
                 type => 'text',
                 text => "\n",
             },
@@ -256,17 +258,18 @@ EOF
         },
         [
             {
-                'html' => '<div>',
-                'type' => 'html'
-            }, {
-                'text' => "\nAn arbitrary chunk of html.\n",
-                'type' => 'text'
-            }, {
-                'html' => '</div>',
-                'type' => 'html'
-            }, {
-                'text' => "\nSome text\n",
-                'type' => 'text'
+                type       => 'start_html_tag',
+                tag        => 'div',
+                attributes => {},
+            },
+            [
+                {
+                    type => 'text',
+                    text => "\nAn arbitrary chunk of html.\n",
+                },
+            ], {
+                type => 'text',
+                text => "\nSome text\n",
             },
         ]
     ];
@@ -355,4 +358,31 @@ EOF
     ];
 
     parse_ok( $text, $expect, 'html inside code block is not treated as html' );
+}
+
+{
+    my $text = <<'EOF';
+Some self-closing <img src="foo" /> HTML.
+EOF
+
+    my $expect = [
+        {
+            type => 'paragraph',
+        },
+        [
+            {
+                type => 'text',
+                text => 'Some self-closing ',
+            }, {
+                type       => 'html_tag',
+                tag        => 'img',
+                attributes => { src => 'foo' },
+            }, {
+                type => 'text',
+                text => " HTML.\n",
+            },
+        ],
+    ];
+
+    parse_ok( $text, $expect, 'a self-closing html tag (img)' );
 }

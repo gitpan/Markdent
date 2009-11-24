@@ -3,7 +3,23 @@ use warnings;
 
 use Module::Build;
 
-my $builder = Module::Build->new(
+my $subclass = Module::Build->subclass(
+    class => 'Markdent::Build',
+    code  => <<'EOF',
+sub find_test_files {
+    my $self = shift;
+
+    my $tests = $self->SUPER::find_test_files(@_);
+
+    push @{$tests}, $self->expand_test_dir('xt')
+        if $ENV{AUTHOR_TESTING};
+
+    return $tests;
+}
+EOF
+);
+
+my $builder = Markdent::Build->new(
     module_name => 'Markdent',
     license     => 'perl',
     requires    => {
@@ -18,9 +34,11 @@ my $builder = Module::Build->new(
         'Tree::Simple'                   => '0',
     },
     build_requires => {
-        'Test::Deep'        => '0',
-        'Test::Differences' => '0',
-        'Test::More'        => '0',
+        'File::Slurp'                          => '0',
+        'Test::Deep'                           => '0',
+        'Test::Differences'                    => '0',
+        'Test::More'                           => '0',
+        'Tree::Simple::Visitor::ToNestedArray' => '0',
     },
     create_readme        => 1,
     sign                 => 1,
@@ -32,6 +50,7 @@ my $builder = Module::Build->new(
             repository => 'http://hg.urth.org/hg/Markdent',
         },
     },
+    add_to_cleanup => ['Debian_CPANTS.txt'],
 );
 
 $builder->create_build_script();

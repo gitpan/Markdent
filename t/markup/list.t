@@ -1,9 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More;
-
-plan 'no_plan';
+use Test::More tests => 17;
 
 use lib 't/lib';
 
@@ -498,7 +496,7 @@ EOF
                 ],
             ],
         ],
-        { type => 'hr' },
+        { type => 'horizontal_rule' },
     ];
 
     parse_ok( $text, $expect, 'unordered list terminated by a horizontal rule' );

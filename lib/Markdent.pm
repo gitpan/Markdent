@@ -3,7 +3,7 @@ package Markdent;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 1;
 
@@ -46,10 +46,6 @@ work fine, the internals are subject to change. In particular, the parser
 internals need to be reworked to make creating additional Markdown dialects
 easier, and the L<Markdown::Event> classes will probably expand into a
 hierarchy of classes in the future.
-
-=head1 AUTHOR
-
-Dave Rolsky, E<gt>autarch@urth.orgE<lt>
 
 =head1 BUGS
 

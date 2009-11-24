@@ -1,9 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More;
-
-plan 'no_plan';
+use Test::More tests => 7;
 
 use lib 't/lib';
 
@@ -18,7 +16,7 @@ EOF
 
     my $expect = [
         {
-            type => 'hr',
+            type => 'horizontal_rule',
         },
     ];
 
@@ -32,7 +30,7 @@ EOF
 
     my $expect = [
         {
-            type => 'hr',
+            type => 'horizontal_rule',
         },
     ];
 
@@ -91,7 +89,7 @@ EOF
 
     my $expect = [
         {
-            type => 'hr',
+            type => 'horizontal_rule',
         },
     ];
 
@@ -105,7 +103,7 @@ EOF
 
     my $expect = [
         {
-            type => 'hr',
+            type => 'horizontal_rule',
         },
     ];
 
@@ -127,7 +125,7 @@ EOF
                 text => "still an hr\n",
             },
         ],
-        { type => 'hr' },
+        { type => 'horizontal_rule' },
         { type => 'paragraph' },
         [
             {

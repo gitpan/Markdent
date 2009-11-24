@@ -14,56 +14,89 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 69eea56cd52addd425f960d734bd331c82250f59 Build.PL
-SHA1 6e2e04e920e919bd6ae2128b97531fb61c7961ef Changes
-SHA1 36f3484bd52e62e146823559d1775fcf13223b2a MANIFEST
-SHA1 74cad173df16ed83ebde8aa80d178e9e30b0f142 META.yml
-SHA1 034afdb2b468c0a8199fe56662b701ec137353fe Makefile.PL
-SHA1 91b28fc0612e9f05d2912804743ac48f4fce30ce README
-SHA1 2dd2eacade0716b3dde189c679b02c026b2d4397 bin/markdent-html
-SHA1 bf0d92f9e7237ce0e7d4b737f2e98ab22a40a2d1 lib/Markdent.pm
-SHA1 bec13287d3aa62f8a62924b37deb792f2a326ab9 lib/Markdent/Dialect/Standard/BlockParser.pm
-SHA1 e606d37aec6b00c26cbebf8f6da9098ecf41f24a lib/Markdent/Dialect/Standard/SpanParser.pm
-SHA1 8016d3c8ee3db7aab97541408ae43a2030cb3732 lib/Markdent/Event.pm
-SHA1 6a19d6802b6c6c5372c363fef04d1470a365be1b lib/Markdent/Handler/HTMLStream.pm
-SHA1 ce902c1558921489971243ada042eed1bac9769c lib/Markdent/Handler/MinimalTree.pm
-SHA1 1b869f9602ecb8021a474f092f43000f307d0e58 lib/Markdent/Parser.pm
-SHA1 1f8bc50ad81fbf0f7e82194f3be5b21927ea0d18 lib/Markdent/Role/AnyParser.pm
-SHA1 78cfda11421ab18cf155a07459a409084c61918c lib/Markdent/Role/BlockParser.pm
-SHA1 d360b80fae3e23177c5fefc90e8d23f07baecefb lib/Markdent/Role/DebugPrinter.pm
-SHA1 712b8e72612c2986c01ab8c1013eabc62522dc4a lib/Markdent/Role/EventsAsMethods.pm
-SHA1 f57b9d262cceb94325c31410cd9ba648d354b33b lib/Markdent/Role/Handler.pm
-SHA1 516e06f63b8ce931d822f8035b3e8bd884c110d9 lib/Markdent/Role/SpanParser.pm
-SHA1 aa0ea336bab268a6f4b88cb4c59d42facca3350a lib/Markdent/Simple.pm
-SHA1 6e64c8087637b068ee78407ee524ec71750ccaec lib/Markdent/Types.pm
-SHA1 ee9a0901e2b95b200962421ba6a879ce0c10aaf2 lib/Markdent/Types/Internal.pm
-SHA1 f1bde89e50121114626c6030449271f3ee1820c2 t/Handler/HTMLStream.t
+SHA1 6c974f0be56729355948eb536d4b195ce4b6e271 Build.PL
+SHA1 e6f35b62c583001c303017a420be598ccdb9a8ba Changes
+SHA1 dbbec1438e16c1c4da393ce3c90af1330c89d4d5 MANIFEST
+SHA1 60fca256e21f900926c058ab46548b006b0b6abd META.yml
+SHA1 6daa1c6aaf7d6392fd68eb4f0cd175134c34f49f Makefile.PL
+SHA1 0e04bf506db194a44564a39a6958bb81b34c3222 README
+SHA1 00f47a662da844c6b733984e855da491a1ffe3bf bin/markdent-html
+SHA1 7f2a7cccdaeb8dcfb7f6d646acc7e263f5e26caf inc/Markdent/Build.pm
+SHA1 a945c03e495c1365e2e485c2d78cbf2a2e443c31 lib/Markdent.pm
+SHA1 883553ef4c365200c9d954f43b0630ab3e4a2507 lib/Markdent/Dialect/Standard/BlockParser.pm
+SHA1 dfa7342e9e3d75faf843c52772ec83901a2517e7 lib/Markdent/Dialect/Standard/SpanParser.pm
+SHA1 b7ddc7a80438694a5295793c2274c229e1ba3bba lib/Markdent/Event/AutoLink.pm
+SHA1 77fb5153d8ac243d4a04b597b35379bde1cfbf59 lib/Markdent/Event/EndBlockquote.pm
+SHA1 3103b8299973ac589c231602d8c637f09ae4a13e lib/Markdent/Event/EndCode.pm
+SHA1 5caa4ada51786b3de5163fe900ef074990a5e4b1 lib/Markdent/Event/EndDocument.pm
+SHA1 e79ccd1c5ea53e191578cc1156526718cdd96e53 lib/Markdent/Event/EndEmphasis.pm
+SHA1 538cac27ca54f2570eb48e420a234bf6d5ce58aa lib/Markdent/Event/EndHTMLTag.pm
+SHA1 bd22823b4f94f0af0e8919dff13a84c91dff7086 lib/Markdent/Event/EndHeader.pm
+SHA1 f094df6ba461f244050a8b82c9d2ed6a68442224 lib/Markdent/Event/EndLink.pm
+SHA1 f8c98f74ed191562d49f065a25d3aefba86f425b lib/Markdent/Event/EndListItem.pm
+SHA1 bb6f482a27de9318580635826000b05f9b78d836 lib/Markdent/Event/EndOrderedList.pm
+SHA1 7a84a58fa05ab02283addd30e37bf3a984eda1fe lib/Markdent/Event/EndParagraph.pm
+SHA1 6dbfcae13ca48e108314d5de585368b1ff8d3c91 lib/Markdent/Event/EndStrong.pm
+SHA1 f63a27823aabdaa18d34fb24ebb55f6425140a63 lib/Markdent/Event/EndUnorderedList.pm
+SHA1 468f45d58759bfc138884c5e6d3ea84bfc8090e8 lib/Markdent/Event/HTMLBlock.pm
+SHA1 a19f96ec1d056ec01eeaa8455adf7ee1947d1ace lib/Markdent/Event/HTMLEntity.pm
+SHA1 dc79fd3b512f631bac60d48fedfdfde134021cff lib/Markdent/Event/HTMLTag.pm
+SHA1 1d3d0d9a45994b969a76736cc533a41d93ded235 lib/Markdent/Event/HorizontalRule.pm
+SHA1 90fb7b82cc21cb5fd1aa2380a3465791be7dc968 lib/Markdent/Event/Image.pm
+SHA1 47863db241bc4998dbced8f18a0a152188d43418 lib/Markdent/Event/Preformatted.pm
+SHA1 9218e208e7f1496a44ff313e82fc47d4eb2bb565 lib/Markdent/Event/StartBlockquote.pm
+SHA1 354735d4dce11ae7518ad9a97fcab9e42ee8a89f lib/Markdent/Event/StartCode.pm
+SHA1 1427b3e88478d56b5f6f4c0fe90f3e0f62d8c17d lib/Markdent/Event/StartDocument.pm
+SHA1 e7ce7e6236480a86e0fc973cbe692cf4532a65ba lib/Markdent/Event/StartEmphasis.pm
+SHA1 55e939e2e6a5630fc75dcecbf02e67d8612e95a9 lib/Markdent/Event/StartHTMLTag.pm
+SHA1 d837c3151e17eb1343662d0d2d451140ca1e76a9 lib/Markdent/Event/StartHeader.pm
+SHA1 bcbdd7b030150eed5a64ccbb1417eb2b683f5ad3 lib/Markdent/Event/StartLink.pm
+SHA1 80637947bff07f349a2ed235ea78b96930f54af3 lib/Markdent/Event/StartListItem.pm
+SHA1 51501bf547614c60e071a86be071b4581bea2489 lib/Markdent/Event/StartOrderedList.pm
+SHA1 0ff86970852705fbf0dc6e99b23271d3e33ba26a lib/Markdent/Event/StartParagraph.pm
+SHA1 52284468b0a8deca100474ca4974b791c99de842 lib/Markdent/Event/StartStrong.pm
+SHA1 a4cdf34b210ced8b8cf289e1aea42d2806538a4e lib/Markdent/Event/StartUnorderedList.pm
+SHA1 de7450d03708d7ff48e422bbd5f168c05e0af00f lib/Markdent/Event/Text.pm
+SHA1 f57105a8fd0682aff818e5355cf27a100bd94b06 lib/Markdent/Handler/HTMLStream.pm
+SHA1 5a555cfd5b570600a4ef30456becde3b1750af40 lib/Markdent/Handler/MinimalTree.pm
+SHA1 aa869d10c6a8825323e3d21c3317ef4d4bbcf83e lib/Markdent/Parser.pm
+SHA1 b99de47e98e02434266d9445a7e46ccb88b5d8f6 lib/Markdent/Role/AnyParser.pm
+SHA1 157348176ca07bcdfd8a837bb97153f06ec6181f lib/Markdent/Role/BlockParser.pm
+SHA1 179c47d1a936a451e60aa94032455f5d10969435 lib/Markdent/Role/DebugPrinter.pm
+SHA1 81f9b7a2cd1581f7b624789946580bc3f1abd21e lib/Markdent/Role/Event.pm
+SHA1 db1e20e2ed13fc53cc7835b288f7222a69bc0a3b lib/Markdent/Role/EventsAsMethods.pm
+SHA1 8dba4288c77defeee2a2e48b7dd37283d11f6820 lib/Markdent/Role/Handler.pm
+SHA1 98b55e972fbd3f78273dcf8bba1d112c28f6d205 lib/Markdent/Role/SpanParser.pm
+SHA1 b5dcd12d518185228aad6615967d971180ec66c7 lib/Markdent/Simple.pm
+SHA1 e286835e91f112667f23927f80b3dcd0a8b46d57 lib/Markdent/Types.pm
+SHA1 2348c0192f54266c23bedacd58978c7a5dbcb64d lib/Markdent/Types/Internal.pm
+SHA1 f94f276fccd640bcc70af0ddee3d378607ec53cb t/Handler/HTMLStream.t
 SHA1 8bfc1523fad220a3980d0802d5bf78be9d788ad1 t/Simple.t
 SHA1 28f1724a3c031f528a41124ab2a6a3766592e752 t/lib/Test/Markdent.pm
-SHA1 1537fe21c0cb810fe2bafa6a18d3ac46fb2bde6d t/markup/backslash-escape.t
-SHA1 387cb5f8183cca20c5e8c3c18e55257d0461d3ea t/markup/blockquote.t
-SHA1 3124e4cfb71b6b4308494a7312190f54f8f02876 t/markup/headers.t
-SHA1 7b33f117beb6a9e4ab8369cd4fc62635cacef6ed t/markup/hr.t
-SHA1 f41657c287aa83a8d0b16f6444f4b49010a40649 t/markup/image.t
-SHA1 5fbf983f89aff9b9d550970b35ec74f13aace152 t/markup/link.t
-SHA1 857412a727056adec78b682f904c3eb021353ebc t/markup/list.t
-SHA1 f073263245f3f2395960dc6a05d8c52aa35f8191 t/markup/nested-markup.t
-SHA1 6471279c34fec3beda2c571c3ad4cb77216c5d80 t/markup/preformatted.t
-SHA1 04e697225d3c76444e02eb19a626f760e0c13325 t/markup/raw-html.t
-SHA1 73e52d1abce338b5a0a1e4328b624c2ab070d9a4 t/markup/strong-em-code.t
-SHA1 7898f76b4a16c6eb5367c23591dd408b45d558ea t/markup/unbalanced.t
+SHA1 5eddba066e156fa55741acbb69faf1a3213389ed t/markup/backslash-escape.t
+SHA1 889a68fb1b484eff5d4c8158868399c7f7f6d4b1 t/markup/blockquote.t
+SHA1 2ccb9df448b95f62db487d4b2b034f283336d0cc t/markup/headers.t
+SHA1 f320d4787ac1e4b7a18070d5150367d4ab267bac t/markup/hr.t
+SHA1 dcbfd7fdd4059cf49afbddd4804eeb49be8405b9 t/markup/image.t
+SHA1 fb40601b5f9f7e7d003747af13ab9a5182abd40e t/markup/link.t
+SHA1 211ddf6283d751579fa0369808ac462de85dc648 t/markup/list.t
+SHA1 d9d637431a500a5dd5f9f83dc4e89f3d2c03d422 t/markup/nested-markup.t
+SHA1 3111705412c2cf192a6f1d6243d3e53371eb2232 t/markup/preformatted.t
+SHA1 4ec9960c0031d2b0e1e80cf119eba8ded3a3e0bb t/markup/raw-html.t
+SHA1 526f22024305f68f893e9bd34cbd5d1ac770ed4a t/markup/strong-em-code.t
+SHA1 b7bb29b4ce0831553ae77aa1f404201999310bcd t/markup/unbalanced.t
 SHA1 6d740a68b68e683679afe0294268348e34f4051c t/mdtest-data/Amps and angle encoding.text
 SHA1 2946af2be6606f84a0d29b196c4a7fc6cec5dc74 t/mdtest-data/Amps and angle encoding.xhtml
 SHA1 b66caf8f0038a2e7f5d71869100b236948505fd5 t/mdtest-data/Auto links.text
 SHA1 3086bda2bddeb085b643fb7466e9b7443240dd51 t/mdtest-data/Auto links.xhtml
 SHA1 8cefe3fc22a3f379928fe9db55dbbc23107c8b81 t/mdtest-data/Backslash escapes.text
-SHA1 ad5698d05d525b27e42778678fbc7fd7f90a3e5c t/mdtest-data/Backslash escapes.xhtml
+SHA1 1bca6929c50e500099391add8f3246de3f190212 t/mdtest-data/Backslash escapes.xhtml
 SHA1 b1ffbbb51d848bfaf4be7a3b756f69121c5a71dd t/mdtest-data/Blockquotes with code blocks.text
 SHA1 cb3e7f7249d895a6459e141210079650cab03cda t/mdtest-data/Blockquotes with code blocks.xhtml
 SHA1 fb0ac98951a1dda39191c0aa1b324468b959ab99 t/mdtest-data/Code Blocks.text
 SHA1 6d628a9968410ca26e5165798f08b3bccba671ec t/mdtest-data/Code Blocks.xhtml
 SHA1 3cf2e8b271c4595bba747b574e5df937d74236ab t/mdtest-data/Code Spans.text
-SHA1 a18cbe90c5e3df749307db792ff4d1ea941ab3b6 t/mdtest-data/Code Spans.xhtml
+SHA1 4a47e5bcc74cff1630ebf46571fba1903607dec8 t/mdtest-data/Code Spans.xhtml
 SHA1 dbdb43aba77e6e4bb41f4899d53a7fab2db94483 t/mdtest-data/Hard-wrapped paragraphs with list-like lines.text
 SHA1 78d62d649e47e9aea99f37ca4f53c0835177f7ed t/mdtest-data/Hard-wrapped paragraphs with list-like lines.xhtml
 SHA1 e1df81ddeef72f15fe07bada6651acdcb1c73412 t/mdtest-data/Horizontal rules.text
@@ -98,16 +131,16 @@ SHA1 b0adaece75515ac7448a2b615d261e8a928e896f t/mdtest-data/Tabs.text
 SHA1 9657c1110ac7332f679cf035faa3751aa97f6238 t/mdtest-data/Tabs.xhtml
 SHA1 a5e4ed3ce1f9457ee381250da3968316737d1825 t/mdtest-data/Tidyness.text
 SHA1 b95dd6059babf35b2e21070b555469c00b67dd79 t/mdtest-data/Tidyness.xhtml
-SHA1 5b6f8aeb843ff7f6688fe79f9e35addc7015fc12 t/mdtest.t
-SHA1 09190c9e56f8c73824b2fd32dc650d5530b63c68 xt/kwalitee.t
-SHA1 0c71d37262eb3cf31508715669155858a6088358 xt/pod-coverage.t
-SHA1 d6a4daee2b9a9e0abacb046579acf105fbfd6c6c xt/pod-spell.t
-SHA1 d757328f50247ecdfce1ba097418cf7b426dc12e xt/pod.t
+SHA1 6eae301c3031bdf9c95a67860703b43f4144d041 t/mdtest.t
+SHA1 2e2f62c72a7e82a7f0041f085073a3e4ba2d05cb xt/kwalitee.t
+SHA1 1ed5dee8e5a46ff1a1809ead54d5e39c1f0bedc4 xt/pod-coverage.t
+SHA1 488ab40d6a2d7c57e7236029fca90674c78538ec xt/pod-spell.t
+SHA1 9bb24d755c9e2fbf5d9b7db34df15637ccd8e3f6 xt/pod.t
 SHA1 eac38d2dd9e7db4dfe5d6fe97bc413e2bcb0eb12 xt/versions-match.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.9 (GNU/Linux)
 
-iEYEARECAAYFAksIVIsACgkQIgMCsV8qvRKblQCdEQpkMyauqbIbd/fIMP60a6JG
-AQkAoJL/gx4ckvb/XzwpG0nS+s4786C6
-=mpNF
+iEYEARECAAYFAksMJF4ACgkQIgMCsV8qvRJGvwCfQZH6yimRuiDNDyomNMHUWuYu
+fzYAniF1AfHXfzu98F4Q5ER3N4J3eG/P
+=kZU+
 -----END PGP SIGNATURE-----

@@ -10,7 +10,7 @@ plan skip_all => "Test::Pod::Coverage 1.04 required for testing POD coverage"
     if $@;
 
 eval "use Pod::Coverage::Moose 0.02";
-plan skip_all => "Pod::Coverage::Moose 0.02.04 required for testing POD coverage"
+plan skip_all => "Pod::Coverage::Moose 0.02 required for testing POD coverage"
     if $@;
 
 my %skip = map { $_ => 1 } qw( Markdent::Types Markdent::Types::Internal );
@@ -27,14 +27,15 @@ my @handler_events = qw(
     end_document
     end_emphasis
     end_header
+    end_html_tag
     end_link
     end_list_item
     end_ordered_list
     end_paragraph
     end_strong
     end_unordered_list
-    hr
-    html
+    horizontal_rule
+    html_tag
     html_block
     html_entity
     image
@@ -44,6 +45,7 @@ my @handler_events = qw(
     start_document
     start_emphasis
     start_header
+    start_html_tag
     start_link
     start_list_item
     start_ordered_list
