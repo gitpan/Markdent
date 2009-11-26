@@ -18,25 +18,21 @@ use Markdent::Simple;
 
 use Exporter qw( import );
 
-our @EXPORT = qw( parse_ok html_output_ok );
+our @EXPORT = qw( tree_from_handler parse_ok html_output_ok );
 
 sub parse_ok {
+    my $parser_p    = ref $_[0] ? shift : {};
     my $markdown    = shift;
     my $expect_tree = shift;
     my $desc        = shift;
 
     my $handler = Markdent::Handler::MinimalTree->new();
 
-    my $parser = Markdent::Parser->new( handler => $handler );
+    my $parser = Markdent::Parser->new( %{$parser_p}, handler => $handler );
 
     $parser->parse( markdown => $markdown );
 
-    my $visitor = Tree::Simple::Visitor::ToNestedArray->new();
-    $handler->tree()->accept($visitor);
-
-    # The top level of this data structure is always a one element array ref
-    # containing the document contents.
-    my $results = $visitor->getResults()->[0];
+    my $results = tree_from_handler($handler);
 
     diag( Dumper($results) )
         if $ENV{MARKDENT_TEST_VERBOSE};
@@ -44,7 +40,19 @@ sub parse_ok {
     cmp_deeply( $results, $expect_tree, $desc );
 }
 
+sub tree_from_handler {
+    my $handler = shift;
+
+    my $visitor = Tree::Simple::Visitor::ToNestedArray->new();
+    $handler->tree()->accept($visitor);
+
+    # The top level of this data structure is always a one element array ref
+    # containing the document contents.
+    return $visitor->getResults()->[0];
+}
+
 sub html_output_ok {
+    my $dialect     = ref $_[0] ? shift : {};
     my $markdown    = shift;
     my $expect_html = shift;
     my $desc        = shift;
@@ -55,13 +63,21 @@ sub html_output_ok {
         return;
     }
 
-    my $html = Markdent::Simple->new()
-        ->markdown_to_html( title => 'Test', markdown => $markdown );
+    my $html = Markdent::Simple->new()->markdown_to_html(
+        %{$dialect},
+        title    => 'Test',
+        markdown => $markdown,
+    );
 
     diag($html)
         if $ENV{MARKDENT_TEST_VERBOSE};
 
-    my $tidy = HTML::Tidy->new( { doctype => 'transitional' } );
+    my $tidy = HTML::Tidy->new(
+        {
+            doctype           => 'transitional',
+            'sort-attributes' => 'alpha',
+        }
+    );
 
     my $real_expect_html = <<"EOF";
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

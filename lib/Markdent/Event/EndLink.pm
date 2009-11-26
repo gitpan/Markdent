@@ -3,13 +3,15 @@ package Markdent::Event::EndLink;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
 with 'Markdent::Role::Event';
+
+with 'Markdent::Role::BalancedEvent';
 
 __PACKAGE__->meta()->make_immutable();
 
@@ -29,7 +31,8 @@ This class represents the end of a link.
 
 =head1 ROLES
 
-This class does the L<Markdent::Role::Event> role.
+This class does the L<Markdent::Role::Event> and
+L<Markdent::Role::BalancedEvent> roles.
 
 =head1 BUGS
 

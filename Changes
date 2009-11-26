@@ -1,3 +1,29 @@
+0.03   2009-11-26
+
+- Added Markdent::Handler::CaptureEvents and Markdent::CapturedEvents. In my
+  benchmarks, thawing a Markdent::CaptureEvents object and replaying its
+  events to generate HTML for a bunch of documents was about 6x faster than
+  parsing from scratch.
+
+- Started implementing some Markdown extensions proposed by David Wheeler as
+  the "Theory" dialect. This includes a nice syntax for tables. For now this
+  only includes the table extension.
+
+- Made it easy to specify a dialect for a parser by writing
+
+    my $parser = Markdent::Parser->new( dialect => 'Theory' );
+
+- HTML comments are now parsed as comments, not text or HTML tags. There are
+  two events for this, HTMLCommentBlock and HTMLComment. The block version is
+  for standalone comments, the other is for comments embedded in text.
+
+- Made tag balancing a bit more generic with the Markdent::Role::BalancedEvent
+  role, which makes it easier to compare start & end events to see if they're
+  balanced.
+
+- Refactored some parser internals to improve subclassability.
+
+
 0.02   2009-11-24
 
 - Fixed some cases of nested strong and em in the Standard dialect's

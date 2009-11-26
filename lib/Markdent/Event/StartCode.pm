@@ -3,7 +3,7 @@ package Markdent::Event::StartCode;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Markdent::Types qw( Str );
 
@@ -18,6 +18,12 @@ has delimiter => (
 );
 
 with 'Markdent::Role::Event';
+
+with 'Markdent::Role::BalancedEvent' => { compare => [ 'delimiter' ] };
+
+with 'Markdent::Role::EventAsText';
+
+sub as_text { $_[0]->delimiter() }
 
 __PACKAGE__->meta()->make_immutable();
 
@@ -43,9 +49,18 @@ This class has the following attributes:
 
 The delimiter for the code span.
 
+=head1 METHODS
+
+This class has the following methods:
+
+=head2 $event->as_text()
+
+Returns the event's delimiter.
+
 =head1 ROLES
 
-This class does the L<Markdent::Role::Event> role.
+This class does the L<Markdent::Role::Event> and
+L<Markdent::Role::BalancedEvent> roles.
 
 =head1 BUGS
 

@@ -3,7 +3,7 @@ package Markdent::Role::Handler;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use namespace::autoclean;
 use Moose::Role;
@@ -22,7 +22,7 @@ Markdent::Role::Handler - A required role for all handlers
 
 =head1 DESCRIPTION
 
-This role implements behavior shared by all handlers.
+This role implements an interface shared by all handlers.
 
 =head1 REQUIRED METHODS
 

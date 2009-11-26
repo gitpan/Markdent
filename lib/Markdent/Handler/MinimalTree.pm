@@ -3,10 +3,13 @@ package Markdent::Handler::MinimalTree;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use MooseX::Params::Validate qw( validated_list validated_hash );
-use Markdent::Types qw( HeaderLevel Str Bool HashRef );
+use Markdent::Types qw(
+    HeaderLevel Str Bool HashRef
+    TableCellAlignment PosInt
+);
 use Tree::Simple;
 
 use namespace::autoclean;
@@ -43,10 +46,11 @@ sub end_document {
 }
 
 sub start_header {
-    my $self  = shift;
-    my ($level) = validated_list( \@_,
-                                  level => { isa => HeaderLevel },
-                                );
+    my $self = shift;
+    my ($level) = validated_list(
+        \@_,
+        level => { isa => HeaderLevel },
+    );
 
     my $header = Tree::Simple->new( { type => 'header', level => $level } );
     $self->_current_node()->addChild($header);
@@ -61,7 +65,7 @@ sub end_header {
 }
 
 sub start_blockquote {
-    my $self  = shift;
+    my $self = shift;
 
     my $bq = Tree::Simple->new( { type => 'blockquote' } );
     $self->_current_node()->addChild($bq);
@@ -70,13 +74,13 @@ sub start_blockquote {
 }
 
 sub end_blockquote {
-    my $self  = shift;
+    my $self = shift;
 
     $self->_set_current_up_one_level();
 }
 
 sub start_unordered_list {
-    my $self  = shift;
+    my $self = shift;
 
     my $bq = Tree::Simple->new( { type => 'unordered_list' } );
     $self->_current_node()->addChild($bq);
@@ -85,13 +89,13 @@ sub start_unordered_list {
 }
 
 sub end_unordered_list {
-    my $self  = shift;
+    my $self = shift;
 
     $self->_set_current_up_one_level();
 }
 
 sub start_ordered_list {
-    my $self  = shift;
+    my $self = shift;
 
     my $bq = Tree::Simple->new( { type => 'ordered_list' } );
     $self->_current_node()->addChild($bq);
@@ -100,13 +104,13 @@ sub start_ordered_list {
 }
 
 sub end_ordered_list {
-    my $self  = shift;
+    my $self = shift;
 
     $self->_set_current_up_one_level();
 }
 
 sub start_list_item {
-    my $self  = shift;
+    my $self = shift;
 
     my $para = Tree::Simple->new( { type => 'list_item' } );
     $self->_current_node()->addChild($para);
@@ -115,7 +119,7 @@ sub start_list_item {
 }
 
 sub end_list_item {
-    my $self  = shift;
+    my $self = shift;
 
     $self->_set_current_up_one_level();
 }
@@ -124,12 +128,13 @@ sub preformatted {
     my $self = shift;
     my ($text) = validated_list( \@_, text => { isa => Str }, );
 
-    my $pre_node = Tree::Simple->new( { type => 'preformatted', text => $text } );
+    my $pre_node
+        = Tree::Simple->new( { type => 'preformatted', text => $text } );
     $self->_current_node()->addChild($pre_node);
 }
 
 sub start_paragraph {
-    my $self  = shift;
+    my $self = shift;
 
     my $para = Tree::Simple->new( { type => 'paragraph' } );
     $self->_current_node()->addChild($para);
@@ -138,7 +143,92 @@ sub start_paragraph {
 }
 
 sub end_paragraph {
-    my $self  = shift;
+    my $self = shift;
+
+    $self->_set_current_up_one_level();
+}
+
+sub start_table {
+    my $self = shift;
+    my %p    = validated_hash(
+        \@_,
+        caption => { isa => Str, optional => 1 },
+    );
+
+    my $para = Tree::Simple->new( { type => 'table', %p } );
+    $self->_current_node()->addChild($para);
+
+    $self->_set_current_node($para);
+}
+
+sub end_table {
+    my $self = shift;
+
+    $self->_set_current_up_one_level();
+}
+
+sub start_table_header {
+    my $self = shift;
+
+    my $para = Tree::Simple->new( { type => 'table_header' } );
+    $self->_current_node()->addChild($para);
+
+    $self->_set_current_node($para);
+}
+
+sub end_table_header {
+    my $self = shift;
+
+    $self->_set_current_up_one_level();
+}
+
+sub start_table_body {
+    my $self = shift;
+
+    my $para = Tree::Simple->new( { type => 'table_body' } );
+    $self->_current_node()->addChild($para);
+
+    $self->_set_current_node($para);
+}
+
+sub end_table_body {
+    my $self = shift;
+
+    $self->_set_current_up_one_level();
+}
+
+sub start_table_row {
+    my $self = shift;
+
+    my $para = Tree::Simple->new( { type => 'table_row' } );
+    $self->_current_node()->addChild($para);
+
+    $self->_set_current_node($para);
+}
+
+sub end_table_row {
+    my $self = shift;
+
+    $self->_set_current_up_one_level();
+}
+
+sub start_table_cell {
+    my $self = shift;
+    my %p    = validated_hash(
+        \@_,
+        alignment      => { isa => TableCellAlignment, optional => 1 },
+        colspan        => { isa => PosInt },
+        is_header_cell => { isa => Bool },
+    );
+
+    my $para = Tree::Simple->new( { type => 'table_cell', %p } );
+    $self->_current_node()->addChild($para);
+
+    $self->_set_current_node($para);
+}
+
+sub end_table_cell {
+    my $self = shift;
 
     $self->_set_current_up_one_level();
 }
@@ -146,7 +236,7 @@ sub end_paragraph {
 sub start_emphasis {
     my $self = shift;
 
-    $self->_start_markup_node('emphasis')
+    $self->_start_markup_node('emphasis');
 }
 
 sub end_emphasis {
@@ -158,7 +248,7 @@ sub end_emphasis {
 sub start_strong {
     my $self = shift;
 
-    $self->_start_markup_node('strong')
+    $self->_start_markup_node('strong');
 }
 
 sub end_strong {
@@ -170,7 +260,7 @@ sub end_strong {
 sub start_code {
     my $self = shift;
 
-    $self->_start_markup_node('code')
+    $self->_start_markup_node('code');
 }
 
 sub end_code {
@@ -192,7 +282,7 @@ sub auto_link {
 
 sub start_link {
     my $self = shift;
-    my %p = validated_hash(
+    my %p    = validated_hash(
         \@_,
         uri            => { isa => Str },
         title          => { isa => Str, optional => 1 },
@@ -200,9 +290,9 @@ sub start_link {
         is_implicit_id => { isa => Bool },
     );
 
-    delete @p{ grep { ! defined $p{$_} } keys %p };
+    delete @p{ grep { !defined $p{$_} } keys %p };
 
-    $self->_start_markup_node( 'link', %p )
+    $self->_start_markup_node( 'link', %p );
 }
 
 sub end_link {
@@ -241,9 +331,28 @@ sub start_html_tag {
 }
 
 sub end_html_tag {
-    my $self  = shift;
+    my $self = shift;
 
     $self->_set_current_up_one_level();
+}
+
+sub html_comment_block {
+    my $self = shift;
+
+    my ($text) = validated_list( \@_, text => { isa => Str }, );
+
+    my $html_node = Tree::Simple->new(
+        { type => 'html_comment_block', text => $text } );
+    $self->_current_node()->addChild($html_node);
+}
+
+sub html_comment {
+    my $self = shift;
+    my ($text) = validated_list( \@_, text => { isa => Str }, );
+
+    my $html_node
+        = Tree::Simple->new( { type => 'html_comment', text => $text } );
+    $self->_current_node()->addChild($html_node);
 }
 
 sub html_tag {
@@ -269,7 +378,8 @@ sub html_entity {
     my $self = shift;
     my ($entity) = validated_list( \@_, entity => { isa => Str }, );
 
-    my $html_node = Tree::Simple->new( { type => 'html_entity', entity => $entity } );
+    my $html_node
+        = Tree::Simple->new( { type => 'html_entity', entity => $entity } );
     $self->_current_node()->addChild($html_node);
 }
 
@@ -277,7 +387,8 @@ sub html_block {
     my $self = shift;
     my ($html) = validated_list( \@_, html => { isa => Str }, );
 
-    my $html_node = Tree::Simple->new( { type => 'html_block', html => $html } );
+    my $html_node
+        = Tree::Simple->new( { type => 'html_block', html => $html } );
     $self->_current_node()->addChild($html_node);
 }
 
@@ -310,7 +421,7 @@ sub _start_markup_node {
     my $markup = Tree::Simple->new( { type => $type, @_ } );
     $self->_current_node()->addChild($markup);
 
-    $self->_set_current_node($markup)
+    $self->_set_current_node($markup);
 }
 
 sub _set_current_up_one_level {
@@ -329,7 +440,7 @@ __END__
 
 =head1 NAME
 
-Markdent::Handler::HTMLStream - A Markdent handler which builds a tree
+Markdent::Handler::MinimalTree - A Markdent handler which builds a tree
 
 =head1 DESCRIPTION
 

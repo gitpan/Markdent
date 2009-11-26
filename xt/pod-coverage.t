@@ -13,7 +13,8 @@ eval "use Pod::Coverage::Moose 0.02";
 plan skip_all => "Pod::Coverage::Moose 0.02 required for testing POD coverage"
     if $@;
 
-my %skip = map { $_ => 1 } qw( Markdent::Types Markdent::Types::Internal );
+my %skip = map { $_ => 1 }
+    qw( Markdent::Regexes Markdent::Types Markdent::Types::Internal );
 
 # This is a stripped down version of all_pod_coverage_ok which lets us
 # vary the trustme parameter per module.
@@ -37,6 +38,8 @@ my @handler_events = qw(
     horizontal_rule
     html_tag
     html_block
+ 	html_comment
+ 	html_comment_block
     html_entity
     image
     preformatted
@@ -53,12 +56,24 @@ my @handler_events = qw(
     start_strong
     start_unordered_list
     text
+
+ 	end_table
+ 	end_table_body
+ 	end_table_cell
+ 	end_table_header
+ 	end_table_row
+ 	start_table
+ 	start_table_body
+ 	start_table_cell
+ 	start_table_header
+ 	start_table_row
 );
 
 my %trustme = (
-    'Markdent::Handler::HTMLStream'  => \@handler_events,
-    'Markdent::Handler::MinimalTree' => \@handler_events,
-    'Markdent::Parser'               => ['BUILD'],
+    'Markdent::Handler::CaptureEvents' => ['handle_event'],
+    'Markdent::Handler::HTMLStream'    => \@handler_events,
+    'Markdent::Handler::MinimalTree'   => \@handler_events,
+    'Markdent::Parser'                 => ['BUILD'],
 );
 
 for my $module ( sort @modules ) {

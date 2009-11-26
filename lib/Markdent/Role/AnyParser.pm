@@ -3,8 +3,9 @@ package Markdent::Role::AnyParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
+use namespace::autoclean;
 use Moose::Role;
 
 with 'Markdent::Role::DebugPrinter';
@@ -44,7 +45,18 @@ sub _detab_text {
     return;
 }
 
-no Moose::Role;
+sub _debug_look_for {
+    my $self = shift;
+
+    return unless $self->debug();
+
+    my @look_debug = map { ref $_ ? "$_->[0] ($_->[1])" : $_ } @_;
+
+    my $msg = "Looking for the following possible matches:\n";
+    $msg .= "  - $_\n" for @look_debug;
+
+    $self->_print_debug($msg);
+}
 
 1;
 

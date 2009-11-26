@@ -3,7 +3,7 @@ package Markdent::Types::Internal;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use IO::Handle;
 
@@ -13,6 +13,8 @@ use MooseX::Types -declare => [
         SpanParserClass
         EventObject
         OutputStream
+        TableCellAlignment
+        PosInt
         )
 ];
 
@@ -42,5 +44,12 @@ subtype OutputStream,
             || ( Object->check($_) && $_->can('print') );
     },
     message { 'The output stream must be a Perl file handle or an object with a print method' };
+
+enum TableCellAlignment, qw( left right center );
+
+subtype PosInt,
+    as Int,
+    where { $_ >= 1 },
+    message {"The number provided ($_) is not a positive integer"};
 
 1;

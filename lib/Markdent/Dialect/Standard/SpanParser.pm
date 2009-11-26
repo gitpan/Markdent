@@ -3,16 +3,18 @@ package Markdent::Dialect::Standard::SpanParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use re 'eval';
 
+use List::AllUtils qw( uniq );
 use Markdent::Event::AutoLink;
 use Markdent::Event::EndCode;
 use Markdent::Event::EndEmphasis;
 use Markdent::Event::EndHTMLTag;
 use Markdent::Event::EndLink;
 use Markdent::Event::EndStrong;
+use Markdent::Event::HTMLComment;
 use Markdent::Event::HTMLEntity;
 use Markdent::Event::HTMLTag;
 use Markdent::Event::Image;
@@ -22,7 +24,8 @@ use Markdent::Event::StartHTMLTag;
 use Markdent::Event::StartLink;
 use Markdent::Event::StartStrong;
 use Markdent::Event::Text;
-use Markdent::Types qw( Str ArrayRef HashRef EventObject );
+use Markdent::Regexes qw( $HTMLComment );
+use Markdent::Types qw( Str ArrayRef HashRef RegexpRef EventObject );
 
 use namespace::autoclean;
 use Moose;
@@ -67,6 +70,21 @@ has _links_by_id => (
         _add_link_by_id => 'set',
         _get_link_by_id => 'get',
     },
+);
+
+has _escape_re => (
+    is       => 'ro',
+    isa      => RegexpRef,
+    lazy     => 1,
+    builder  => '_build_escape_re',
+    init_arg => undef,
+);
+
+has _escapable_chars => (
+    is      => 'ro',
+    isa     => ArrayRef [Str],
+    lazy    => 1,
+    builder => '_build_escapable_chars',
 );
 
 sub extract_link_ids {
@@ -167,23 +185,15 @@ sub _parse_text {
 
         my @look_for = $self->_possible_span_matches();
 
-        if ( $self->debug() ) {
-            my @look_debug = map { ref $_ ? "$_->[0] ($_->[1])" : $_ } @look_for;
-
-            my $msg = "Looking for the following possible matches:\n";
-            $msg .= "  - $_\n" for @look_debug;
-
-            $self->_print_debug($msg);
-        }
+        $self->_debug_look_for(@look_for);
 
         for my $span (@look_for) {
             my ( $markup, @args ) = ref $span ? @{$span} : $span;
 
             my $meth = '_match_' . $markup;
 
-            if ( $self->$meth( $text, @args ) ) {
-                next PARSE;
-            }
+            $self->$meth( $text, @args )
+                and next PARSE;
         }
 
         $self->_match_plain_text($text);
@@ -207,7 +217,7 @@ sub _possible_span_matches {
         push @look_for, qw( auto_link link image );
     }
 
-    push @look_for, 'html', 'html_entity';
+    push @look_for, 'html_comment', 'html_tag', 'html_entity';
 
     return @look_for;
 }
@@ -272,14 +282,26 @@ sub _open_start_event_for_span {
     return $in;
 }
 
-my $Escape = qr/\\([\\`*_{}[\]()#+\-.!<>])/;
+sub _build_escapable_chars {
+    return [ qw( \ ` * _ { } [ \ ] ( ) + \ - . ! < > ), '#' ];
+}
+
+sub _build_escape_re {
+    my $self = shift;
+
+    my $chars = join q{}, uniq( @{ $self->_escapable_chars() } );
+
+    return qr/\\([\Q$chars\E])/;
+}
 
 sub _match_escape {
     my $self = shift;
     my $text = shift;
 
+    my $escape_re = $self->_escape_re();
+
     return unless ${$text} =~ / \G
-                                ($Escape)
+                                ($escape_re)
                               /xgc;
 
     $self->_print_debug( "Interpreting as escaped character\n\n[$1]\n" )
@@ -550,10 +572,27 @@ sub _link_match_results {
     return ( $text, \%attr );
 }
 
+sub _match_html_comment {
+    my $self = shift;
+    my $text = shift;
+
+    return unless ${$text} =~ / \G
+                                $HTMLComment
+                              /xgcs;
+
+    my $comment = $1;
+
+    $self->_detab_text(\$comment);
+
+    my $event = $self->_make_event( HTMLComment => text => $comment );
+
+    $self->_markup_event($event);
+}
+
 my %InlineTags = map { $_ => 1 }
     qw( area base basefont br col frame hr img input link meta param );
 
-sub _match_html {
+sub _match_html_tag {
     my $self = shift;
     my $text = shift;
 
@@ -631,6 +670,8 @@ sub _match_plain_text {
     my $self = shift;
     my $text = shift;
 
+    my $escape_re = $self->_escape_re();
+
     # Note that we're careful not to consume any of the characters marking the
     # (possible) end of the plain text. If those things turn out to _not_ be
     # markup, we'll get them on the next pass, because we always match at
@@ -639,7 +680,7 @@ sub _match_plain_text {
         ${$text} =~ /\G
                      ( .+? )              # at least one character followed by ...
                      (?=
-                       $Escape
+                       $escape_re
                        |
                        \*                 #   possible span markup
                        |
@@ -718,13 +759,15 @@ EVENT:
     for my $i ( 0 .. $#{$events} ) {
         my $event = $events->[$i];
 
+        next unless $event->does('Markdent::Role::BalancedEvent');
+
         if ( $event->is_start() ) {
             push @starts, [ $i, $event ];
         }
         elsif ( $event->is_end() ) {
             while ( my $start = pop @starts ) {
                 next EVENT
-                    if $start->[1]->name() eq $event->name();
+                    if $event->balances_event( $start->[1] );
 
                 $events->[ $start->[0] ]
                     = $self->_convert_start_event_to_text( $start->[1] );
@@ -743,17 +786,21 @@ sub _convert_start_event_to_text {
     my $self  = shift;
     my $event = shift;
 
-    $self->_print_debug( 'Found bad start event for '
-            . $event->name()
-            . q{ with "}
-            . $event->delimiter()
-            . q{" as the delimiter}
-            . "\n" )
-        if $self->debug();
+    if ( $self->debug() ) {
+        my $msg = 'Found bad start event for ' . $event->name();
+
+        if ( $event->can('delimiter') ) {
+            $msg .= q{ with "} . $event->delimiter() . q{" as the delimiter};
+        }
+
+        $msg .= "\n";
+
+        $self->_print_debug($msg);
+    }
 
     return $self->_make_event(
         Text => (
-            text            => $event->delimiter(),
+            text            => $event->as_text(),
             _converted_from => $event->event_name(),
         )
     );

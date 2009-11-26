@@ -3,11 +3,15 @@ package Markdent::Handler::HTMLStream;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use HTML::Stream;
+use Markdent::Types qw(
+    HeaderLevel Str Bool HashRef
+    TableCellAlignment PosInt
+    OutputStream
+);
 use MooseX::Params::Validate qw( validated_list validated_hash );
-use Markdent::Types qw( Bool Str HashRef OutputStream HeaderLevel );
 
 use namespace::autoclean;
 use Moose;
@@ -154,6 +158,92 @@ sub end_paragraph {
     $self->_stream()->tag('_p');
 }
 
+sub start_table {
+    my $self = shift;
+    my ($caption) = validated_list(
+        \@_,
+        caption => { isa => Str, optional => 1 },
+    );
+
+    $self->_stream()->tag('table');
+
+    if ( defined $caption && length $caption ) {
+        $self->_stream()->tag('caption');
+        $self->_stream()->text($caption);
+        $self->_stream()->tag('_caption');
+    }
+}
+
+sub end_table {
+    my $self = shift;
+
+    $self->_stream()->tag('_table');
+}
+
+sub start_table_header {
+    my $self = shift;
+
+    $self->_stream()->tag('thead');
+}
+
+sub end_table_header {
+    my $self  = shift;
+
+    $self->_stream()->tag('_thead');
+}
+
+sub start_table_body {
+    my $self  = shift;
+
+    $self->_stream()->tag('tbody');
+}
+
+sub end_table_body {
+    my $self  = shift;
+
+    $self->_stream()->tag('_tbody');
+}
+
+sub start_table_row {
+    my $self  = shift;
+
+    $self->_stream()->tag('tr');
+}
+
+sub end_table_row {
+    my $self  = shift;
+
+    $self->_stream()->tag('_tr');
+}
+
+sub start_table_cell {
+    my $self = shift;
+    my ( $alignment, $colspan, $is_header ) = validated_list(
+        \@_,
+        alignment      => { isa => TableCellAlignment, optional => 1 },
+        colspan        => { isa => PosInt },
+        is_header_cell => { isa => Bool },
+    );
+
+    my $tag = $is_header ? 'th' : 'td';
+
+    my %attr = ( align => $alignment );
+    $attr{colspan} = $colspan
+        if $colspan != 1;
+
+    $self->_stream()->tag( $tag, %attr );
+}
+
+sub end_table_cell {
+    my $self = shift;
+    my ($is_header) = validated_hash(
+        \@_,
+        is_header_cell => { isa => Bool },
+    );
+
+    $self->_stream()->tag( $is_header ? '_th' : '_td' );
+}
+
 sub start_emphasis {
     my $self = shift;
 
@@ -242,6 +332,28 @@ sub start_html_tag {
     );
 
     $self->_stream()->tag( $tag, %{$attributes} );
+}
+
+sub html_comment_block {
+    my $self = shift;
+    my ($text) = validated_list(
+        \@_,
+        text => { isa => Str },
+    );
+
+    # HTML::Stream->comment() adds extra whitespace for no good reason.
+    $self->_output()->print( '<!--' . $text . '-->' . "\n" );
+}
+
+sub html_comment {
+    my $self = shift;
+    my ($text) = validated_list(
+        \@_,
+        text => { isa => Str },
+    );
+
+    # HTML::Stream->comment() adds extra whitespace for no good reason.
+    $self->_output()->print( '<!--' . $text . '-->' );
 }
 
 sub html_tag {

@@ -3,7 +3,7 @@ package Markdent::Event::StartLink;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Markdent::Types qw( Str Bool );
 
@@ -36,6 +36,8 @@ has is_implicit_id => (
 );
 
 with 'Markdent::Role::Event';
+
+with 'Markdent::Role::BalancedEvent';
 
 __PACKAGE__->meta()->make_immutable();
 
@@ -76,7 +78,8 @@ Markdown text.
 
 =head1 ROLES
 
-This class does the L<Markdent::Role::Event> role.
+This class does the L<Markdent::Role::Event> and
+L<Markdent::Role::BalancedEvent> roles.
 
 =head1 BUGS
 

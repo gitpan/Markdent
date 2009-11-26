@@ -1,23 +1,9 @@
 use strict;
 use warnings;
 
-use Module::Build;
+use lib 'inc';
 
-my $subclass = Module::Build->subclass(
-    class => 'Markdent::Build',
-    code  => <<'EOF',
-sub find_test_files {
-    my $self = shift;
-
-    my $tests = $self->SUPER::find_test_files(@_);
-
-    push @{$tests}, $self->expand_test_dir('xt')
-        if $ENV{AUTHOR_TESTING};
-
-    return $tests;
-}
-EOF
-);
+use Markdent::Build;
 
 my $builder = Markdent::Build->new(
     module_name => 'Markdent',
@@ -25,6 +11,7 @@ my $builder = Markdent::Build->new(
     requires    => {
         'Digest::SHA1'                   => '0',
         'HTML::Stream'                   => '0',
+        'List::AllUtils'                 => '0',
         'Moose'                          => '0.92',
         'MooseX::Params::Validate'       => '0.12',
         'MooseX::SemiAffordanceAccessor' => '0.05',
@@ -32,11 +19,13 @@ my $builder = Markdent::Build->new(
         'MooseX::Types'                  => '0.20',
         'namespace::autoclean'           => '0.09',
         'Tree::Simple'                   => '0',
+        'Try::Tiny'                      => '0',
     },
     build_requires => {
         'File::Slurp'                          => '0',
         'Test::Deep'                           => '0',
         'Test::Differences'                    => '0',
+        'Test::Exception'                      => '0',
         'Test::More'                           => '0',
         'Tree::Simple::Visitor::ToNestedArray' => '0',
     },

@@ -3,7 +3,7 @@ package Markdent::Dialect::Standard::BlockParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Digest::SHA1 qw( sha1_hex );
 use Markdent::Event::StartDocument;
@@ -22,7 +22,9 @@ use Markdent::Event::StartUnorderedList;
 use Markdent::Event::EndUnorderedList;
 use Markdent::Event::HorizontalRule;
 use Markdent::Event::HTMLBlock;
+use Markdent::Event::HTMLCommentBlock;
 use Markdent::Event::Preformatted;
+use Markdent::Regexes qw( :block $HTMLComment );
 use Markdent::Types qw( Str Int Bool ArrayRef HashRef );
 
 use namespace::autoclean;
@@ -80,13 +82,6 @@ sub parse_document {
     $self->_parse_text($text);
 }
 
-my $HorizontalWS = qr/(?: \p{SpaceSeparator} | \t )/x;
-my $EmptyLine = qr/(?: ^ $HorizontalWS* \n ) /xm;
-my $EmptyLines = qr/ (?: $EmptyLine )+ /xm;
-
-my $BlockStart = qr/(?: \A | $EmptyLines )/xm;
-my $BlockEnd = qr/(?=(?: $EmptyLines | \z ) )/xm;
-
 {
     # Stolen from Text::Markdown, along with the whole "extract and replace
     # with hash" concept.
@@ -132,7 +127,8 @@ sub _parse_text {
     my $text = shift;
 
     my $last_pos;
-
+    my $x = 1;
+ PARSE:
     while (1) {
         if ( $self->debug() && pos ${$text} ) {
             $self->_print_debug( "Remaining text:\n[\n"
@@ -144,8 +140,9 @@ sub _parse_text {
             last;
         }
 
-        if ( $last_pos && $last_pos == pos ${$text} ) {
-            my $msg = "About to enter an endless loop!\n";
+        my $current_pos = pos ${$text} || 0;
+        if ( defined $last_pos && $last_pos == $current_pos ) {
+            my $msg = "About to enter an endless loop (pos = $current_pos)!\n";
             $msg .= "\n";
             $msg .= substr( ${$text}, $last_pos );
             $msg .= "\n";
@@ -153,30 +150,40 @@ sub _parse_text {
             die $msg;
         }
 
-        $self->_match_hashed_html($text) and next;
+        my @look_for = $self->_possible_block_matches();
 
-        $self->_match_atx_header($text) and next;
+        $self->_debug_look_for(@look_for);
 
-        $self->_match_two_line_header($text) and next;
+        for my $block (@look_for) {
+            my $meth = '_match_' . $block;
 
-        unless ( $self->_list_level() ) {
-            $self->_match_horizontal_rule($text) and next;
+            $self->$meth($text)
+                and next PARSE;
         }
 
-        $self->_match_blockquote($text) and next;
-
-        $self->_match_preformatted($text) and next;
-
-        $self->_match_list($text) and next;
-
-        if ( $self->_list_level() ) {
-            $self->_match_list_item($text) and next;
-        }
-
-        $self->_match_paragraph($text) and next;
-
-        $last_pos = pos ${$text};
+        $last_pos = pos ${$text} || 0;
     }
+}
+
+sub _possible_block_matches {
+    my $self = shift;
+
+    my @look_for;
+
+    push @look_for, qw( hashed_html horizontal_rule )
+        unless $self->_list_level();
+
+    push @look_for,
+        qw( html_comment
+            atx_header two_line_header
+            blockquote preformatted list );
+
+    push @look_for, 'list_item'
+        if $self->_list_level();
+
+    push @look_for, 'paragraph';
+
+    return @look_for;
 }
 
 sub _match_hashed_html {
@@ -207,6 +214,31 @@ sub _match_hashed_html {
     );
 
     return 1;
+}
+
+sub _match_html_comment {
+    my $self = shift;
+    my $text = shift;
+
+    return unless ${$text} =~ / \G
+                                $EmptyLine*?
+                                ^
+                                \p{SpaceSeparator}{0,3}
+                                $HTMLComment
+                                $HorizontalWS*
+                                \n
+                              /xmgc;
+
+    my $comment = $1;
+
+    $self->_debug_parse_result(
+        $comment,
+        'html comment block',
+    ) if $self->debug();
+
+    $self->_detab_text(\$comment);
+
+    $self->_send_event( HTMLCommentBlock => text => $comment );
 }
 
 my $AtxHeader = qr/ ^
@@ -585,7 +617,7 @@ sub _split_list_items {
     return @items;
 }
 
-# A list item matches a multiple lines of text without any separating
+# A list item matches multiple lines of text without any separating
 # newlines. These lines stop when we see a blockquote or indented list
 # bullet. This match is only done inside a list, and lets us distinguish
 # between list items which contain paragraphs and those which don't.

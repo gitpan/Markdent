@@ -3,8 +3,9 @@ package Markdent::Role::BlockParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
+use namespace::autoclean;
 use Moose::Role;
 
 with 'Markdent::Role::AnyParser';
@@ -17,8 +18,6 @@ has _span_parser => (
     init_arg => 'span_parser',
     required => 1,
 );
-
-no Moose::Role;
 
 1;
 
