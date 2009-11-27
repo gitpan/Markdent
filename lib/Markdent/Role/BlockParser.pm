@@ -3,7 +3,7 @@ package Markdent::Role::BlockParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 use namespace::autoclean;
 use Moose::Role;
@@ -57,7 +57,7 @@ This is required for all block parsers.
 
 =head1 ROLES
 
-This class does the L<Markdent::Role::AnyParser> and
+This role does the L<Markdent::Role::AnyParser> and
 L<Markdent::Role::DebugPrinter> roles.
 
 =head1 BUGS

@@ -56,6 +56,7 @@ lib/Markdent/Event/StartTableRow.pm
 lib/Markdent/Event/StartUnorderedList.pm
 lib/Markdent/Event/Text.pm
 lib/Markdent/Handler/CaptureEvents.pm
+lib/Markdent/Handler/HTMLFilter.pm
 lib/Markdent/Handler/HTMLStream.pm
 lib/Markdent/Handler/MinimalTree.pm
 lib/Markdent/Handler/Multiplexer.pm
@@ -69,6 +70,7 @@ lib/Markdent/Role/DebugPrinter.pm
 lib/Markdent/Role/Event.pm
 lib/Markdent/Role/EventAsText.pm
 lib/Markdent/Role/EventsAsMethods.pm
+lib/Markdent/Role/FilterHandler.pm
 lib/Markdent/Role/Handler.pm
 lib/Markdent/Role/SpanParser.pm
 lib/Markdent/Simple.pm
@@ -80,6 +82,7 @@ META.yml
 README
 t/CapturedEvents.t
 t/Handler/CaptureEvents.t
+t/Handler/HTMLFilter.t
 t/Handler/HTMLStream.t
 t/Handler/Multiplexer.t
 t/lib/Example/Dialect/BlockParser.pm

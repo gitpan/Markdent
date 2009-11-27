@@ -3,7 +3,7 @@ package Markdent::Role::EventsAsMethods;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 use Scalar::Util qw( blessed );
 
@@ -61,7 +61,7 @@ call like this:
 
 =head1 ROLES
 
-This class does the L<Markdent::Role::Handler> role.
+This role does the L<Markdent::Role::Handler> role.
 
 =head1 BUGS
 
