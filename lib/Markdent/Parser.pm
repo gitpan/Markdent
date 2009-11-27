@@ -3,7 +3,7 @@ package Markdent::Parser;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Class::MOP;
 use Markdent::Dialect::Standard::BlockParser;
@@ -211,9 +211,8 @@ Markdent::Parser - A markdown parser
   my $handler = Markdent::Handler::HTMLStream->new( ... );
 
   my $parser = Markdent::Parser->new(
-      block_parser_class => '...',
-      span_parser_class  => '...',
-      handler            => $handler,
+      dialect => ...,
+      handler => $handler,
   );
 
   $parse->parse( markdown => $markdown );
@@ -252,6 +251,9 @@ If any relevant classes are found, they will be used by the parser.
 
 You can I<also> specify an explicit block or span parser, but if the dialect
 has its own class of that type, an error will be thrown.
+
+If the dialect only specifies a block or span parser, but not both, then we
+fall back to using the appropriate parser for the Standard dialect.
 
 =item * block_parser_class => $class
 

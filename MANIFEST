@@ -58,6 +58,8 @@ lib/Markdent/Event/Text.pm
 lib/Markdent/Handler/CaptureEvents.pm
 lib/Markdent/Handler/HTMLStream.pm
 lib/Markdent/Handler/MinimalTree.pm
+lib/Markdent/Handler/Multiplexer.pm
+lib/Markdent/Manual.pod
 lib/Markdent/Parser.pm
 lib/Markdent/Regexes.pm
 lib/Markdent/Role/AnyParser.pm
@@ -79,6 +81,7 @@ README
 t/CapturedEvents.t
 t/Handler/CaptureEvents.t
 t/Handler/HTMLStream.t
+t/Handler/Multiplexer.t
 t/lib/Example/Dialect/BlockParser.pm
 t/lib/Example/Dialect/SpanParser.pm
 t/lib/Test/Markdent.pm

@@ -3,7 +3,7 @@ package Markdent::Dialect::Theory::BlockParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use List::AllUtils qw( insert_after_string sum );
 use Markdent::Event::StartTable;
@@ -161,6 +161,8 @@ sub _match_table {
     $self->_send_event('EndTable');
 
     $self->_leave_table();
+
+    return 1;
 }
 
 sub _parse_rows {

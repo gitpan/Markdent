@@ -3,7 +3,7 @@ package Markdent::Dialect::Standard::SpanParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use re 'eval';
 
@@ -587,6 +587,8 @@ sub _match_html_comment {
     my $event = $self->_make_event( HTMLComment => text => $comment );
 
     $self->_markup_event($event);
+
+    return 1;
 }
 
 my %InlineTags = map { $_ => 1 }
@@ -664,6 +666,8 @@ sub _match_html_entity {
     my $event = $self->_make_event( HTMLEntity => entity => $1 );
 
     $self->_markup_event($event);
+
+    return 1;
 }
 
 sub _match_plain_text {

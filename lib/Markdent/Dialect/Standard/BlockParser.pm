@@ -3,7 +3,7 @@ package Markdent::Dialect::Standard::BlockParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Digest::SHA1 qw( sha1_hex );
 use Markdent::Event::StartDocument;
@@ -239,6 +239,8 @@ sub _match_html_comment {
     $self->_detab_text(\$comment);
 
     $self->_send_event( HTMLCommentBlock => text => $comment );
+
+    return 1;
 }
 
 my $AtxHeader = qr/ ^
@@ -702,6 +704,8 @@ sub _match_paragraph {
     $self->_span_parser()->parse_block($1);
 
     $self->_send_event('EndParagraph');
+
+    return 1;
 }
 
 sub _split_chunks_on_regex {
