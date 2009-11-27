@@ -20,208 +20,208 @@ name: Markdent
 provides:
   Markdent:
     file: lib/Markdent.pm
-    version: 0.04
+    version: 0.05
   Markdent::CapturedEvents:
     file: lib/Markdent/CapturedEvents.pm
-    version: 0.04
+    version: 0.05
   Markdent::Dialect::Standard::BlockParser:
     file: lib/Markdent/Dialect/Standard/BlockParser.pm
-    version: 0.04
+    version: 0.05
   Markdent::Dialect::Standard::SpanParser:
     file: lib/Markdent/Dialect/Standard/SpanParser.pm
-    version: 0.04
+    version: 0.05
   Markdent::Dialect::Theory::BlockParser:
     file: lib/Markdent/Dialect/Theory/BlockParser.pm
-    version: 0.04
+    version: 0.05
   Markdent::Dialect::Theory::SpanParser:
     file: lib/Markdent/Dialect/Theory/SpanParser.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::AutoLink:
     file: lib/Markdent/Event/AutoLink.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndBlockquote:
     file: lib/Markdent/Event/EndBlockquote.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndCode:
     file: lib/Markdent/Event/EndCode.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndDocument:
     file: lib/Markdent/Event/EndDocument.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndEmphasis:
     file: lib/Markdent/Event/EndEmphasis.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndHTMLTag:
     file: lib/Markdent/Event/EndHTMLTag.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndHeader:
     file: lib/Markdent/Event/EndHeader.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndLink:
     file: lib/Markdent/Event/EndLink.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndListItem:
     file: lib/Markdent/Event/EndListItem.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndOrderedList:
     file: lib/Markdent/Event/EndOrderedList.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndParagraph:
     file: lib/Markdent/Event/EndParagraph.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndStrong:
     file: lib/Markdent/Event/EndStrong.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndTable:
     file: lib/Markdent/Event/EndTable.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndTableBody:
     file: lib/Markdent/Event/EndTableBody.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndTableCell:
     file: lib/Markdent/Event/EndTableCell.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndTableHeader:
     file: lib/Markdent/Event/EndTableHeader.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndTableRow:
     file: lib/Markdent/Event/EndTableRow.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::EndUnorderedList:
     file: lib/Markdent/Event/EndUnorderedList.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::HTMLBlock:
     file: lib/Markdent/Event/HTMLBlock.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::HTMLComment:
     file: lib/Markdent/Event/HTMLComment.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::HTMLCommentBlock:
     file: lib/Markdent/Event/HTMLCommentBlock.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::HTMLEntity:
     file: lib/Markdent/Event/HTMLEntity.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::HTMLTag:
     file: lib/Markdent/Event/HTMLTag.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::HorizontalRule:
     file: lib/Markdent/Event/HorizontalRule.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::Image:
     file: lib/Markdent/Event/Image.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::Preformatted:
     file: lib/Markdent/Event/Preformatted.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartBlockquote:
     file: lib/Markdent/Event/StartBlockquote.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartCode:
     file: lib/Markdent/Event/StartCode.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartDocument:
     file: lib/Markdent/Event/StartDocument.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartEmphasis:
     file: lib/Markdent/Event/StartEmphasis.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartHTMLTag:
     file: lib/Markdent/Event/StartHTMLTag.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartHeader:
     file: lib/Markdent/Event/StartHeader.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartLink:
     file: lib/Markdent/Event/StartLink.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartListItem:
     file: lib/Markdent/Event/StartListItem.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartOrderedList:
     file: lib/Markdent/Event/StartOrderedList.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartParagraph:
     file: lib/Markdent/Event/StartParagraph.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartStrong:
     file: lib/Markdent/Event/StartStrong.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartTable:
     file: lib/Markdent/Event/StartTable.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartTableBody:
     file: lib/Markdent/Event/StartTableBody.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartTableCell:
     file: lib/Markdent/Event/StartTableCell.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartTableHeader:
     file: lib/Markdent/Event/StartTableHeader.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartTableRow:
     file: lib/Markdent/Event/StartTableRow.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::StartUnorderedList:
     file: lib/Markdent/Event/StartUnorderedList.pm
-    version: 0.04
+    version: 0.05
   Markdent::Event::Text:
     file: lib/Markdent/Event/Text.pm
-    version: 0.04
+    version: 0.05
   Markdent::Handler::CaptureEvents:
     file: lib/Markdent/Handler/CaptureEvents.pm
-    version: 0.04
+    version: 0.05
   Markdent::Handler::HTMLStream:
     file: lib/Markdent/Handler/HTMLStream.pm
-    version: 0.04
+    version: 0.05
   Markdent::Handler::MinimalTree:
     file: lib/Markdent/Handler/MinimalTree.pm
-    version: 0.04
+    version: 0.05
   Markdent::Handler::Multiplexer:
     file: lib/Markdent/Handler/Multiplexer.pm
-    version: 0.04
+    version: 0.05
   Markdent::Parser:
     file: lib/Markdent/Parser.pm
-    version: 0.04
+    version: 0.05
   Markdent::Regexes:
     file: lib/Markdent/Regexes.pm
-    version: 0.04
+    version: 0.05
   Markdent::Role::AnyParser:
     file: lib/Markdent/Role/AnyParser.pm
-    version: 0.04
+    version: 0.05
   Markdent::Role::BalancedEvent:
     file: lib/Markdent/Role/BalancedEvent.pm
-    version: 0.04
+    version: 0.05
   Markdent::Role::BlockParser:
     file: lib/Markdent/Role/BlockParser.pm
-    version: 0.04
+    version: 0.05
   Markdent::Role::DebugPrinter:
     file: lib/Markdent/Role/DebugPrinter.pm
-    version: 0.04
+    version: 0.05
   Markdent::Role::Event:
     file: lib/Markdent/Role/Event.pm
-    version: 0.04
+    version: 0.05
   Markdent::Role::EventAsText:
     file: lib/Markdent/Role/EventAsText.pm
-    version: 0.04
+    version: 0.05
   Markdent::Role::EventsAsMethods:
     file: lib/Markdent/Role/EventsAsMethods.pm
-    version: 0.04
+    version: 0.05
   Markdent::Role::Handler:
     file: lib/Markdent/Role/Handler.pm
-    version: 0.04
+    version: 0.05
   Markdent::Role::SpanParser:
     file: lib/Markdent/Role/SpanParser.pm
-    version: 0.04
+    version: 0.05
   Markdent::Simple:
     file: lib/Markdent/Simple.pm
-    version: 0.04
+    version: 0.05
   Markdent::Types:
     file: lib/Markdent/Types.pm
-    version: 0.04
+    version: 0.05
   Markdent::Types::Internal:
     file: lib/Markdent/Types/Internal.pm
-    version: 0.04
+    version: 0.05
 requires:
   Digest::SHA1: 0
   HTML::Stream: 0
@@ -238,4 +238,4 @@ resources:
   bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Markdent
   license: http://dev.perl.org/licenses/
   repository: http://hg.urth.org/hg/Markdent
-version: 0.04
+version: 0.05
