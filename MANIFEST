@@ -1,4 +1,4 @@
-bench/capture-vs-parse
+bench/capture-vs-text-markdown-vs-parse
 bin/markdent-html
 Build.PL
 Changes

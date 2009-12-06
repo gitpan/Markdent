@@ -11,6 +11,7 @@ WriteMakefile
                            'List::AllUtils' => '0',
                            'Moose' => '0.92',
                            'MooseX::Params::Validate' => '0.12',
+                           'MooseX::Role::Parameterized' => '0',
                            'MooseX::SemiAffordanceAccessor' => '0.05',
                            'MooseX::StrictConstructor' => '0.08',
                            'MooseX::Types' => '0.20',

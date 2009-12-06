@@ -3,7 +3,7 @@ package Markdent;
 use strict;
 use warnings;
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 1;
 
@@ -35,7 +35,7 @@ of ways.
 
 If you're only interested in converting Markdown to HTML, you can use the
 L<Markdent::Simple> class to do this, although you can just as well use better
-battle-tested tools like L<Test::Markdown>.
+battle-tested tools like L<Text::Markdown>.
 
 See L<Markdent::Manual> for more details on how Markdent works and how you can
 use it.
