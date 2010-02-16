@@ -3,7 +3,7 @@ package Markdent::Dialect::Standard::SpanParser;
 use strict;
 use warnings;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 use re 'eval';
 
@@ -941,7 +941,7 @@ Dave Rolsky, E<lt>autarch@urth.orgE<gt>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2009 Dave Rolsky, All Rights Reserved.
+Copyright 2009-2010 Dave Rolsky, All Rights Reserved.
 
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
