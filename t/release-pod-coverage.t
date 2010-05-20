@@ -1,5 +1,13 @@
 #!/usr/bin/perl
 
+BEGIN {
+  unless ($ENV{RELEASE_TESTING}) {
+    require Test::More;
+    Test::More::plan(skip_all => 'these tests are for release candidate testing');
+  }
+}
+
+
 use strict;
 use warnings;
 
@@ -70,12 +78,13 @@ my @handler_events = qw(
 );
 
 my %trustme = (
-    'Markdent::Handler::CaptureEvents' => ['handle_event'],
-    'Markdent::Handler::HTMLFilter'    => ['filter_event'],
-    'Markdent::Handler::HTMLStream'    => \@handler_events,
-    'Markdent::Handler::MinimalTree'   => \@handler_events,
-    'Markdent::Handler::Multiplexer'   => ['handle_event'],
-    'Markdent::Parser'                 => ['BUILD'],
+    'Markdent::Handler::CaptureEvents'        => ['handle_event'],
+    'Markdent::Handler::HTMLFilter'           => ['filter_event'],
+    'Markdent::Handler::HTMLStream::Document' => \@handler_events,
+    'Markdent::Handler::HTMLStream::Fragment' => \@handler_events,
+    'Markdent::Handler::MinimalTree'          => \@handler_events,
+    'Markdent::Handler::Multiplexer'          => ['handle_event'],
+    'Markdent::Parser'                        => ['BUILD'],
 );
 
 for my $module ( sort @modules ) {

@@ -1,11 +1,12 @@
-package Markdent::Simple;
+package Markdent::Simple::Document;
+BEGIN {
+  $Markdent::Simple::Document::VERSION = '0.10';
+}
 
 use strict;
 use warnings;
 
-our $VERSION = '0.09';
-
-use Markdent::Handler::HTMLStream;
+use Markdent::Handler::HTMLStream::Document;
 use Markdent::Parser;
 use Markdent::Types qw( Str );
 use MooseX::Params::Validate qw( validated_list );
@@ -27,7 +28,7 @@ sub markdown_to_html {
     open my $fh, '>', \$capture
         or die $!;
 
-    my $handler = Markdent::Handler::HTMLStream->new(
+    my $handler = Markdent::Handler::HTMLStream::Document->new(
         title  => $title,
         output => $fh,
     );
@@ -42,19 +43,25 @@ sub markdown_to_html {
 
 1;
 
-__END__
+# ABSTRACT: Convert Markdown to an HTML Document
+
+
 
 =pod
 
 =head1 NAME
 
-Markdent::Simple - Convert Markdown to HTML
+Markdent::Simple::Document - Convert Markdown to an HTML Document
+
+=head1 VERSION
+
+version 0.10
 
 =head1 SYNOPSIS
 
-    use Markdent::Simple;
+    use Markdent::Simple::Document;
 
-    my $mds  = Markdent::Simple->new();
+    my $mds  = Markdent::Simple::Document->new();
     my $html = $mss->markdown_to_html(
         title    => 'My Document',
         markdown => $markdown,
@@ -62,15 +69,16 @@ Markdent::Simple - Convert Markdown to HTML
 
 =head1 DESCRIPTION
 
-This class provides a very simple interface for converting Markdown to HTML.
+This class provides a very simple interface for converting Markdown to a
+complete HTML document.
 
 =head1 METHODS
 
 This class provides the following methods:
 
-=head2 Markdent::Simple->new()
+=head2 Markdent::Simple::Document->new()
 
-Creates a new Markdent::Simple object.
+Creates a new Markdent::Simple::Document object.
 
 =head2 $mds->markdown_to_html( title => $title, markdown => $markdown )
 
@@ -85,13 +93,17 @@ See L<Markdent> for bug reporting details.
 
 =head1 AUTHOR
 
-Dave Rolsky, E<lt>autarch@urth.orgE<gt>
+  Dave Rolsky <autarch@urth.org>
 
-=head1 COPYRIGHT & LICENSE
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2009-2010 Dave Rolsky, All Rights Reserved.
+This software is copyright (c) 2010 by Dave Rolsky.
 
-This program is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+
+__END__
+

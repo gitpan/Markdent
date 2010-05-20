@@ -1,9 +1,10 @@
 package Markdent::Role::BlockParser;
+BEGIN {
+  $Markdent::Role::BlockParser::VERSION = '0.10';
+}
 
 use strict;
 use warnings;
-
-our $VERSION = '0.09';
 
 use namespace::autoclean;
 use Moose::Role;
@@ -21,13 +22,19 @@ has _span_parser => (
 
 1;
 
-__END__
+# ABSTRACT: A role for block parsers
+
+
 
 =pod
 
 =head1 NAME
 
 Markdent::Role::BlockParser - A role for block parsers
+
+=head1 VERSION
+
+version 0.10
 
 =head1 DESCRIPTION
 
@@ -66,13 +73,17 @@ See L<Markdent> for bug reporting details.
 
 =head1 AUTHOR
 
-Dave Rolsky, E<lt>autarch@urth.orgE<gt>
+  Dave Rolsky <autarch@urth.org>
 
-=head1 COPYRIGHT & LICENSE
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2009-2010 Dave Rolsky, All Rights Reserved.
+This software is copyright (c) 2010 by Dave Rolsky.
 
-This program is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+
+__END__
+

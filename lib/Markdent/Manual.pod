@@ -1,8 +1,16 @@
+package Mardent::Manual;
+
+
+__END__
 =pod
 
 =head1 NAME
 
-Markdent::Manual - Using and Extending Markdent
+Mardent::Manual
+
+=head1 VERSION
+
+version 0.10
 
 =head1 DESCRIPTION
 
@@ -39,6 +47,10 @@ When I call Markdent a parser I<toolkit>, that means it is designed to be part
 of a larger ecosystem. You can write your handlers, and you can even write
 your own parser subclasses or roles to create your own dialect of Markdown.
 
+=head1 NAME
+
+Markdent::Manual - Using and Extending Markdent
+
 =head1 HANDLERS
 
 A handler object receives events with the parser and does something with
@@ -66,9 +78,12 @@ Here are some pointers for common tasks ...
 
 =head2 Converting Markdown to HTML
 
-Take a look at the L<Markdent::Handler::HTMLStream>. This turns the event
-stream into a stream of HTML output. You can send the output to any
+Take a look at the L<Markdent::Handler::HTMLStream::Document>. This turns the
+event stream into a stream of HTML output. You can send the output to any
 filehandle. Open a filehandle to a scalar to capture the output in memory.
+
+You can use L<Markdent::Handler::HTMLStream::Fragment> if you don't want to
+generate a complete HTML document.
 
 =head2 Cache Parse Results
 
@@ -114,4 +129,16 @@ dialect.
 
 It's a combination of "Markdown" and "event".
 
+=head1 AUTHOR
+
+  Dave Rolsky <autarch@urth.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Dave Rolsky.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
+

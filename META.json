@@ -1,0 +1,60 @@
+{
+   "abstract" : "An event-based Markdown parser toolkit",
+   "author" : [
+      "Dave Rolsky <autarch@urth.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 2.101380",
+   "license" : "perl_5",
+   "meta-spec" : {
+      "url" : "http://github.com/dagolden/cpan-meta/",
+      "version" : 2
+   },
+   "name" : "Markdent",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "File::Slurp" : "0",
+            "Test::Deep" : "0",
+            "Test::Differences" : "0",
+            "Test::Exception" : "0",
+            "Test::More" : "0.88",
+            "Tree::Simple::Visitor::ToNestedArray" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.31"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Digest::SHA1" : "0",
+            "HTML::Stream" : "0",
+            "List::AllUtils" : "0",
+            "Moose" : "0.92",
+            "MooseX::Params::Validate" : "0.12",
+            "MooseX::Role::Parameterized" : "0",
+            "MooseX::SemiAffordanceAccessor" : "0.05",
+            "MooseX::StrictConstructor" : "0.08",
+            "MooseX::Types" : "0.20",
+            "Tree::Simple" : "0",
+            "Try::Tiny" : "0",
+            "namespace::autoclean" : "0.09"
+         }
+      }
+   },
+   "resources" : {
+      "bugtracker" : {
+         "mailto" : "bug-markdent@rt.cpan.org",
+         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Markdent"
+      },
+      "repository" : {
+         "type" : "hg",
+         "url" : "http://hg.urth.org/hg/Markdent",
+         "web" : "http://hg.urth.org/hg/Markdent"
+      }
+   },
+   "version" : "0.10"
+}
+
