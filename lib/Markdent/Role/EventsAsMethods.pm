@@ -1,6 +1,6 @@
 package Markdent::Role::EventsAsMethods;
 BEGIN {
-  $Markdent::Role::EventsAsMethods::VERSION = '0.11';
+  $Markdent::Role::EventsAsMethods::VERSION = '0.12';
 }
 
 use strict;
@@ -36,7 +36,7 @@ Markdent::Role::EventsAsMethods - Turns events into method calls
 
 =head1 VERSION
 
-version 0.11
+version 0.12
 
 =head1 DESCRIPTION
 

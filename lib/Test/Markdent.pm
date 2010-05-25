@@ -1,6 +1,6 @@
 package Test::Markdent;
 BEGIN {
-  $Test::Markdent::VERSION = '0.11';
+  $Test::Markdent::VERSION = '0.12';
 }
 
 use strict;
@@ -29,7 +29,9 @@ sub parse_ok {
     my $expect_tree = shift;
     my $desc        = shift;
 
-    my $handler = Markdent::Handler::MinimalTree->new();
+    my $handler_class = delete $parser_p->{handler_class}
+        || 'Markdent::Handler::MinimalTree';
+    my $handler = $handler_class->new();
 
     my $parser = Markdent::Parser->new( %{$parser_p}, handler => $handler );
 
@@ -39,6 +41,8 @@ sub parse_ok {
 
     diag( Dumper($results) )
         if $ENV{MARKDENT_TEST_VERBOSE};
+
+    local $Test::Builder::Level = $Test::Builder::Level + 1;
 
     cmp_deeply( $results, $expect_tree, $desc );
 }
@@ -95,6 +99,8 @@ $expect_html
 </html>
 EOF
 
+    local $Test::Builder::Level = $Test::Builder::Level + 1;
+
     eq_or_diff( $tidy->clean($html), $tidy->clean($real_expect_html), $desc );
 }
 
@@ -112,7 +118,7 @@ Test::Markdent - High level test functions for Markdent
 
 =head1 VERSION
 
-version 0.11
+version 0.12
 
 =head1 SYNOPSIS
 
@@ -172,6 +178,13 @@ You can also pass an optional hash reference as the first parameter to this
 function. This hash reference will be used as parameters when creating the
 L<Markdent::Parser> object.
 
+This hash reference can also include a "handler_class" parameter, which you
+can use to override the default of L<Markdent::Handler::MinimalTree>.
+
+If you set the C<MARKDENT_TEST_VERBOSE> environment variable to a true value,
+then this function will use Data::Dumper to output the tree with
+C<Test::More::diag()>.
+
 =head2 html_output_ok( $markdown, $html, $description )
 
 This function takes some Markdown text, the expected HTML output, and a
@@ -186,6 +199,10 @@ The comparison itself is done using C<eq_or_diff> from L<Test::Differences>.
 You can also pass an optional hash reference as the first parameter to this
 function. This hash reference will be used as parameters when creating the
 L<Markdent::Parser> object.
+
+If you set the C<MARKDENT_TEST_VERBOSE> environment variable to a true value,
+then this function will output the generated html (before tidying) with
+C<Test::More::diag()>.
 
 =head2 tree_from_handler($handler)
 

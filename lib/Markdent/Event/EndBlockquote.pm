@@ -1,6 +1,6 @@
 package Markdent::Event::EndBlockquote;
 BEGIN {
-  $Markdent::Event::EndBlockquote::VERSION = '0.11';
+  $Markdent::Event::EndBlockquote::VERSION = '0.12';
 }
 
 use strict;
@@ -28,7 +28,7 @@ Markdent::Event::EndBlockquote - An event for the end of a blockquote
 
 =head1 VERSION
 
-version 0.11
+version 0.12
 
 =head1 DESCRIPTION
 
