@@ -1,6 +1,6 @@
 package Markdent::Event::StartParagraph;
 BEGIN {
-  $Markdent::Event::StartParagraph::VERSION = '0.10';
+  $Markdent::Event::StartParagraph::VERSION = '0.11';
 }
 
 use strict;
@@ -28,7 +28,7 @@ Markdent::Event::StartParagraph - An event for the start of a paragraph
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 DESCRIPTION
 

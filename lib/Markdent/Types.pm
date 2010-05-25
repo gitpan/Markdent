@@ -1,6 +1,6 @@
 package Markdent::Types;
 BEGIN {
-  $Markdent::Types::VERSION = '0.10';
+  $Markdent::Types::VERSION = '0.11';
 }
 
 use strict;
@@ -23,7 +23,7 @@ Markdent::Types
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 AUTHOR
 

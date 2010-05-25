@@ -1,6 +1,6 @@
 package Markdent::Handler::HTMLStream::Fragment;
 BEGIN {
-  $Markdent::Handler::HTMLStream::Fragment::VERSION = '0.10';
+  $Markdent::Handler::HTMLStream::Fragment::VERSION = '0.11';
 }
 
 use strict;
@@ -31,7 +31,7 @@ Markdent::Handler::HTMLStream::Fragment - Turns Markdent events into an HTML fra
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 DESCRIPTION
 

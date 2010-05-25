@@ -1,6 +1,6 @@
 package Markdent::Event::StartListItem;
 BEGIN {
-  $Markdent::Event::StartListItem::VERSION = '0.10';
+  $Markdent::Event::StartListItem::VERSION = '0.11';
 }
 
 use strict;
@@ -28,7 +28,7 @@ Markdent::Event::StartListItem - An event for the start of a list item
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 DESCRIPTION
 

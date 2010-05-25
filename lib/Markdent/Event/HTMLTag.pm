@@ -1,6 +1,6 @@
 package Markdent::Event::HTMLTag;
 BEGIN {
-  $Markdent::Event::HTMLTag::VERSION = '0.10';
+  $Markdent::Event::HTMLTag::VERSION = '0.11';
 }
 
 use strict;
@@ -42,7 +42,7 @@ Markdent::Event::HTMLTag - An event for an inline self-closing HTML tag
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 DESCRIPTION
 

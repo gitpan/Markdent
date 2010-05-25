@@ -1,6 +1,6 @@
 package Markdent::Event::Image;
 BEGIN {
-  $Markdent::Event::Image::VERSION = '0.10';
+  $Markdent::Event::Image::VERSION = '0.11';
 }
 
 use strict;
@@ -60,7 +60,7 @@ Markdent::Event::Image - An event for an image
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 DESCRIPTION
 

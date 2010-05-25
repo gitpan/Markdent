@@ -86,6 +86,7 @@ lib/Markdent/Simple/Document.pm
 lib/Markdent/Simple/Fragment.pm
 lib/Markdent/Types.pm
 lib/Markdent/Types/Internal.pm
+lib/Test/Markdent.pm
 t/CapturedEvents.t
 t/Handler/CaptureEvents.t
 t/Handler/HTMLFilter.t
@@ -96,7 +97,6 @@ t/Simple/Document.t
 t/Simple/Fragment.t
 t/lib/Example/Dialect/BlockParser.pm
 t/lib/Example/Dialect/SpanParser.pm
-t/lib/Test/Markdent.pm
 t/markup/standard/backslash-escape.t
 t/markup/standard/blockquote.t
 t/markup/standard/headers.t

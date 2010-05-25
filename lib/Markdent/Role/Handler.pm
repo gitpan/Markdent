@@ -1,6 +1,6 @@
 package Markdent::Role::Handler;
 BEGIN {
-  $Markdent::Role::Handler::VERSION = '0.10';
+  $Markdent::Role::Handler::VERSION = '0.11';
 }
 
 use strict;
@@ -25,7 +25,7 @@ Markdent::Role::Handler - A required role for all handlers
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 DESCRIPTION
 
