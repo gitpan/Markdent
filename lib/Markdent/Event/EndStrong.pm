@@ -1,6 +1,6 @@
 package Markdent::Event::EndStrong;
 BEGIN {
-  $Markdent::Event::EndStrong::VERSION = '0.12';
+  $Markdent::Event::EndStrong::VERSION = '0.13';
 }
 
 use strict;
@@ -42,7 +42,7 @@ Markdent::Event::EndStrong - An event for the end of a strong span
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 DESCRIPTION
 

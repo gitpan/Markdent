@@ -1,6 +1,6 @@
 package Markdent::Event::EndUnorderedList;
 BEGIN {
-  $Markdent::Event::EndUnorderedList::VERSION = '0.12';
+  $Markdent::Event::EndUnorderedList::VERSION = '0.13';
 }
 
 use strict;
@@ -28,7 +28,7 @@ Markdent::Event::EndUnorderedList - An event for the end of an unordered list
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 DESCRIPTION
 

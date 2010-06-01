@@ -1,6 +1,6 @@
 package Markdent::Dialect::Theory::SpanParser;
 BEGIN {
-  $Markdent::Dialect::Theory::SpanParser::VERSION = '0.12';
+  $Markdent::Dialect::Theory::SpanParser::VERSION = '0.13';
 }
 
 use strict;
@@ -13,11 +13,10 @@ use MooseX::StrictConstructor;
 
 extends 'Markdent::Dialect::Standard::SpanParser';
 
-
 override _build_escapable_chars => sub {
     my $chars = super();
 
-    return [ @{ $chars }, qw( | : ) ];
+    return [ @{$chars}, qw( | : ) ];
 };
 
 __PACKAGE__->meta()->make_immutable();
@@ -36,7 +35,7 @@ Markdent::Dialect::Theory::SpanParser - Span parser for Theory's Markdown
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 DESCRIPTION
 

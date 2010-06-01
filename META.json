@@ -4,7 +4,7 @@
       "Dave Rolsky <autarch@urth.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 3.101421",
+   "generated_by" : "Dist::Zilla version 3.101500",
    "license" : "perl_5",
    "meta-spec" : {
       "url" : "http://github.com/dagolden/cpan-meta/",
@@ -12,16 +12,6 @@
    },
    "name" : "Markdent",
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "File::Slurp" : "0",
-            "Test::Deep" : "0",
-            "Test::Differences" : "0",
-            "Test::Exception" : "0",
-            "Test::More" : "0.88",
-            "Tree::Simple::Visitor::ToNestedArray" : "0"
-         }
-      },
       "configure" : {
          "requires" : {
             "ExtUtils::MakeMaker" : "6.31"
@@ -42,6 +32,16 @@
             "Try::Tiny" : "0",
             "namespace::autoclean" : "0.09"
          }
+      },
+      "test" : {
+         "requires" : {
+            "File::Slurp" : "0",
+            "Test::Deep" : "0",
+            "Test::Differences" : "0",
+            "Test::Exception" : "0",
+            "Test::More" : "0.88",
+            "Tree::Simple::Visitor::ToNestedArray" : "0"
+         }
       }
    },
    "resources" : {
@@ -55,6 +55,6 @@
          "web" : "http://hg.urth.org/hg/Markdent"
       }
    },
-   "version" : "0.12"
+   "version" : "0.13"
 }
 

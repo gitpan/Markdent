@@ -1,6 +1,6 @@
 package Markdent::Role::SpanParser;
 BEGIN {
-  $Markdent::Role::SpanParser::VERSION = '0.12';
+  $Markdent::Role::SpanParser::VERSION = '0.13';
 }
 
 use strict;
@@ -27,7 +27,7 @@ Markdent::Role::SpanParser - A role for span parsers
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 DESCRIPTION
 

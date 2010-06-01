@@ -1,6 +1,6 @@
 package Markdent::Event::EndCode;
 BEGIN {
-  $Markdent::Event::EndCode::VERSION = '0.12';
+  $Markdent::Event::EndCode::VERSION = '0.13';
 }
 
 use strict;
@@ -42,7 +42,7 @@ Markdent::Event::EndCode - An event for the end of a code span
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 DESCRIPTION
 

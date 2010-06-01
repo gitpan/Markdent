@@ -1,6 +1,6 @@
 package Markdent::Event::StartOrderedList;
 BEGIN {
-  $Markdent::Event::StartOrderedList::VERSION = '0.12';
+  $Markdent::Event::StartOrderedList::VERSION = '0.13';
 }
 
 use strict;
@@ -28,7 +28,7 @@ Markdent::Event::StartOrderedList - An event for the start of a ordered list
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 DESCRIPTION
 

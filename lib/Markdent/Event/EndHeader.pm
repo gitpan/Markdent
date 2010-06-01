@@ -1,6 +1,6 @@
 package Markdent::Event::EndHeader;
 BEGIN {
-  $Markdent::Event::EndHeader::VERSION = '0.12';
+  $Markdent::Event::EndHeader::VERSION = '0.13';
 }
 
 use strict;
@@ -36,7 +36,7 @@ Markdent::Event::EndHeader - An event for the end of a header
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,6 @@
 package Markdent::Role::BlockParser;
 BEGIN {
-  $Markdent::Role::BlockParser::VERSION = '0.12';
+  $Markdent::Role::BlockParser::VERSION = '0.13';
 }
 
 use strict;
@@ -34,7 +34,7 @@ Markdent::Role::BlockParser - A role for block parsers
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 DESCRIPTION
 
