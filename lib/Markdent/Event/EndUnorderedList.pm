@@ -25,7 +25,7 @@ Markdent::Event::EndUnorderedList - An event for the end of an unordered list
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

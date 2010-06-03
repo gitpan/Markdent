@@ -25,7 +25,7 @@ Markdent::Event::HorizontalRule - An event for a horizontal rule
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

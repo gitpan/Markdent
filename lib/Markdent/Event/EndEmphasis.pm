@@ -39,7 +39,7 @@ Markdent::Event::EndEmphasis - An event for the end of an emphasis span
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

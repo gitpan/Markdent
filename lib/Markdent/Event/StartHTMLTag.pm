@@ -39,7 +39,7 @@ Markdent::Event::StartHTMLTag - An event for the start of an inline HTML tag
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

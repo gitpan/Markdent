@@ -33,7 +33,7 @@ Markdent::Event::HTMLEntity - An event for an HTML entity
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

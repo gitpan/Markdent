@@ -33,7 +33,7 @@ Markdent::Event::HTMLCommentBlock - An event for an HTML comment as a standalone
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

@@ -110,6 +110,7 @@ t/markup/standard/preformatted.t
 t/markup/standard/raw-html.t
 t/markup/standard/strong-em-code.t
 t/markup/standard/unbalanced.t
+t/markup/theory/big-table.t
 t/markup/theory/table.t
 't/mdtest-data/Amps and angle encoding.text'
 't/mdtest-data/Amps and angle encoding.xhtml'
