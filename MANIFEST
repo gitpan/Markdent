@@ -159,7 +159,9 @@ t/mdtest-data/Tidyness.text
 t/mdtest-data/Tidyness.xhtml
 t/mdtest.t
 t/parse-twice.t
+t/release-eol.t
 t/release-kwalitee.t
+t/release-no-tabs.t
 t/release-pod-coverage.t
 t/release-pod-spell.t
 t/release-pod.t

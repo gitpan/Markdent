@@ -1,7 +1,4 @@
 package Markdent::Event::StartUnorderedList;
-BEGIN {
-  $Markdent::Event::StartUnorderedList::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -28,7 +25,7 @@ Markdent::Event::StartUnorderedList - An event for the start of an unordered lis
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

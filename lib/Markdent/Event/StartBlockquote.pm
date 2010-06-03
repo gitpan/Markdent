@@ -1,7 +1,4 @@
 package Markdent::Event::StartBlockquote;
-BEGIN {
-  $Markdent::Event::StartBlockquote::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -28,7 +25,7 @@ Markdent::Event::StartBlockquote - An event for the start of a blockquote
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

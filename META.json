@@ -4,7 +4,7 @@
       "Dave Rolsky <autarch@urth.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 3.101500",
+   "generated_by" : "Dist::Zilla version 3.101520",
    "license" : "perl_5",
    "meta-spec" : {
       "url" : "http://github.com/dagolden/cpan-meta/",
@@ -44,6 +44,7 @@
          }
       }
    },
+   "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
          "mailto" : "bug-markdent@rt.cpan.org",
@@ -55,6 +56,6 @@
          "web" : "http://hg.urth.org/hg/Markdent"
       }
    },
-   "version" : "0.13"
+   "version" : "0.14"
 }
 

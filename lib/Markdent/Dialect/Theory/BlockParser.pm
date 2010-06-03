@@ -1,7 +1,4 @@
 package Markdent::Dialect::Theory::BlockParser;
-BEGIN {
-  $Markdent::Dialect::Theory::BlockParser::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -67,8 +64,11 @@ my $TableCaption = qr{ ^
 my $TableRow = qr{ ^
                    [|]?            # a regular pipe-separated row
                    (?:
-                     .*?
-                     (?<!\\)
+                     (?:
+                       (?>[^\|\\\n\r]*)
+                       |
+                       \\[|]
+                     )+
                      [|]
                    )+
                    .*?
@@ -77,8 +77,11 @@ my $TableRow = qr{ ^
                      ^
                      :?           # a colon-separated row continuation line
                      (?:
-                       .*?
-                       (?<!\\)
+                       (?:
+                         (?>[^:\\\n\r]*)
+                         |
+                         \\:
+                       )+
                        :
                      )+
                      .*?
@@ -443,7 +446,7 @@ Markdent::Dialect::Theory::BlockParser - Block parser for Theory's Markdown
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

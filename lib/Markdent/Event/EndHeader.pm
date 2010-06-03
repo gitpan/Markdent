@@ -1,7 +1,4 @@
 package Markdent::Event::EndHeader;
-BEGIN {
-  $Markdent::Event::EndHeader::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -36,7 +33,7 @@ Markdent::Event::EndHeader - An event for the end of a header
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

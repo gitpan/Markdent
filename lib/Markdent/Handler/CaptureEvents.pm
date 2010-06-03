@@ -1,7 +1,4 @@
 package Markdent::Handler::CaptureEvents;
-BEGIN {
-  $Markdent::Handler::CaptureEvents::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -41,7 +38,7 @@ Markdent::Handler::CaptureEvents - Captures events for replaying later
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

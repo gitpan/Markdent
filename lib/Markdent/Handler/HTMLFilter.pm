@@ -1,7 +1,4 @@
 package Markdent::Handler::HTMLFilter;
-BEGIN {
-  $Markdent::Handler::HTMLFilter::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -45,7 +42,7 @@ Markdent::Handler::HTMLFilter - Filters out HTML events from the event stream
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

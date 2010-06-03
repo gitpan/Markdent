@@ -1,7 +1,4 @@
 package Markdent::Simple::Fragment;
-BEGIN {
-  $Markdent::Simple::Fragment::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -52,7 +49,7 @@ Markdent::Simple::Fragment - Convert Markdown to an HTML Fragment
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

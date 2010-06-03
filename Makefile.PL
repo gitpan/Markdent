@@ -42,7 +42,7 @@ my %WriteMakefileArgs = (
     'Try::Tiny' => '0',
     'namespace::autoclean' => '0.09'
   },
-  'VERSION' => '0.13',
+  'VERSION' => '0.14',
   'test' => {
     'TESTS' => 't/*.t t/Handler/*.t t/Handler/HTMLStream/*.t t/Simple/*.t t/markup/standard/*.t t/markup/theory/*.t'
   }

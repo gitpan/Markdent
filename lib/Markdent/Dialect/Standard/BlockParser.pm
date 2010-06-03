@@ -1,7 +1,4 @@
 package Markdent::Dialect::Standard::BlockParser;
-BEGIN {
-  $Markdent::Dialect::Standard::BlockParser::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -761,7 +758,7 @@ Markdent::Dialect::Standard::BlockParser - Block parser for standard Markdown
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

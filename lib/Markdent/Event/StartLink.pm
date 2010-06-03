@@ -1,7 +1,4 @@
 package Markdent::Event::StartLink;
-BEGIN {
-  $Markdent::Event::StartLink::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -56,7 +53,7 @@ Markdent::Event::StartLink - An event for the start of a link
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

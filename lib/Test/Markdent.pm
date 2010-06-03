@@ -1,7 +1,4 @@
 package Test::Markdent;
-BEGIN {
-  $Test::Markdent::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -118,7 +115,7 @@ Test::Markdent - High level test functions for Markdent
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

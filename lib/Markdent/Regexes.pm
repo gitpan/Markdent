@@ -1,7 +1,4 @@
 package Markdent::Regexes;
-BEGIN {
-  $Markdent::Regexes::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -45,7 +42,7 @@ Markdent::Regexes
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 AUTHOR
 

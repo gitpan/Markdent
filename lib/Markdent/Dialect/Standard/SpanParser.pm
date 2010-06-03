@@ -1,7 +1,4 @@
 package Markdent::Dialect::Standard::SpanParser;
-BEGIN {
-  $Markdent::Dialect::Standard::SpanParser::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -908,7 +905,7 @@ Markdent::Dialect::Standard::SpanParser - Span parser for standard Markdown
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

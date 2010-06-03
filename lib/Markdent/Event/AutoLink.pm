@@ -1,7 +1,4 @@
 package Markdent::Event::AutoLink;
-BEGIN {
-  $Markdent::Event::AutoLink::VERSION = '0.13';
-}
 
 use strict;
 use warnings;
@@ -36,7 +33,7 @@ Markdent::Event::AutoLink - An event for auto-links
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 
