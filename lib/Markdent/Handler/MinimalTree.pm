@@ -1,4 +1,7 @@
 package Markdent::Handler::MinimalTree;
+BEGIN {
+  $Markdent::Handler::MinimalTree::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -444,7 +447,7 @@ Markdent::Handler::MinimalTree - A Markdent handler which builds a tree
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 

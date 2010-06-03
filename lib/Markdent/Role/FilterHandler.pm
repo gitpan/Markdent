@@ -1,4 +1,7 @@
 package Markdent::Role::FilterHandler;
+BEGIN {
+  $Markdent::Role::FilterHandler::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -40,7 +43,7 @@ Markdent::Role::FilterHandler - A role for handlers which act as filters
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 

@@ -1,4 +1,7 @@
 package Markdent::Event::EndDocument;
+BEGIN {
+  $Markdent::Event::EndDocument::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -25,7 +28,7 @@ Markdent::Event::EndDocument - An event for the end of a document
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 

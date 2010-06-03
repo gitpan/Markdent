@@ -1,4 +1,7 @@
 package Markdent::Role::AnyParser;
+BEGIN {
+  $Markdent::Role::AnyParser::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -70,7 +73,7 @@ Markdent::Role::AnyParser - A role for block and span parsers
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 

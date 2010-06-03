@@ -1,4 +1,7 @@
 package Markdent::Handler::HTMLStream::Document;
+BEGIN {
+  $Markdent::Handler::HTMLStream::Document::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -58,7 +61,7 @@ Markdent::Handler::HTMLStream::Document - Turns Markdent events into a complete 
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 

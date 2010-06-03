@@ -1,4 +1,7 @@
 package Markdent::Event::HTMLCommentBlock;
+BEGIN {
+  $Markdent::Event::HTMLCommentBlock::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -33,7 +36,7 @@ Markdent::Event::HTMLCommentBlock - An event for an HTML comment as a standalone
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 

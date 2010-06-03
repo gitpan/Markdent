@@ -1,4 +1,7 @@
 package Markdent::Event::EndEmphasis;
+BEGIN {
+  $Markdent::Event::EndEmphasis::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -39,7 +42,7 @@ Markdent::Event::EndEmphasis - An event for the end of an emphasis span
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 

@@ -1,4 +1,7 @@
 package Markdent::Event::StartEmphasis;
+BEGIN {
+  $Markdent::Event::StartEmphasis::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -39,7 +42,7 @@ Markdent::Event::StartEmphasis - An event for the start of an emphasis span
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 

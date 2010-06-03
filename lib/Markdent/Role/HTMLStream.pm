@@ -1,4 +1,7 @@
 package Markdent::Role::HTMLStream;
+BEGIN {
+  $Markdent::Role::HTMLStream::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -399,7 +402,7 @@ Markdent::Role::HTMLStream - A role for handlers which generate HTML
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 

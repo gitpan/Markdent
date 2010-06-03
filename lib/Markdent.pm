@@ -1,4 +1,7 @@
 package Markdent;
+BEGIN {
+  $Markdent::VERSION = '0.16';
+}
 
 use strict;
 use warnings;
@@ -17,7 +20,7 @@ Markdent - An event-based Markdown parser toolkit
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 
