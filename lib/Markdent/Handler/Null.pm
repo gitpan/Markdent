@@ -1,24 +1,26 @@
-package Markdent::Event::EndTableHeader;
+package Markdent::Handler::Null;
 BEGIN {
-  $Markdent::Event::EndTableHeader::VERSION = '0.17';
+  $Markdent::Handler::Null::VERSION = '0.17';
 }
 
 use strict;
 use warnings;
 
-use Markdent::Types qw( Str );
-
 use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
-with 'Markdent::Role::Event';
+with 'Markdent::Role::Handler';
+
+sub handle_event {
+    return;
+}
 
 __PACKAGE__->meta()->make_immutable();
 
 1;
 
-# ABSTRACT: An event for the end of a table header
+# ABSTRACT: A handler which ignores all events
 
 
 
@@ -26,7 +28,7 @@ __PACKAGE__->meta()->make_immutable();
 
 =head1 NAME
 
-Markdent::Event::EndTableHeader - An event for the end of a table header
+Markdent::Handler::Null - A handler which ignores all events
 
 =head1 VERSION
 
@@ -34,11 +36,19 @@ version 0.17
 
 =head1 DESCRIPTION
 
-This class represents the end of a table header.
+This class implements an event receiver which ignores all events.
+
+=head1 METHODS
+
+This class provides the following methods:
+
+=head2 Markdent::Handler::Null->new()
+
+This method creates a new handler.
 
 =head1 ROLES
 
-This class does the L<Markdent::Role::Event> role.
+This class does the L<Markdent::Role::Handler> role.
 
 =head1 BUGS
 

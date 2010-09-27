@@ -1,6 +1,6 @@
 package Markdent;
 BEGIN {
-  $Markdent::VERSION = '0.16';
+  $Markdent::VERSION = '0.17';
 }
 
 use strict;
@@ -20,7 +20,7 @@ Markdent - An event-based Markdown parser toolkit
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 SYNOPSIS
 
@@ -82,7 +82,7 @@ L<http://www.urth.org/~autarch/fs-donation.html>
 
 =head1 AUTHOR
 
-  Dave Rolsky <autarch@urth.org>
+Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 

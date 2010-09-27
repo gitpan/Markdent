@@ -69,6 +69,7 @@ lib/Markdent/Handler/HTMLStream/Document.pm
 lib/Markdent/Handler/HTMLStream/Fragment.pm
 lib/Markdent/Handler/MinimalTree.pm
 lib/Markdent/Handler/Multiplexer.pm
+lib/Markdent/Handler/Null.pm
 lib/Markdent/Manual.pod
 lib/Markdent/Parser.pm
 lib/Markdent/Regexes.pm
@@ -160,7 +161,6 @@ t/mdtest-data/Tidyness.text
 t/mdtest-data/Tidyness.xhtml
 t/mdtest.t
 t/parse-twice.t
-t/release-eol.t
 t/release-kwalitee.t
 t/release-no-tabs.t
 t/release-pod-coverage.t

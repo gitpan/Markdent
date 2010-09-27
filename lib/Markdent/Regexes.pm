@@ -1,6 +1,6 @@
 package Markdent::Regexes;
 BEGIN {
-  $Markdent::Regexes::VERSION = '0.16';
+  $Markdent::Regexes::VERSION = '0.17';
 }
 
 use strict;
@@ -35,28 +35,3 @@ our $BlockEnd = qr/(?=(?: $EmptyLines | \z ) )/xm;
 our $HTMLComment = qr{<!--(.+?)-->}s;
 
 1;
-
-__END__
-=pod
-
-=head1 NAME
-
-Markdent::Regexes
-
-=head1 VERSION
-
-version 0.16
-
-=head1 AUTHOR
-
-  Dave Rolsky <autarch@urth.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2010 by Dave Rolsky.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-

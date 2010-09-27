@@ -1,6 +1,6 @@
 package Markdent::Dialect::Theory::BlockParser;
 BEGIN {
-  $Markdent::Dialect::Theory::BlockParser::VERSION = '0.16';
+  $Markdent::Dialect::Theory::BlockParser::VERSION = '0.17';
 }
 
 use strict;
@@ -29,6 +29,7 @@ extends 'Markdent::Dialect::Standard::BlockParser';
 
 has _in_table => (
     traits   => ['Bool'],
+    is       => 'ro',
     isa      => Bool,
     default  => 0,
     init_arg => undef,
@@ -462,7 +463,7 @@ Markdent::Dialect::Theory::BlockParser - Block parser for Theory's Markdown
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 DESCRIPTION
 
@@ -491,7 +492,7 @@ See L<Markdent> for bug reporting details.
 
 =head1 AUTHOR
 
-  Dave Rolsky <autarch@urth.org>
+Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 

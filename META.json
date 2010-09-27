@@ -4,11 +4,13 @@
       "Dave Rolsky <autarch@urth.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 3.101520",
-   "license" : "perl_5",
+   "generated_by" : "Dist::Zilla version 4.102341, CPAN::Meta::Converter version 2.101670",
+   "license" : [
+      "perl_5"
+   ],
    "meta-spec" : {
-      "url" : "http://github.com/dagolden/cpan-meta/",
-      "version" : 2
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
    },
    "name" : "Markdent",
    "prereqs" : {
@@ -19,28 +21,28 @@
       },
       "runtime" : {
          "requires" : {
-            "Digest::SHA1" : "0",
-            "HTML::Stream" : "0",
-            "List::AllUtils" : "0",
+            "Digest::SHA1" : 0,
+            "HTML::Stream" : 0,
+            "List::AllUtils" : 0,
             "Moose" : "0.92",
             "MooseX::Params::Validate" : "0.12",
-            "MooseX::Role::Parameterized" : "0",
+            "MooseX::Role::Parameterized" : 0,
             "MooseX::SemiAffordanceAccessor" : "0.05",
             "MooseX::StrictConstructor" : "0.08",
             "MooseX::Types" : "0.20",
-            "Tree::Simple" : "0",
-            "Try::Tiny" : "0",
+            "Tree::Simple" : 0,
+            "Try::Tiny" : 0,
             "namespace::autoclean" : "0.09"
          }
       },
       "test" : {
          "requires" : {
-            "File::Slurp" : "0",
-            "Test::Deep" : "0",
-            "Test::Differences" : "0",
-            "Test::Exception" : "0",
+            "File::Slurp" : 0,
+            "Test::Deep" : 0,
+            "Test::Differences" : 0,
+            "Test::Exception" : 0,
             "Test::More" : "0.88",
-            "Tree::Simple::Visitor::ToNestedArray" : "0"
+            "Tree::Simple::Visitor::ToNestedArray" : 0
          }
       }
    },
@@ -56,6 +58,6 @@
          "web" : "http://hg.urth.org/hg/Markdent"
       }
    },
-   "version" : "0.16"
+   "version" : "0.17"
 }
 

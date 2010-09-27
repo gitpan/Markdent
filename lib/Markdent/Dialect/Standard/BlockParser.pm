@@ -1,6 +1,6 @@
 package Markdent::Dialect::Standard::BlockParser;
 BEGIN {
-  $Markdent::Dialect::Standard::BlockParser::VERSION = '0.16';
+  $Markdent::Dialect::Standard::BlockParser::VERSION = '0.17';
 }
 
 use strict;
@@ -61,6 +61,7 @@ has _list_level => (
 
 has _list_item_is_paragraph => (
     traits   => ['Bool'],
+    is       => 'ro',
     isa      => Bool,
     default  => 0,
     init_arg => undef,
@@ -547,7 +548,6 @@ sub _match_list {
 
     $self->_inc_list_level();
 
-    my $indent = 
     my @items = $self->_split_list_items($list);
 
     for my $item (@items) {
@@ -761,7 +761,7 @@ Markdent::Dialect::Standard::BlockParser - Block parser for standard Markdown
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 DESCRIPTION
 
@@ -793,7 +793,7 @@ See L<Markdent> for bug reporting details.
 
 =head1 AUTHOR
 
-  Dave Rolsky <autarch@urth.org>
+Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -1,6 +1,6 @@
 package Markdent::Event::EndHTMLTag;
 BEGIN {
-  $Markdent::Event::EndHTMLTag::VERSION = '0.16';
+  $Markdent::Event::EndHTMLTag::VERSION = '0.17';
 }
 
 use strict;
@@ -36,7 +36,7 @@ Markdent::Event::EndHTMLTag - An event for the end of an inline HTML tag
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 DESCRIPTION
 
@@ -60,7 +60,7 @@ See L<Markdent> for bug reporting details.
 
 =head1 AUTHOR
 
-  Dave Rolsky <autarch@urth.org>
+Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -1,6 +1,6 @@
 package Markdent::Types::Internal;
 BEGIN {
-  $Markdent::Types::Internal::VERSION = '0.16';
+  $Markdent::Types::Internal::VERSION = '0.17';
 }
 
 use strict;
@@ -64,28 +64,3 @@ subtype PosInt,
     message {"The number provided ($_) is not a positive integer"};
 
 1;
-
-__END__
-=pod
-
-=head1 NAME
-
-Markdent::Types::Internal
-
-=head1 VERSION
-
-version 0.16
-
-=head1 AUTHOR
-
-  Dave Rolsky <autarch@urth.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2010 by Dave Rolsky.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-

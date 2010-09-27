@@ -1,6 +1,6 @@
 package Markdent::Dialect::Standard::SpanParser;
 BEGIN {
-  $Markdent::Dialect::Standard::SpanParser::VERSION = '0.16';
+  $Markdent::Dialect::Standard::SpanParser::VERSION = '0.17';
 }
 
 use strict;
@@ -284,7 +284,7 @@ sub _open_start_event_for_span {
 }
 
 sub _build_escapable_chars {
-    return [ qw( \ ` * _ { } [ \ ] ( ) + \ - . ! < > ), '#' ];
+    return [ qw( \ ` * _ { } [ ] ( ) + - . ! < > ), '#' ];
 }
 
 sub _build_escape_re {
@@ -908,7 +908,7 @@ Markdent::Dialect::Standard::SpanParser - Span parser for standard Markdown
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 DESCRIPTION
 
@@ -944,7 +944,7 @@ See L<Markdent> for bug reporting details.
 
 =head1 AUTHOR
 
-  Dave Rolsky <autarch@urth.org>
+Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 

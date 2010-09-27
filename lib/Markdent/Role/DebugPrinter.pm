@@ -1,6 +1,6 @@
 package Markdent::Role::DebugPrinter;
 BEGIN {
-  $Markdent::Role::DebugPrinter::VERSION = '0.16';
+  $Markdent::Role::DebugPrinter::VERSION = '0.17';
 }
 
 use strict;
@@ -54,7 +54,7 @@ Markdent::Role::DebugPrinter - A role for classes which output debugging informa
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 DESCRIPTION
 
@@ -92,7 +92,7 @@ See L<Markdent> for bug reporting details.
 
 =head1 AUTHOR
 
-  Dave Rolsky <autarch@urth.org>
+Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -1,16 +1,10 @@
 package Mardent::Manual;
 
-
-__END__
 =pod
 
 =head1 NAME
 
-Mardent::Manual
-
-=head1 VERSION
-
-version 0.16
+Markdent::Manual - Using and Extending Markdent
 
 =head1 DESCRIPTION
 
@@ -46,10 +40,6 @@ power in dealing with the parse results.
 When I call Markdent a parser I<toolkit>, that means it is designed to be part
 of a larger ecosystem. You can write your handlers, and you can even write
 your own parser subclasses or roles to create your own dialect of Markdown.
-
-=head1 NAME
-
-Markdent::Manual - Using and Extending Markdent
 
 =head1 HANDLERS
 
@@ -129,16 +119,4 @@ dialect.
 
 It's a combination of "Markdown" and "event".
 
-=head1 AUTHOR
-
-  Dave Rolsky <autarch@urth.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2010 by Dave Rolsky.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
 =cut
-

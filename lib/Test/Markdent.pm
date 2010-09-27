@@ -1,6 +1,6 @@
 package Test::Markdent;
 BEGIN {
-  $Test::Markdent::VERSION = '0.16';
+  $Test::Markdent::VERSION = '0.17';
 }
 
 use strict;
@@ -118,7 +118,7 @@ Test::Markdent - High level test functions for Markdent
 
 =head1 VERSION
 
-version 0.16
+version 0.17
 
 =head1 SYNOPSIS
 
@@ -211,7 +211,7 @@ structure built using L<Tree::Simple::Visitor::ToNestedArray>.
 
 =head1 AUTHOR
 
-  Dave Rolsky <autarch@urth.org>
+Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
