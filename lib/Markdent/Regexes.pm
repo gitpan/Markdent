@@ -1,4 +1,7 @@
 package Markdent::Regexes;
+{
+  $Markdent::Regexes::VERSION = '0.19';
+}
 
 use strict;
 use warnings;

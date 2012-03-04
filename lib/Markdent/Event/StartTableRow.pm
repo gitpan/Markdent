@@ -1,6 +1,6 @@
 package Markdent::Event::StartTableRow;
 {
-  $Markdent::Event::StartTableRow::VERSION = '0.18';
+  $Markdent::Event::StartTableRow::VERSION = '0.19';
 }
 
 use strict;
@@ -30,7 +30,7 @@ Markdent::Event::StartTableRow - An event for the start of a table row
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

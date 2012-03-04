@@ -1,3 +1,8 @@
+0.19   2012-03-04
+
+- Some modules were missing a version number in the last release.
+
+
 0.18   2012-03-04
 
 - The Markdent::Handler::HTMLStream::Document and ::Fragment modules did not

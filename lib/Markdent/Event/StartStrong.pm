@@ -1,6 +1,6 @@
 package Markdent::Event::StartStrong;
 {
-  $Markdent::Event::StartStrong::VERSION = '0.18';
+  $Markdent::Event::StartStrong::VERSION = '0.19';
 }
 
 use strict;
@@ -42,7 +42,7 @@ Markdent::Event::StartStrong - An event for the start of a strong span
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

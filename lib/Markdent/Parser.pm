@@ -1,6 +1,6 @@
 package Markdent::Parser;
 {
-  $Markdent::Parser::VERSION = '0.18';
+  $Markdent::Parser::VERSION = '0.19';
 }
 
 use strict;
@@ -199,7 +199,7 @@ Markdent::Parser - A markdown parser
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 SYNOPSIS
 

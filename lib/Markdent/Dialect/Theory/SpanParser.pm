@@ -1,6 +1,6 @@
 package Markdent::Dialect::Theory::SpanParser;
 {
-  $Markdent::Dialect::Theory::SpanParser::VERSION = '0.18';
+  $Markdent::Dialect::Theory::SpanParser::VERSION = '0.19';
 }
 
 use strict;
@@ -35,7 +35,7 @@ Markdent::Dialect::Theory::SpanParser - Span parser for Theory's Markdown
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

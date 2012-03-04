@@ -1,6 +1,6 @@
 package Markdent::Event::Text;
 {
-  $Markdent::Event::Text::VERSION = '0.18';
+  $Markdent::Event::Text::VERSION = '0.19';
 }
 
 use strict;
@@ -48,7 +48,7 @@ Markdent::Event::Text - An event for plaint text
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

@@ -9,6 +9,7 @@ README
 bench/capture-vs-text-markdown-vs-parse
 bin/markdent-html
 dist.ini
+foo
 inc/Markdent/Build.pm
 lib/Markdent.pm
 lib/Markdent/CapturedEvents.pm

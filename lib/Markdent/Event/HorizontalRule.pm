@@ -1,6 +1,6 @@
 package Markdent::Event::HorizontalRule;
 {
-  $Markdent::Event::HorizontalRule::VERSION = '0.18';
+  $Markdent::Event::HorizontalRule::VERSION = '0.19';
 }
 
 use strict;
@@ -28,7 +28,7 @@ Markdent::Event::HorizontalRule - An event for a horizontal rule
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

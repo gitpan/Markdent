@@ -1,4 +1,7 @@
 package Markdent::Types::Internal;
+{
+  $Markdent::Types::Internal::VERSION = '0.19';
+}
 
 use strict;
 use warnings;

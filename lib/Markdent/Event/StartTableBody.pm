@@ -1,6 +1,6 @@
 package Markdent::Event::StartTableBody;
 {
-  $Markdent::Event::StartTableBody::VERSION = '0.18';
+  $Markdent::Event::StartTableBody::VERSION = '0.19';
 }
 
 use strict;
@@ -30,7 +30,7 @@ Markdent::Event::StartTableBody - An event for the start of a table body
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,6 @@
 package Markdent::Event::EndTableHeader;
 {
-  $Markdent::Event::EndTableHeader::VERSION = '0.18';
+  $Markdent::Event::EndTableHeader::VERSION = '0.19';
 }
 
 use strict;
@@ -30,7 +30,7 @@ Markdent::Event::EndTableHeader - An event for the end of a table header
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

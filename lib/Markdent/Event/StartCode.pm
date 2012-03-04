@@ -1,6 +1,6 @@
 package Markdent::Event::StartCode;
 {
-  $Markdent::Event::StartCode::VERSION = '0.18';
+  $Markdent::Event::StartCode::VERSION = '0.19';
 }
 
 use strict;
@@ -42,7 +42,7 @@ Markdent::Event::StartCode - An event for the start of a code span
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

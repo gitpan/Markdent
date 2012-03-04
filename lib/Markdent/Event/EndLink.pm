@@ -1,6 +1,6 @@
 package Markdent::Event::EndLink;
 {
-  $Markdent::Event::EndLink::VERSION = '0.18';
+  $Markdent::Event::EndLink::VERSION = '0.19';
 }
 
 use strict;
@@ -30,7 +30,7 @@ Markdent::Event::EndLink - An event for the end of a link
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

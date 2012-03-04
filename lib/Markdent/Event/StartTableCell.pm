@@ -1,6 +1,6 @@
 package Markdent::Event::StartTableCell;
 {
-  $Markdent::Event::StartTableCell::VERSION = '0.18';
+  $Markdent::Event::StartTableCell::VERSION = '0.19';
 }
 
 use strict;
@@ -48,7 +48,7 @@ Markdent::Event::StartTableCell - An event for the start of a table cell
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,6 @@
 package Markdent::Event::EndTableCell;
 {
-  $Markdent::Event::EndTableCell::VERSION = '0.18';
+  $Markdent::Event::EndTableCell::VERSION = '0.19';
 }
 
 use strict;
@@ -36,7 +36,7 @@ Markdent::Event::EndTableCell - An event for the end of a table cell
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 DESCRIPTION
 
