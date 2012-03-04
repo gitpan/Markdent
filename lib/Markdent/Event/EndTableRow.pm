@@ -1,14 +1,14 @@
 package Markdent::Event::EndTableRow;
-BEGIN {
-  $Markdent::Event::EndTableRow::VERSION = '0.17';
+{
+  $Markdent::Event::EndTableRow::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( Str );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -30,7 +30,7 @@ Markdent::Event::EndTableRow - An event for the end of a table row
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

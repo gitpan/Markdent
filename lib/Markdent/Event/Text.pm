@@ -1,14 +1,14 @@
 package Markdent::Event::Text;
-BEGIN {
-  $Markdent::Event::Text::VERSION = '0.17';
+{
+  $Markdent::Event::Text::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( Str ArrayRef );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -26,7 +26,7 @@ has _converted_from => (
 
 has _merged_from => (
     is        => 'ro',
-    isa       => ArrayRef[Str],
+    isa       => ArrayRef [Str],
     predicate => '_has_merged_from',
 );
 
@@ -48,7 +48,7 @@ Markdent::Event::Text - An event for plaint text
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

@@ -1,12 +1,12 @@
 package Markdent::Role::EventAsText;
-BEGIN {
-  $Markdent::Role::EventAsText::VERSION = '0.17';
+{
+  $Markdent::Role::EventAsText::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
-
 use namespace::autoclean;
+
 use Moose::Role;
 
 requires 'as_text';
@@ -25,7 +25,7 @@ Markdent::Role::EventAsText - Indicates that an event has an as_text method
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

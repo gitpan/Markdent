@@ -1,12 +1,12 @@
 package Markdent::Event::EndListItem;
-BEGIN {
-  $Markdent::Event::EndListItem::VERSION = '0.17';
+{
+  $Markdent::Event::EndListItem::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
-
 use namespace::autoclean;
+
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -28,7 +28,7 @@ Markdent::Event::EndListItem - An event for the end of a list item
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

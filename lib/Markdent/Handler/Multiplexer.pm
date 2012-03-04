@@ -1,14 +1,14 @@
 package Markdent::Handler::Multiplexer;
-BEGIN {
-  $Markdent::Handler::Multiplexer::VERSION = '0.17';
+{
+  $Markdent::Handler::Multiplexer::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( NonEmptyArrayRef HandlerObject );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -16,7 +16,7 @@ with 'Markdent::Role::Handler';
 
 has _handlers => (
     is       => 'ro',
-    isa      => NonEmptyArrayRef[HandlerObject],
+    isa      => NonEmptyArrayRef [HandlerObject],
     init_arg => 'handlers',
     required => 1,
 );
@@ -41,7 +41,7 @@ Markdent::Handler::Multiplexer - Passes events on to multiple handlers
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

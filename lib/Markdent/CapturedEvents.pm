@@ -1,21 +1,21 @@
 package Markdent::CapturedEvents;
-BEGIN {
-  $Markdent::CapturedEvents::VERSION = '0.17';
+{
+  $Markdent::CapturedEvents::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( ArrayRef EventObject );
 use MooseX::Params::Validate qw( pos_validated_list );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
 has _events => (
     is       => 'ro',
-    isa      => ArrayRef[EventObject],
+    isa      => ArrayRef [EventObject],
     init_arg => 'events',
     default  => sub { [] },
 );
@@ -37,7 +37,8 @@ sub capture_events {
 
 sub replay_events {
     my $self = shift;
-    my ($handler) = pos_validated_list( \@_, { does => 'Markdent::Role::Handler' } );
+    my ($handler)
+        = pos_validated_list( \@_, { does => 'Markdent::Role::Handler' } );
 
     $handler->handle_event($_) for $self->events();
 }
@@ -58,7 +59,7 @@ Markdent::CapturedEvents - Represents a series of captured events
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

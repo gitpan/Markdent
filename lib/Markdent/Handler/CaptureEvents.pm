@@ -1,14 +1,14 @@
 package Markdent::Handler::CaptureEvents;
-BEGIN {
-  $Markdent::Handler::CaptureEvents::VERSION = '0.17';
+{
+  $Markdent::Handler::CaptureEvents::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::CapturedEvents;
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -18,7 +18,7 @@ has captured_events => (
     is       => 'ro',
     isa      => 'Markdent::CapturedEvents',
     init_arg => undef,
-    default => sub { Markdent::CapturedEvents->new() },
+    default  => sub { Markdent::CapturedEvents->new() },
 );
 
 sub handle_event {
@@ -41,7 +41,7 @@ Markdent::Handler::CaptureEvents - Captures events for replaying later
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

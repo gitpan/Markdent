@@ -1,17 +1,17 @@
 package Markdent::Simple::Document;
-BEGIN {
-  $Markdent::Simple::Document::VERSION = '0.17';
+{
+  $Markdent::Simple::Document::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Handler::HTMLStream::Document;
 use Markdent::Parser;
 use Markdent::Types qw( Str );
 use MooseX::Params::Validate qw( validated_list );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -55,7 +55,7 @@ Markdent::Simple::Document - Convert Markdown to an HTML Document
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 SYNOPSIS
 

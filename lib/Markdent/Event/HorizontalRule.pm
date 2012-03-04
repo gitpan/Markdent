@@ -1,12 +1,12 @@
 package Markdent::Event::HorizontalRule;
-BEGIN {
-  $Markdent::Event::HorizontalRule::VERSION = '0.17';
+{
+  $Markdent::Event::HorizontalRule::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
-
 use namespace::autoclean;
+
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -28,7 +28,7 @@ Markdent::Event::HorizontalRule - An event for a horizontal rule
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

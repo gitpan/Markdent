@@ -4,7 +4,7 @@
       "Dave Rolsky <autarch@urth.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.102341, CPAN::Meta::Converter version 2.101670",
+   "generated_by" : "Dist::Zilla version 4.300009, CPAN::Meta::Converter version 2.120351",
    "license" : [
       "perl_5"
    ],
@@ -16,33 +16,50 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.31"
+            "ExtUtils::MakeMaker" : "6.30"
          }
       },
       "runtime" : {
          "requires" : {
-            "Digest::SHA1" : 0,
-            "HTML::Stream" : 0,
-            "List::AllUtils" : 0,
+            "Class::Load" : "0",
+            "Digest::SHA1" : "0",
+            "Exporter" : "0",
+            "File::Slurp" : "0",
+            "Getopt::Long" : "0",
+            "HTML::Stream" : "0",
+            "IO::Handle" : "0",
+            "List::AllUtils" : "0",
             "Moose" : "0.92",
-            "MooseX::Params::Validate" : "0.12",
-            "MooseX::Role::Parameterized" : 0,
+            "Moose::Role" : "0",
+            "MooseX::Params::Validate" : "0",
+            "MooseX::Role::Parameterized" : "0",
             "MooseX::SemiAffordanceAccessor" : "0.05",
             "MooseX::StrictConstructor" : "0.08",
             "MooseX::Types" : "0.20",
-            "Tree::Simple" : 0,
-            "Try::Tiny" : 0,
-            "namespace::autoclean" : "0.09"
+            "MooseX::Types::Combine" : "0",
+            "MooseX::Types::Moose" : "0",
+            "Scalar::Util" : "0",
+            "Tree::Simple" : "0",
+            "Try::Tiny" : "0",
+            "base" : "0",
+            "namespace::autoclean" : "0.09",
+            "re" : "0",
+            "strict" : "0",
+            "warnings" : "0"
          }
       },
       "test" : {
          "requires" : {
-            "File::Slurp" : 0,
-            "Test::Deep" : 0,
-            "Test::Differences" : 0,
-            "Test::Exception" : 0,
+            "Data::Dumper" : "0",
+            "File::Basename" : "0",
+            "File::Find" : "0",
+            "File::Temp" : "0",
+            "IO::File" : "0",
+            "Test::Deep" : "0",
+            "Test::Differences" : "0",
+            "Test::Fatal" : "0",
             "Test::More" : "0.88",
-            "Tree::Simple::Visitor::ToNestedArray" : 0
+            "Tree::Simple::Visitor::ToNestedArray" : "0"
          }
       }
    },
@@ -53,11 +70,11 @@
          "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Markdent"
       },
       "repository" : {
-         "type" : "hg",
-         "url" : "http://hg.urth.org/hg/Markdent",
-         "web" : "http://hg.urth.org/hg/Markdent"
+         "type" : "git",
+         "url" : "git://git.urth.org/Markdent.git",
+         "web" : "http://git.urth.org/Markdent.git"
       }
    },
-   "version" : "0.17"
+   "version" : "0.18"
 }
 

@@ -1,20 +1,20 @@
 package Markdent::Role::BalancedEvent;
-BEGIN {
-  $Markdent::Role::BalancedEvent::VERSION = '0.17';
+{
+  $Markdent::Role::BalancedEvent::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use List::AllUtils qw( all );
 use Markdent::Types qw( ArrayRef Str );
 use MooseX::Params::Validate qw( pos_validated_list );
 
-use namespace::autoclean;
 use MooseX::Role::Parameterized;
 
 parameter compare => (
-    isa => ArrayRef[Str],
+    isa => ArrayRef [Str],
 );
 
 role {
@@ -24,7 +24,8 @@ role {
 
     method balances_event => sub {
         my $self = shift;
-        my ($other) = pos_validated_list( \@_, { does => 'Markdent::Role::Event' } );
+        my ($other)
+            = pos_validated_list( \@_, { does => 'Markdent::Role::Event' } );
 
         return 0 unless $self->name() eq $other->name();
 
@@ -54,7 +55,7 @@ Markdent::Role::BalancedEvent - A parameterized role for events which can check 
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

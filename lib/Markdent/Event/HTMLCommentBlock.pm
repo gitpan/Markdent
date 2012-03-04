@@ -1,14 +1,14 @@
 package Markdent::Event::HTMLCommentBlock;
-BEGIN {
-  $Markdent::Event::HTMLCommentBlock::VERSION = '0.17';
+{
+  $Markdent::Event::HTMLCommentBlock::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( Str HashRef );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -36,7 +36,7 @@ Markdent::Event::HTMLCommentBlock - An event for an HTML comment as a standalone
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

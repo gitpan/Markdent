@@ -1,12 +1,12 @@
 package Markdent::Handler::Null;
-BEGIN {
-  $Markdent::Handler::Null::VERSION = '0.17';
+{
+  $Markdent::Handler::Null::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
-
 use namespace::autoclean;
+
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -32,7 +32,7 @@ Markdent::Handler::Null - A handler which ignores all events
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

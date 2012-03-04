@@ -1,12 +1,12 @@
 package Markdent::Event::StartOrderedList;
-BEGIN {
-  $Markdent::Event::StartOrderedList::VERSION = '0.17';
+{
+  $Markdent::Event::StartOrderedList::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
-
 use namespace::autoclean;
+
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -28,7 +28,7 @@ Markdent::Event::StartOrderedList - An event for the start of a ordered list
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

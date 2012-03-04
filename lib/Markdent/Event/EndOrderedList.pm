@@ -1,12 +1,12 @@
 package Markdent::Event::EndOrderedList;
-BEGIN {
-  $Markdent::Event::EndOrderedList::VERSION = '0.17';
+{
+  $Markdent::Event::EndOrderedList::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
-
 use namespace::autoclean;
+
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -28,7 +28,7 @@ Markdent::Event::EndOrderedList - An event for the end of a ordered list
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

@@ -1,14 +1,14 @@
 package Markdent::Event::HTMLBlock;
-BEGIN {
-  $Markdent::Event::HTMLBlock::VERSION = '0.17';
+{
+  $Markdent::Event::HTMLBlock::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( Str );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -36,7 +36,7 @@ Markdent::Event::HTMLBlock - An event for an HTML block
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

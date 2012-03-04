@@ -1,14 +1,14 @@
 package Markdent::Event::StartTableBody;
-BEGIN {
-  $Markdent::Event::StartTableBody::VERSION = '0.17';
+{
+  $Markdent::Event::StartTableBody::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( Str );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -30,7 +30,7 @@ Markdent::Event::StartTableBody - An event for the start of a table body
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

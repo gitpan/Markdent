@@ -1,17 +1,17 @@
 package Markdent::Simple::Fragment;
-BEGIN {
-  $Markdent::Simple::Fragment::VERSION = '0.17';
+{
+  $Markdent::Simple::Fragment::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Handler::HTMLStream::Fragment;
 use Markdent::Parser;
 use Markdent::Types qw( Str );
 use MooseX::Params::Validate qw( validated_list );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -52,7 +52,7 @@ Markdent::Simple::Fragment - Convert Markdown to an HTML Fragment
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 SYNOPSIS
 
@@ -60,7 +60,6 @@ version 0.17
 
     my $mds  = Markdent::Simple::Fragment->new();
     my $html = $mss->markdown_to_html(
-        title    => 'My Fragment',
         markdown => $markdown,
     );
 
@@ -78,8 +77,7 @@ Creates a new Markdent::Simple::Fragment object.
 
 =head2 $mds->markdown_to_html( markdown => $markdown )
 
-This method turns Markdown into HTML. You must provide a title as well, which
-will be used as the C<< <title> >> for the resulting HTML document.
+This method turns Markdown into HTML.
 
 You can also provide an optional "dialect" parameter.
 

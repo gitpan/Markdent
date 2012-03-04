@@ -1,14 +1,14 @@
 package Markdent::Event::StartHTMLTag;
-BEGIN {
-  $Markdent::Event::StartHTMLTag::VERSION = '0.17';
+{
+  $Markdent::Event::StartHTMLTag::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( Str HashRef );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -42,7 +42,7 @@ Markdent::Event::StartHTMLTag - An event for the start of an inline HTML tag
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

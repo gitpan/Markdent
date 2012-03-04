@@ -1,10 +1,11 @@
 package Markdent::Dialect::Standard::SpanParser;
-BEGIN {
-  $Markdent::Dialect::Standard::SpanParser::VERSION = '0.17';
+{
+  $Markdent::Dialect::Standard::SpanParser::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use re 'eval';
 
@@ -28,7 +29,6 @@ use Markdent::Event::Text;
 use Markdent::Regexes qw( $HTMLComment );
 use Markdent::Types qw( Str ArrayRef HashRef RegexpRef EventObject );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::SemiAffordanceAccessor;
 use MooseX::StrictConstructor;
@@ -38,7 +38,7 @@ with 'Markdent::Role::SpanParser';
 has __pending_events => (
     traits   => ['Array'],
     is       => 'rw',
-    isa      => ArrayRef[EventObject],
+    isa      => ArrayRef [EventObject],
     default  => sub { [] },
     init_arg => undef,
     handles  => {
@@ -64,7 +64,7 @@ has _span_text_buffer => (
 has _links_by_id => (
     traits   => ['Hash'],
     is       => 'ro',
-    isa      => HashRef[ArrayRef],
+    isa      => HashRef [ArrayRef],
     default  => sub { {} },
     init_arg => undef,
     handles  => {
@@ -131,7 +131,7 @@ sub _parse_uri_and_title {
     $uri = q{}
         unless defined $uri;
 
-    $uri =~ s/^<|>$//g;
+    $uri   =~ s/^<|>$//g;
     $title =~ s/^"|"$//g
         if defined $title;
 
@@ -142,12 +142,12 @@ sub parse_block {
     my $self = shift;
     my $text = shift;
 
-    $self->_print_debug( "Parsing text for span-level markup\n\n$text\n" )
+    $self->_print_debug("Parsing text for span-level markup\n\n$text\n")
         if $self->debug();
 
     # Note that we have to pass a _reference_ to text in order to make sure
     # that we are matching the same variable with /g regexes each time.
-    $self->_parse_text(\$text);
+    $self->_parse_text( \$text );
 
     # This catches any bad start events that were found after the last end
     # event, or if there were _no_ end events at all.
@@ -159,8 +159,7 @@ sub parse_block {
 
     $self->_debug_pending_events('after text merging');
 
-    $self->handler()->handle_event($_)
-        for $self->_pending_events();
+    $self->handler()->handle_event($_) for $self->_pending_events();
 
     $self->_clear_pending_events();
 
@@ -171,7 +170,7 @@ sub _parse_text {
     my $self = shift;
     my $text = shift;
 
- PARSE:
+PARSE:
     while (1) {
         if ( $self->debug() && pos ${$text} ) {
             $self->_print_debug( "Remaining text:\n[\n"
@@ -247,13 +246,13 @@ sub _look_for_strong_and_emphasis {
             ? qw( strong emphasis )
             : qw( emphasis strong );
 
-        return
-            map { [ $_ . '_end', $start{$_}->delimiter() ] }
-            @order;
+        return map { [ $_ . '_end', $start{$_}->delimiter() ] } @order;
     }
     elsif ( $start{emphasis} ) {
-        return ( 'strong_start',
-            [ 'emphasis_end', $start{emphasis}->delimiter() ] );
+        return (
+            'strong_start',
+            [ 'emphasis_end', $start{emphasis}->delimiter() ]
+        );
     }
     elsif ( $start{strong} ) {
         return (
@@ -305,7 +304,7 @@ sub _match_escape {
                                 ($escape_re)
                               /xgc;
 
-    $self->_print_debug( "Interpreting as escaped character\n\n[$1]\n" )
+    $self->_print_debug("Interpreting as escaped character\n\n[$1]\n")
         if $self->debug();
 
     $self->_save_span_text($2);
@@ -375,7 +374,8 @@ sub _match_code_start {
     my $self = shift;
     my $text = shift;
 
-    my ($delim) = $self->_match_delimiter_start( $text, qr/\`+\p{SpaceSeparator}*/ )
+    my ($delim)
+        = $self->_match_delimiter_start( $text, qr/\`+\p{SpaceSeparator}*/ )
         or return;
 
     $delim =~ s/\p{SpaceSeparator}*$//;
@@ -413,9 +413,9 @@ sub _match_delimiter_start {
 }
 
 sub _match_delimiter_end {
-    my $self        = shift;
-    my $text        = shift;
-    my $delim       = shift;
+    my $self  = shift;
+    my $text  = shift;
+    my $delim = shift;
 
     return unless ${$text} =~ /\G $delim /xgc;
 
@@ -469,8 +469,8 @@ sub _match_link {
     # the method is called or $nested_brackets && $nested_parens are
     # undef. Presumably this has something to do with using it in a
     # subroutine's lexical scope (resetting the stack on each invocation?)
-    return unless
-        ${$text} =~ / \G
+    return
+        unless ${$text} =~ / \G
                       \[ ($nested_brackets) \]    # link or alt text
                       (?:
                         \( ($nested_parens) \)
@@ -480,8 +480,7 @@ sub _match_link {
                       )?                          # with no id or explicit uri, use text as id
                     /xgc;
 
-    my ( $link_text, $attr ) =
-        $self->_link_match_results( $1, $2, $3 );
+    my ( $link_text, $attr ) = $self->_link_match_results( $1, $2, $3 );
 
     unless ( defined $attr->{uri} ) {
         pos ${$text} = $pos
@@ -509,8 +508,8 @@ sub _match_image {
 
     my $pos = pos ${$text} || 0;
 
-    return unless
-        ${$text} =~ / \G
+    return
+        unless ${$text} =~ / \G
                       !
                       \[ ($nested_brackets) \]    # link or alt text
                       (?:
@@ -521,8 +520,7 @@ sub _match_image {
                       )?                          # with no id or explicit uri, use text as id
                     /xgc;
 
-    my ( $alt_text, $attr ) =
-        $self->_link_match_results( $1, $2, $3 );
+    my ( $alt_text, $attr ) = $self->_link_match_results( $1, $2, $3 );
 
     unless ( defined $attr->{uri} ) {
         pos ${$text} = $pos
@@ -583,7 +581,7 @@ sub _match_html_comment {
 
     my $comment = $1;
 
-    $self->_detab_text(\$comment);
+    $self->_detab_text( \$comment );
 
     my $event = $self->_make_event( HTMLComment => text => $comment );
 
@@ -626,6 +624,7 @@ sub _match_html_tag {
                     $attr{$name} = $val;
                 }
                 else {
+
                     # A value-less attribute like in
                     # <option value="1" selected>
                     $attr{$name} = undef;
@@ -681,8 +680,8 @@ sub _match_plain_text {
     # (possible) end of the plain text. If those things turn out to _not_ be
     # markup, we'll get them on the next pass, because we always match at
     # least one character, so we should never get stuck in a loop.
-    return unless
-        ${$text} =~ /\G
+    return
+        unless ${$text} =~ /\G
                      ( .+? )              # at least one character followed by ...
                      (?=
                        $escape_re
@@ -703,7 +702,7 @@ sub _match_plain_text {
                      )
                     /xgcs;
 
-    $self->_print_debug( "Interpreting as plain text\n\n[$1]\n" )
+    $self->_print_debug("Interpreting as plain text\n\n[$1]\n")
         if $self->debug();
 
     $self->_save_span_text($1);
@@ -712,7 +711,7 @@ sub _match_plain_text {
 }
 
 sub _markup_event {
-    my $self = shift;
+    my $self  = shift;
     my $event = shift;
 
     $self->_event_for_text_buffer();
@@ -742,7 +741,7 @@ sub _event_for_text_buffer {
 
     my $text = $self->_span_text_buffer();
 
-    $self->_detab_text(\$text);
+    $self->_detab_text( \$text );
 
     my $event = $self->_make_event( Text => text => $text );
 
@@ -783,7 +782,8 @@ EVENT:
     return unless $is_done;
 
     for my $start (@starts) {
-        $events->[ $start->[0] ] = $self->_convert_start_event_to_text( $start->[1] );
+        $events->[ $start->[0] ]
+            = $self->_convert_start_event_to_text( $start->[1] );
     }
 }
 
@@ -854,15 +854,16 @@ sub _merge_consecutive_text_events {
 }
 
 sub _splice_merged_text_event {
-    my $self     = shift;
-    my $events   = shift;
-    my $start    = shift;
-    my $end      = shift;
+    my $self   = shift;
+    my $events = shift;
+    my $start  = shift;
+    my $end    = shift;
 
     my @to_merge = map { $_->text() } @{$events}[ $start .. $end ];
 
-    $self->_print_debug( "Merging consecutive text events ($start-$end) for: \n"
-            . ( join q{}, map {"  - [$_]\n"} @to_merge ) )
+    $self->_print_debug(
+        "Merging consecutive text events ($start-$end) for: \n"
+            . ( join q{}, map { "  - [$_]\n" } @to_merge ) )
         if $self->debug();
 
     my $merged_text = join q{}, @to_merge;
@@ -908,7 +909,7 @@ Markdent::Dialect::Standard::SpanParser - Span parser for standard Markdown
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

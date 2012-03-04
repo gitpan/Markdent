@@ -1,14 +1,14 @@
 package Markdent::Handler::HTMLFilter;
-BEGIN {
-  $Markdent::Handler::HTMLFilter::VERSION = '0.17';
+{
+  $Markdent::Handler::HTMLFilter::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::CapturedEvents;
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -20,9 +20,14 @@ sub filter_event {
 
     return
         if grep { $event->isa( 'Markdent::Event::' . $_ ) }
-            qw( HTMLBlock
-                HTMLComment HTMLCommentBlock
-                HTMLTag StartHTMLTag EndHTMLTag );
+            qw(
+            HTMLBlock
+            HTMLComment
+            HTMLCommentBlock
+            HTMLTag
+            StartHTMLTag
+            EndHTMLTag
+    );
 
     $self->handler()->handle_event($event);
 
@@ -45,7 +50,7 @@ Markdent::Handler::HTMLFilter - Filters out HTML events from the event stream
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 SYNOPSIS
 

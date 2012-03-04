@@ -1,12 +1,12 @@
 package Markdent::Dialect::Theory::SpanParser;
-BEGIN {
-  $Markdent::Dialect::Theory::SpanParser::VERSION = '0.17';
+{
+  $Markdent::Dialect::Theory::SpanParser::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
-
 use namespace::autoclean;
+
 use Moose;
 use MooseX::SemiAffordanceAccessor;
 use MooseX::StrictConstructor;
@@ -35,7 +35,7 @@ Markdent::Dialect::Theory::SpanParser - Span parser for Theory's Markdown
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

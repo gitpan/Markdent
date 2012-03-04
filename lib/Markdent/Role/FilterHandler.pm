@@ -1,12 +1,12 @@
 package Markdent::Role::FilterHandler;
-BEGIN {
-  $Markdent::Role::FilterHandler::VERSION = '0.17';
+{
+  $Markdent::Role::FilterHandler::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
-
 use namespace::autoclean;
+
 use Moose::Role;
 
 with 'Markdent::Role::Handler';
@@ -20,7 +20,7 @@ has handler => (
 );
 
 sub handle_event {
-    my $self = shift;
+    my $self  = shift;
     my $event = shift;
 
     my $new_event = $self->filter_event($event);
@@ -43,7 +43,7 @@ Markdent::Role::FilterHandler - A role for handlers which act as filters
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

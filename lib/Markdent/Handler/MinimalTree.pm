@@ -1,10 +1,11 @@
 package Markdent::Handler::MinimalTree;
-BEGIN {
-  $Markdent::Handler::MinimalTree::VERSION = '0.17';
+{
+  $Markdent::Handler::MinimalTree::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use MooseX::Params::Validate qw( validated_list validated_hash );
 use Markdent::Types qw(
@@ -13,7 +14,6 @@ use Markdent::Types qw(
 );
 use Tree::Simple;
 
-use namespace::autoclean;
 use Moose;
 use MooseX::SemiAffordanceAccessor;
 
@@ -447,7 +447,7 @@ Markdent::Handler::MinimalTree - A Markdent handler which builds a tree
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

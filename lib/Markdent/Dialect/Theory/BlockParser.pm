@@ -1,10 +1,11 @@
 package Markdent::Dialect::Theory::BlockParser;
-BEGIN {
-  $Markdent::Dialect::Theory::BlockParser::VERSION = '0.17';
+{
+  $Markdent::Dialect::Theory::BlockParser::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use List::AllUtils qw( insert_after_string sum );
 use Markdent::Event::StartTable;
@@ -20,7 +21,6 @@ use Markdent::Event::EndTableCell;
 use Markdent::Regexes qw( $HorizontalWS $EmptyLine $BlockStart $BlockEnd );
 use Markdent::Types qw( Bool );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::SemiAffordanceAccessor;
 use MooseX::StrictConstructor;
@@ -204,6 +204,7 @@ sub _parse_rows {
     my @rows;
 
     for my $chunk ( split $split_re, $rows ) {
+
         # Splitting on an empty string returns nothing, so we need to
         # special-case that, as we want to preserve empty lines.
         for my $line ( length $chunk ? ( split /\n/, $chunk ) : $chunk ) {
@@ -262,6 +263,7 @@ sub _cells_from_line {
         if ( length $cell ) {
             push @row, $self->_cell_params($cell);
         }
+
         # If the first cell is empty, that means the line started with a
         # divider, and we can ignore the "cell". If we already have cells in
         # the row, that means we just saw a repeated divider, which means the
@@ -305,8 +307,7 @@ sub _cell_params {
     if ( defined $cell && $cell =~ /\S/ ) {
         $alignment = $self->_alignment_for_cell($cell);
 
-        ( $content = $cell )
-            =~ s/^$HorizontalWS+|$HorizontalWS+$//g;
+        ( $content = $cell ) =~ s/^$HorizontalWS+|$HorizontalWS+$//g;
     }
 
     my %p = (
@@ -348,7 +349,7 @@ sub _normalize_cell_count_and_alignments {
     # "left". We loop through all the rules and set alignments accordingly.
     my %alignments;
 
-    for my $row ( grep {defined} @rows ) {
+    for my $row ( grep { defined } @rows ) {
 
         # If we have one extra column and the final cell has a colspan > 1 it
         # means we misinterpreted a trailing divider as indicating that the
@@ -463,7 +464,7 @@ Markdent::Dialect::Theory::BlockParser - Block parser for Theory's Markdown
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

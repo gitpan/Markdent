@@ -1,14 +1,14 @@
 package Markdent::Event::StartCode;
-BEGIN {
-  $Markdent::Event::StartCode::VERSION = '0.17';
+{
+  $Markdent::Event::StartCode::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( Str );
 
-use namespace::autoclean;
 use Moose;
 use MooseX::StrictConstructor;
 
@@ -20,7 +20,7 @@ has delimiter => (
 
 with 'Markdent::Role::Event';
 
-with 'Markdent::Role::BalancedEvent' => { compare => [ 'delimiter' ] };
+with 'Markdent::Role::BalancedEvent' => { compare => ['delimiter'] };
 
 with 'Markdent::Role::EventAsText';
 
@@ -42,7 +42,7 @@ Markdent::Event::StartCode - An event for the start of a code span
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

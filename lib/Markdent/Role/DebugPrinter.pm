@@ -1,14 +1,14 @@
 package Markdent::Role::DebugPrinter;
-BEGIN {
-  $Markdent::Role::DebugPrinter::VERSION = '0.17';
+{
+  $Markdent::Role::DebugPrinter::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
+use namespace::autoclean;
 
 use Markdent::Types qw( Bool );
 
-use namespace::autoclean;
 use Moose::Role;
 
 has debug => (
@@ -54,7 +54,7 @@ Markdent::Role::DebugPrinter - A role for classes which output debugging informa
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 

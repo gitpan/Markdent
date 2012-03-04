@@ -1,12 +1,12 @@
 package Markdent::Role::Handler;
-BEGIN {
-  $Markdent::Role::Handler::VERSION = '0.17';
+{
+  $Markdent::Role::Handler::VERSION = '0.18';
 }
 
 use strict;
 use warnings;
-
 use namespace::autoclean;
+
 use Moose::Role;
 
 requires 'handle_event';
@@ -25,7 +25,7 @@ Markdent::Role::Handler - A required role for all handlers
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 
