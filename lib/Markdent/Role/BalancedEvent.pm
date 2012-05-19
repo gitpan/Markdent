@@ -1,6 +1,6 @@
 package Markdent::Role::BalancedEvent;
 {
-  $Markdent::Role::BalancedEvent::VERSION = '0.19';
+  $Markdent::Role::BalancedEvent::VERSION = '0.20';
 }
 
 use strict;
@@ -55,7 +55,7 @@ Markdent::Role::BalancedEvent - A parameterized role for events which can check 
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 DESCRIPTION
 

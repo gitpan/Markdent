@@ -1,6 +1,6 @@
 package Markdent::Role::Event;
 {
-  $Markdent::Role::Event::VERSION = '0.19';
+  $Markdent::Role::Event::VERSION = '0.20';
 }
 
 use strict;
@@ -156,7 +156,7 @@ Markdent::Role::Event - Implements behavior shared by all events
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 DESCRIPTION
 

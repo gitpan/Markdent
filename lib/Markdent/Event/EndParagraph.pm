@@ -1,6 +1,6 @@
 package Markdent::Event::EndParagraph;
 {
-  $Markdent::Event::EndParagraph::VERSION = '0.19';
+  $Markdent::Event::EndParagraph::VERSION = '0.20';
 }
 
 use strict;
@@ -28,7 +28,7 @@ Markdent::Event::EndParagraph - An event for the end of a paragraph
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 DESCRIPTION
 

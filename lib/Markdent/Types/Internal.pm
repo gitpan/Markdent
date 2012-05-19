@@ -1,6 +1,6 @@
 package Markdent::Types::Internal;
 {
-  $Markdent::Types::Internal::VERSION = '0.19';
+  $Markdent::Types::Internal::VERSION = '0.20';
 }
 
 use strict;
@@ -9,19 +9,27 @@ use warnings;
 use IO::Handle;
 
 use MooseX::Types 0.20 -declare => [
-    qw( HeaderLevel
+    qw(
         BlockParserClass
-        SpanParserClass
         EventObject
         HandlerObject
-        OutputStream
+        HeaderLevel
         NonEmptyArrayRef
-        TableCellAlignment
+        OutputStream
         PosInt
+        SpanParserClass
+        TableCellAlignment
         )
 ];
 
-use MooseX::Types::Moose qw( Int ArrayRef ClassName Any FileHandle Object );
+use MooseX::Types::Moose qw(
+    ArrayRef
+    ClassName
+    FileHandle
+    Int
+    Item
+    Object
+);
 
 #<<<
 subtype HeaderLevel,
@@ -50,7 +58,7 @@ subtype NonEmptyArrayRef,
     where { @{$_} >= 1 };
 
 subtype OutputStream,
-    as Any,
+    as Item,
     where {
         FileHandle->check($_)
             || ( Object->check($_) && $_->can('print') );

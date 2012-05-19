@@ -1,6 +1,6 @@
 package Markdent::Event::StartHeader;
 {
-  $Markdent::Event::StartHeader::VERSION = '0.19';
+  $Markdent::Event::StartHeader::VERSION = '0.20';
 }
 
 use strict;
@@ -36,7 +36,7 @@ Markdent::Event::StartHeader - An event for the start of a header
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 DESCRIPTION
 

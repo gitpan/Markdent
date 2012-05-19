@@ -1,6 +1,6 @@
 package Markdent::Dialect::Theory::BlockParser;
 {
-  $Markdent::Dialect::Theory::BlockParser::VERSION = '0.19';
+  $Markdent::Dialect::Theory::BlockParser::VERSION = '0.20';
 }
 
 use strict;
@@ -464,7 +464,7 @@ Markdent::Dialect::Theory::BlockParser - Block parser for Theory's Markdown
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 DESCRIPTION
 

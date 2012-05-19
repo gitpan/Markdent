@@ -1,6 +1,6 @@
 package Markdent::Event::Preformatted;
 {
-  $Markdent::Event::Preformatted::VERSION = '0.19';
+  $Markdent::Event::Preformatted::VERSION = '0.20';
 }
 
 use strict;
@@ -36,7 +36,7 @@ Markdent::Event::Preformatted - An event for preformatted text
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 DESCRIPTION
 

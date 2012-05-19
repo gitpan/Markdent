@@ -1,6 +1,6 @@
 package Markdent::Event::EndListItem;
 {
-  $Markdent::Event::EndListItem::VERSION = '0.19';
+  $Markdent::Event::EndListItem::VERSION = '0.20';
 }
 
 use strict;
@@ -28,7 +28,7 @@ Markdent::Event::EndListItem - An event for the end of a list item
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 DESCRIPTION
 

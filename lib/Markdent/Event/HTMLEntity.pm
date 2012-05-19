@@ -1,6 +1,6 @@
 package Markdent::Event::HTMLEntity;
 {
-  $Markdent::Event::HTMLEntity::VERSION = '0.19';
+  $Markdent::Event::HTMLEntity::VERSION = '0.20';
 }
 
 use strict;
@@ -36,7 +36,7 @@ Markdent::Event::HTMLEntity - An event for an HTML entity
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,6 @@
 package Markdent::Event::StartDocument;
 {
-  $Markdent::Event::StartDocument::VERSION = '0.19';
+  $Markdent::Event::StartDocument::VERSION = '0.20';
 }
 
 use strict;
@@ -28,7 +28,7 @@ Markdent::Event::StartDocument - An event for the start of a document
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 DESCRIPTION
 
