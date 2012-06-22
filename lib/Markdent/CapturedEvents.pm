@@ -1,6 +1,6 @@
 package Markdent::CapturedEvents;
 {
-  $Markdent::CapturedEvents::VERSION = '0.20';
+  $Markdent::CapturedEvents::VERSION = '0.21';
 }
 
 use strict;
@@ -59,7 +59,7 @@ Markdent::CapturedEvents - Represents a series of captured events
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 DESCRIPTION
 

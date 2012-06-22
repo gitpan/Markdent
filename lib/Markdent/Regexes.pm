@@ -1,6 +1,6 @@
 package Markdent::Regexes;
 {
-  $Markdent::Regexes::VERSION = '0.20';
+  $Markdent::Regexes::VERSION = '0.21';
 }
 
 use strict;

@@ -1,14 +1,22 @@
 package Markdent::Event::StartListItem;
 {
-  $Markdent::Event::StartListItem::VERSION = '0.20';
+  $Markdent::Event::StartListItem::VERSION = '0.21';
 }
 
 use strict;
 use warnings;
 use namespace::autoclean;
 
+use Markdent::Types qw( Str );
+
 use Moose;
 use MooseX::StrictConstructor;
+
+has bullet => (
+    is       => 'ro',
+    isa      => Str,
+    required => 1,
+);
 
 with 'Markdent::Role::Event';
 
@@ -28,11 +36,19 @@ Markdent::Event::StartListItem - An event for the start of a list item
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 DESCRIPTION
 
 This class represents the start of a list item.
+
+=head1 ATTRIBUTES
+
+This class has the following attributes:
+
+=head2 bullet
+
+The bullet text for the list item.
 
 =head1 ROLES
 

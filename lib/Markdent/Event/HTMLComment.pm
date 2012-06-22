@@ -1,6 +1,6 @@
 package Markdent::Event::HTMLComment;
 {
-  $Markdent::Event::HTMLComment::VERSION = '0.20';
+  $Markdent::Event::HTMLComment::VERSION = '0.21';
 }
 
 use strict;
@@ -36,7 +36,7 @@ Markdent::Event::HTMLComment - An event for an HTML comment
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 DESCRIPTION
 

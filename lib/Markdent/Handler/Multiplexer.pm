@@ -1,6 +1,6 @@
 package Markdent::Handler::Multiplexer;
 {
-  $Markdent::Handler::Multiplexer::VERSION = '0.20';
+  $Markdent::Handler::Multiplexer::VERSION = '0.21';
 }
 
 use strict;
@@ -41,7 +41,7 @@ Markdent::Handler::Multiplexer - Passes events on to multiple handlers
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 DESCRIPTION
 

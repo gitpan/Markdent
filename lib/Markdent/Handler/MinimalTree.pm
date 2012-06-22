@@ -1,6 +1,6 @@
 package Markdent::Handler::MinimalTree;
 {
-  $Markdent::Handler::MinimalTree::VERSION = '0.20';
+  $Markdent::Handler::MinimalTree::VERSION = '0.21';
 }
 
 use strict;
@@ -112,11 +112,16 @@ sub end_ordered_list {
 
 sub start_list_item {
     my $self = shift;
+    my %p    = validated_hash(
+        \@_,
+        bullet => { isa => Str },
+    );
 
-    my $para = Tree::Simple->new( { type => 'list_item' } );
-    $self->_current_node()->addChild($para);
+    my $list_item
+        = Tree::Simple->new( { type => 'list_item', bullet => $p{bullet} } );
+    $self->_current_node()->addChild($list_item);
 
-    $self->_set_current_node($para);
+    $self->_set_current_node($list_item);
 }
 
 sub end_list_item {
@@ -447,7 +452,7 @@ Markdent::Handler::MinimalTree - A Markdent handler which builds a tree
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,6 @@
 package Markdent::Event::HTMLBlock;
 {
-  $Markdent::Event::HTMLBlock::VERSION = '0.20';
+  $Markdent::Event::HTMLBlock::VERSION = '0.21';
 }
 
 use strict;
@@ -36,7 +36,7 @@ Markdent::Event::HTMLBlock - An event for an HTML block
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 DESCRIPTION
 

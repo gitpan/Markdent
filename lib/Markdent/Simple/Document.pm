@@ -1,6 +1,6 @@
 package Markdent::Simple::Document;
 {
-  $Markdent::Simple::Document::VERSION = '0.20';
+  $Markdent::Simple::Document::VERSION = '0.21';
 }
 
 use strict;
@@ -55,7 +55,7 @@ Markdent::Simple::Document - Convert Markdown to an HTML Document
 
 =head1 VERSION
 
-version 0.20
+version 0.21
 
 =head1 SYNOPSIS
 
