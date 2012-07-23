@@ -27,12 +27,14 @@ requires:
   Digest::SHA1: 0
   Exporter: 0
   File::Slurp: 0
-  Getopt::Long: 0
+  Getopt::Long::Descriptive: 0
   HTML::Stream: 0
   IO::Handle: 0
   List::AllUtils: 0
   Moose: 0.92
+  Moose::Meta::Class: 0
   Moose::Role: 0
+  MooseX::Getopt::Dashes: 0
   MooseX::Params::Validate: 0
   MooseX::Role::Parameterized: 0
   MooseX::SemiAffordanceAccessor: 0.05
@@ -51,4 +53,4 @@ requires:
 resources:
   bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Markdent
   repository: git://git.urth.org/Markdent.git
-version: 0.21
+version: 0.22

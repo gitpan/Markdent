@@ -1,6 +1,6 @@
 package Markdent::Role::HTMLStream;
 {
-  $Markdent::Role::HTMLStream::VERSION = '0.21';
+  $Markdent::Role::HTMLStream::VERSION = '0.22';
 }
 
 use strict;
@@ -106,6 +106,25 @@ sub end_list_item {
     my $self = shift;
 
     $self->_stream()->tag('_li');
+}
+
+sub code_block {
+    my $self = shift;
+    my ( $code, $language ) = validated_list(
+        \@_,
+        code     => { isa => Str },
+        language => { isa => Str, optional => 1 },
+    );
+
+    $self->_stream()->tag('pre');
+
+    my @class = $language ? ( class => 'language-' . $language ) : ();
+    $self->_stream()->tag( 'code', @class );
+
+    $self->_stream()->text($code);
+
+    $self->_stream()->tag('_code');
+    $self->_stream()->tag('_pre');
 }
 
 sub preformatted {
@@ -289,6 +308,12 @@ sub end_link {
     $self->_stream()->tag('_a');
 }
 
+sub line_break {
+    my $self = shift;
+
+    $self->_stream()->tag('br');
+}
+
 sub text {
     my $self = shift;
     my ($text) = validated_list( \@_, text => { isa => Str }, );
@@ -435,7 +460,7 @@ Markdent::Role::HTMLStream - A role for handlers which generate HTML
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 DESCRIPTION
 
@@ -462,7 +487,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

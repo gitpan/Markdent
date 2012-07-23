@@ -31,6 +31,7 @@ API
 CLI
 CaptureEvents
 EndCode
+GitHub
 Gruber
 Gruber's
 HTMLStream
@@ -40,6 +41,7 @@ Markdent's
 Markdown
 PayPal
 Rolsky
+SHAs
 StartCode
 StartEmphasis
 StartLink

@@ -1,6 +1,6 @@
-package Markdent::Dialect::Standard::BlockParser;
+package Markdent::Parser::BlockParser;
 {
-  $Markdent::Dialect::Standard::BlockParser::VERSION = '0.21';
+  $Markdent::Parser::BlockParser::VERSION = '0.22';
 }
 
 use strict;
@@ -109,6 +109,15 @@ sub parse_document {
                 }
                 { ( $1 || q{} ) . $self->_hash_and_save_html($2) }egxm;
 
+
+        # We need to treat <hr/> tags as blocks as well, but they don't have
+        # an ending delimiter.
+        ${$text} =~ s{
+                 ( $BlockStart )
+                 (<hr\ */?>)
+                }
+                { ( $1 || q{} ) . $self->_hash_and_save_html($2) }egxm;
+
         return;
     }
 }
@@ -117,7 +126,7 @@ sub _hash_and_save_html {
     my $self = shift;
     my $html = shift;
 
-    my $sha1 = sha1_hex($html);
+    my $sha1 = lc sha1_hex($html);
 
     $self->_save_html_block( $sha1 => $html );
 
@@ -182,7 +191,8 @@ sub _possible_block_matches {
         two_line_header
         blockquote
         preformatted
-        list );
+        list
+    );
 
     push @look_for, 'list_item'
         if $self->_list_level();
@@ -200,7 +210,7 @@ sub _match_hashed_html {
                                 $BlockStart
                                 ^
                                 (
-                                  html:(.{40})
+                                  html:([0-9a-f]{40})
                                   \n
                                 )
                                 $BlockEnd
@@ -556,16 +566,52 @@ sub _match_list {
 
     my @items = $self->_split_list_items($list);
 
+    $self->_handle_list_items(@items);
+
+    $self->_dec_list_level();
+
+    $self->_send_event( 'End' . $type );
+
+    return 1;
+}
+
+sub _split_list_items {
+    my $self = shift;
+    my $list = shift;
+
+    my @items;
+    my @chunk;
+
+    for my $line ( split /\n/, $list ) {
+        if ( $line =~ /^$Bullet/ && @chunk ) {
+            push @items, join q{}, map { $_ . "\n" } @chunk;
+
+            @chunk = ();
+        }
+
+        push @chunk, $line;
+    }
+
+    push @items, join q{}, map { $_ . "\n" } @chunk
+        if @chunk;
+
+    return @items;
+}
+
+sub _handle_list_items {
+    my $self  = shift;
+    my @items = @_;
+
     for my $item (@items) {
         $item =~ s/^$Bullet//;
         my $bullet = $1;
+
+        $self->_send_event( StartListItem => bullet => $bullet );
 
         # This strips out indentation from any lines beyond the first. This
         # causes the block parser to see a sub-list as starting a new list
         # when it parses the entire item for blocks.
         $item =~ s/(?<=\n)^ (?: \p{SpaceSeparator}{4} | \t )//xgm;
-
-        $self->_send_event( StartListItem => bullet => $bullet );
 
         $self->_print_debug("Parsing list item for blocks:\n[$item]\n")
             if $self->debug();
@@ -602,35 +648,6 @@ sub _match_list {
 
         $self->_send_event('EndListItem');
     }
-
-    $self->_dec_list_level();
-
-    $self->_send_event( 'End' . $type );
-
-    return 1;
-}
-
-sub _split_list_items {
-    my $self = shift;
-    my $list = shift;
-
-    my @items;
-    my @chunk;
-
-    for my $line ( split /\n/, $list ) {
-        if ( $line =~ /^$Bullet/ && @chunk ) {
-            push @items, join q{}, map { $_ . "\n" } @chunk;
-
-            @chunk = ();
-        }
-
-        push @chunk, $line;
-    }
-
-    push @items, join q{}, map { $_ . "\n" } @chunk
-        if @chunk;
-
-    return @items;
 }
 
 # A list item matches multiple lines of text without any separating
@@ -770,11 +787,11 @@ __PACKAGE__->meta()->make_immutable();
 
 =head1 NAME
 
-Markdent::Dialect::Standard::BlockParser - Block parser for standard Markdown
+Markdent::Parser::BlockParser - Block parser for standard Markdown
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 DESCRIPTION
 
@@ -785,7 +802,7 @@ Daring Fireball and mdtest).
 
 This class provides the following methods:
 
-=head2 Markdent::Dialect::Standard::BlockParser->new(  handler => $handler , span_parser => $span_parser )
+=head2 Markdent::Parser::BlockParser->new( handler => $handler, span_parser => $span_parser )
 
 Creates a new block parser object. You must provide a span parser object.
 
@@ -810,7 +827,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

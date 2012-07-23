@@ -1,6 +1,6 @@
 package Markdent::Parser;
 {
-  $Markdent::Parser::VERSION = '0.21';
+  $Markdent::Parser::VERSION = '0.22';
 }
 
 use strict;
@@ -8,9 +8,11 @@ use warnings;
 use namespace::autoclean 0.09;
 
 use Class::Load qw( load_optional_class );
-use Markdent::Dialect::Standard::BlockParser;
-use Markdent::Dialect::Standard::SpanParser;
-use Markdent::Types qw( Str HashRef BlockParserClass SpanParserClass );
+use Markdent::Parser::BlockParser;
+use Markdent::Parser::SpanParser;
+use Markdent::Types
+    qw( ArrayRef HashRef BlockParserClass BlockParserDialectRole SpanParserClass SpanParserDialectRole Str );
+use Moose::Meta::Class;
 use MooseX::Params::Validate qw( validated_list );
 use Try::Tiny;
 
@@ -24,11 +26,11 @@ has _block_parser_class => (
     is       => 'rw',
     isa      => BlockParserClass,
     init_arg => 'block_parser_class',
-    default  => 'Markdent::Dialect::Standard::BlockParser',
+    default  => 'Markdent::Parser::BlockParser',
 );
 
 has _block_parser => (
-    is       => 'ro',
+    is       => 'rw',
     does     => 'Markdent::Role::BlockParser',
     lazy     => 1,
     init_arg => undef,
@@ -43,15 +45,9 @@ has _block_parser_args => (
 
 has _span_parser_class => (
     is       => 'rw',
-    does     => SpanParserClass,
+    isa      => SpanParserClass,
     init_arg => 'span_parser_class',
-    default  => 'Markdent::Dialect::Standard::SpanParser',
-);
-
-has _span_parser_args => (
-    is       => 'rw',
-    does     => HashRef,
-    init_arg => undef,
+    default  => 'Markdent::Parser::SpanParser',
 );
 
 has _span_parser => (
@@ -62,11 +58,35 @@ has _span_parser => (
     builder  => '_build_span_parser',
 );
 
+has _span_parser_args => (
+    is       => 'rw',
+    does     => HashRef,
+    init_arg => undef,
+);
+
+override BUILDARGS => sub {
+    my $class = shift;
+
+    my $args = super();
+
+    if ( exists $args->{dialect} ) {
+
+        # XXX - deprecation warning
+        $args->{dialects} = [ delete $args->{dialect} ];
+    }
+    elsif ( exists $args->{dialects} ) {
+        $args->{dialects} = [ $args->{dialects} ]
+            unless ref $args->{dialects};
+    }
+
+    return $args;
+};
+
 sub BUILD {
     my $self = shift;
     my $args = shift;
 
-    $self->_set_classes_for_dialect($args);
+    $self->_set_classes_for_dialects($args);
 
     my %sp_args;
     for my $key (
@@ -100,34 +120,51 @@ sub BUILD {
     $self->_set_block_parser_args( \%bp_args );
 }
 
-sub _set_classes_for_dialect {
+sub _set_classes_for_dialects {
     my $self = shift;
     my $args = shift;
 
-    my $dialect = delete $args->{dialect}
-        or return;
+    my $dialects = delete $args->{dialects};
 
-    for my $pair (
-        map { [ $_, $self->_class_name_for_dialect( $dialect, $_ ) ] }
-        qw( block_parser span_parser ) ) {
+    return unless @{ $dialects || [] };
 
-        my ( $thing, $class ) = @{$pair};
+    for my $thing (qw( block_parser span_parser )) {
+        my @roles;
 
-        next unless load_optional_class($class);
+        for my $dialect ( @{$dialects} ) {
+            next if $dialect eq 'Standard';
 
-        if ( exists $args->{ $thing . '_class' } ) {
-            die
-                "You specified a dialect ($dialect) which has its own $thing class"
-                . " and you also specified an explicit $thing class."
-                . " You cannot specify both when creating a Markdent::Parser.";
+            my $role = $self->_role_name_for_dialect( $dialect, $thing );
+
+            load_optional_class($role)
+                or next;
+
+            my $specified_class = $args->{ $thing . '_class' };
+
+            next
+                if $specified_class
+                && $specified_class->can('meta')
+                && $specified_class->meta()->does_role($role);
+
+            push @roles, $role;
         }
 
-        my $meth = '_set_' . $thing . '_class';
-        $self->$meth($class);
+        next unless @roles;
+
+        my $class_meth = q{_} . $thing . '_class';
+
+        my $class = Moose::Meta::Class->create_anon_class(
+            superclasses => [ $self->$class_meth() ],
+            roles        => \@roles,
+            cache        => 1,
+        )->name();
+
+        my $set_meth = '_set' . $class_meth;
+        $self->$set_meth($class);
     }
 }
 
-sub _class_name_for_dialect {
+sub _role_name_for_dialect {
     my $self    = shift;
     my $dialect = shift;
     my $type    = shift;
@@ -199,7 +236,7 @@ Markdent::Parser - A markdown parser
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 SYNOPSIS
 
@@ -230,35 +267,31 @@ This method creates a new parser. It accepts the following parameters:
 
 =over 4
 
-=item * dialect => $name
+=item * dialects => $name or [ $name1, $name2 ]
 
-You can use this as a shorthand to pick a block and/or span parser class.
+You can use this to apply dialect roles to the standard parser class.
 
-If the dialect parameter does not contain a namespace separator (::), the
-constructor looks for classes named
-C<Markdent::Dialect::${dialect}::BlockParser> and
+If a dialect name does not contain a namespace separator (::), the constructor
+looks for roles named C<Markdent::Dialect::${dialect}::BlockParser> and
 C<Markdent::Dialect::${dialect}::SpanParser>.
 
-If the dialect parameter does contain a namespace separator, it is used a
-prefix - C<$dialect::BlockParser> and C<$dialect::SpanParser>.
+If a dialect name does contain a namespace separator, it is used a prefix -
+C<$dialect::BlockParser> and C<$dialect::SpanParser>.
 
-If any relevant classes are found, they will be used by the parser.
+If any relevant roles are found, they will be used by the parser.
 
-You can I<also> specify an explicit block or span parser, but if the dialect
-has its own class of that type, an error will be thrown.
-
-If the dialect only specifies a block or span parser, but not both, then we
-fall back to using the appropriate parser for the Standard dialect.
+It is okay if a given dialect only provides a block or span parser, but not
+both.
 
 =item * block_parser_class => $class
 
-This default to L<Markdent::Dialect::Standard::BlockParser>, but can be any
-class which implements the L<Markdent::Role::BlockParser> role.
+This defaults to L<Markdent::Parser::BlockParser>, but can be any class which
+implements the L<Markdent::Role::BlockParser> role.
 
 =item * span_parser_class => $class
 
-This default to L<Markdent::Dialect::Standard::SpanParser>, but can be any
-class which implements the L<Markdent::Role::SpanParser> role.
+This defaults to L<Markdent::Parser::SpanParser>, but can be any class which
+implements the L<Markdent::Role::SpanParser> role.
 
 =item * handler => $handler
 
@@ -287,7 +320,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

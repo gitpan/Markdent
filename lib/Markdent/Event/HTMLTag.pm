@@ -1,6 +1,6 @@
 package Markdent::Event::HTMLTag;
 {
-  $Markdent::Event::HTMLTag::VERSION = '0.21';
+  $Markdent::Event::HTMLTag::VERSION = '0.22';
 }
 
 use strict;
@@ -42,7 +42,7 @@ Markdent::Event::HTMLTag - An event for an inline self-closing HTML tag
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 DESCRIPTION
 
@@ -75,7 +75,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

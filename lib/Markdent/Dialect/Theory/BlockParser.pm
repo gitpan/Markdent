@@ -1,6 +1,6 @@
 package Markdent::Dialect::Theory::BlockParser;
 {
-  $Markdent::Dialect::Theory::BlockParser::VERSION = '0.21';
+  $Markdent::Dialect::Theory::BlockParser::VERSION = '0.22';
 }
 
 use strict;
@@ -21,11 +21,9 @@ use Markdent::Event::EndTableCell;
 use Markdent::Regexes qw( $HorizontalWS $EmptyLine $BlockStart $BlockEnd );
 use Markdent::Types qw( Bool );
 
-use Moose;
-use MooseX::SemiAffordanceAccessor;
-use MooseX::StrictConstructor;
+use Moose::Role;
 
-extends 'Markdent::Dialect::Standard::BlockParser';
+with 'Markdent::Role::Dialect::BlockParser';
 
 has _in_table => (
     traits   => ['Bool'],
@@ -39,10 +37,11 @@ has _in_table => (
     },
 );
 
-sub _possible_block_matches {
+around _possible_block_matches => sub {
+    my $orig = shift;
     my $self = shift;
 
-    my @look_for = $self->SUPER::_possible_block_matches();
+    my @look_for = $self->$orig();
 
     return @look_for if $self->_list_level();
 
@@ -54,7 +53,7 @@ sub _possible_block_matches {
     }
 
     return @look_for;
-}
+};
 
 my $TableCaption = qr{ ^
                        $HorizontalWS*
@@ -448,11 +447,9 @@ sub _match_table_cell {
     $self->_span_parser()->parse_block($1);
 }
 
-__PACKAGE__->meta()->make_immutable();
-
 1;
 
-# ABSTRACT: Block parser for Theory's Markdown
+# ABSTRACT: Block parser for Theory's proposed Markdown extensions
 
 
 
@@ -460,32 +457,28 @@ __PACKAGE__->meta()->make_immutable();
 
 =head1 NAME
 
-Markdent::Dialect::Theory::BlockParser - Block parser for Theory's Markdown
+Markdent::Dialect::Theory::BlockParser - Block parser for Theory's proposed Markdown extensions
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 DESCRIPTION
 
-This class adds parsing for Markdown extensions proposed by David Wheeler (aka
+This role adds parsing for Markdown extensions proposed by David Wheeler (aka
 Theory). See
 L<http://justatheory.com/computers/markup/markdown-table-rfc.html> and
 L<http://justatheory.com/computers/markup/modest-markdown-proposal.html> for
 details.
 
-For now, this class handles tables only.
+For now, this role handles tables only.
 
-This class extends the L<Markdent::Dialect::Standard::BlockParser> class.
-
-=head1 METHODS
-
-This class provides the following methods:
+This role should be applied to L<Markdent::Parser::BlockParser> class or a
+subclass of that class.
 
 =head1 ROLES
 
-This class does the L<Markdent::Role::BlockParser>,
-L<Markdent::Role::AnyParser>, and L<Markdent::Role::DebugPrinter> roles.
+This role does the L<Markdent::Role::Dialect::BlockParser> role.
 
 =head1 BUGS
 
@@ -497,7 +490,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

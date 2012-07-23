@@ -10,12 +10,12 @@ Markdent::Dialect::Theory - Markdown extensions proposed by David Wheeler (aka T
 
   use Markdent::Parser;
 
-  my $parser = Markdent::Parser->new( dialect => 'Theory', handler => ... );
+  my $parser = Markdent::Parser->new( dialects => 'Theory', handler => ... );
 
 =head1 DESCRIPTION
 
-This class adds parsing for Markdown extensions proposed by David Wheeler (aka
-Theory). See
+The Theory roles add parsing for Markdown extensions proposed by David Wheeler
+(aka Theory). See
 L<http://justatheory.com/computers/markup/markdown-table-rfc.html> and
 L<http://justatheory.com/computers/markup/modest-markdown-proposal.html> for
 details.
@@ -90,7 +90,7 @@ Dave Rolsky, E<lt>autarch@urth.orgE<gt>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2009-2010 Dave Rolsky, All Rights Reserved.
+Copyright 2009-2012 Dave Rolsky, All Rights Reserved.
 
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

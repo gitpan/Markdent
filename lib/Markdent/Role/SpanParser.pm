@@ -1,6 +1,6 @@
 package Markdent::Role::SpanParser;
 {
-  $Markdent::Role::SpanParser::VERSION = '0.21';
+  $Markdent::Role::SpanParser::VERSION = '0.22';
 }
 
 use strict;
@@ -27,11 +27,11 @@ Markdent::Role::SpanParser - A role for span parsers
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 DESCRIPTION
 
-This role implements behavior shared by all span parsers
+This role implements behavior shared by all span parsers.
 
 =head1 REQUIRED METHODS
 
@@ -59,7 +59,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

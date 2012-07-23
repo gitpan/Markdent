@@ -1,11 +1,11 @@
 
 
 This archive contains the distribution Markdent,
-version 0.21:
+version 0.22:
 
   An event-based Markdown parser toolkit
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

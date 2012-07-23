@@ -1,6 +1,6 @@
 package Markdent::Event::StartHTMLTag;
 {
-  $Markdent::Event::StartHTMLTag::VERSION = '0.21';
+  $Markdent::Event::StartHTMLTag::VERSION = '0.22';
 }
 
 use strict;
@@ -42,7 +42,7 @@ Markdent::Event::StartHTMLTag - An event for the start of an inline HTML tag
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 DESCRIPTION
 
@@ -75,7 +75,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

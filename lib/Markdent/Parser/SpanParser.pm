@@ -1,6 +1,6 @@
-package Markdent::Dialect::Standard::SpanParser;
+package Markdent::Parser::SpanParser;
 {
-  $Markdent::Dialect::Standard::SpanParser::VERSION = '0.21';
+  $Markdent::Parser::SpanParser::VERSION = '0.22';
 }
 
 use strict;
@@ -20,6 +20,7 @@ use Markdent::Event::HTMLComment;
 use Markdent::Event::HTMLEntity;
 use Markdent::Event::HTMLTag;
 use Markdent::Event::Image;
+use Markdent::Event::LineBreak;
 use Markdent::Event::StartCode;
 use Markdent::Event::StartEmphasis;
 use Markdent::Event::StartHTMLTag;
@@ -73,11 +74,27 @@ has _links_by_id => (
     },
 );
 
+has _emphasis_start_delimiter_re => (
+    is       => 'ro',
+    isa      => RegexpRef,
+    lazy     => 1,
+    builder  => '_build_emphasis_start_delimiter_re',
+    init_arg => undef,
+);
+
 has _escape_re => (
     is       => 'ro',
     isa      => RegexpRef,
     lazy     => 1,
     builder  => '_build_escape_re',
+    init_arg => undef,
+);
+
+has _line_break_re => (
+    is       => 'ro',
+    isa      => RegexpRef,
+    lazy     => 1,
+    builder  => '_build_line_break_re',
     init_arg => undef,
 );
 
@@ -217,7 +234,7 @@ sub _possible_span_matches {
         push @look_for, qw( auto_link link image );
     }
 
-    push @look_for, 'html_comment', 'html_tag', 'html_entity';
+    push @look_for, 'html_comment', 'html_tag', 'html_entity', 'line_break';
 
     return @look_for;
 }
@@ -282,6 +299,12 @@ sub _open_start_event_for_span {
     return $in;
 }
 
+sub _build_emphasis_start_delimiter_re {
+    my $self = shift;
+
+    return qr/(?:\*|_)/;
+}
+
 sub _build_escapable_chars {
     return [ qw( \ ` * _ { } [ ] ( ) + - . ! < > ), '#' ];
 }
@@ -292,6 +315,12 @@ sub _build_escape_re {
     my $chars = join q{}, uniq( @{ $self->_escapable_chars() } );
 
     return qr/\\([\Q$chars\E])/;
+}
+
+sub _build_line_break_re {
+    my $self = shift;
+
+    return qr/\p{SpaceSeparator}{2}\n/;
 }
 
 sub _match_escape {
@@ -345,8 +374,10 @@ sub _match_emphasis_start {
     my $self = shift;
     my $text = shift;
 
-    my ($delim) = $self->_match_delimiter_start( $text, qr/(?:\*|_)/ )
-        or return;
+    my ($delim) = $self->_match_delimiter_start(
+        $text,
+        $self->_emphasis_start_delimiter_re(),
+    ) or return;
 
     my $event = $self->_make_event( StartEmphasis => delimiter => $delim );
 
@@ -360,14 +391,23 @@ sub _match_emphasis_end {
     my $text  = shift;
     my $delim = shift;
 
-    $self->_match_delimiter_end( $text, qr/\Q$delim\E/ )
-        or return;
+    $self->_match_delimiter_end(
+        $text,
+        $self->_emphasis_end_delimiter_re($delim),
+    ) or return;
 
     my $event = $self->_make_event( EndEmphasis => delimiter => $delim );
 
     $self->_markup_event($event);
 
     return 1;
+}
+
+sub _emphasis_end_delimiter_re {
+    my $self  = shift;
+    my $delim = shift;
+
+    return qr/\Q$delim\E/;
 }
 
 sub _match_code_start {
@@ -670,11 +710,28 @@ sub _match_html_entity {
     return 1;
 }
 
+sub _match_line_break {
+    my $self = shift;
+    my $text = shift;
+
+    my $line_break_re = $self->_line_break_re();
+
+    return unless ${$text} =~ /\G$line_break_re/gcs;
+
+    my $event = $self->_make_event('LineBreak');
+
+    $self->_markup_event($event);
+
+    return 1;
+}
+
 sub _match_plain_text {
     my $self = shift;
     my $text = shift;
 
-    my $escape_re = $self->_escape_re();
+    my $end_of_text_re = join '|', grep { defined } (
+        $self->_text_end_res(),
+    );
 
     # Note that we're careful not to consume any of the characters marking the
     # (possible) end of the plain text. If those things turn out to _not_ be
@@ -684,11 +741,11 @@ sub _match_plain_text {
         unless ${$text} =~ /\G
                      ( .+? )              # at least one character followed by ...
                      (?=
-                       $escape_re
+                       $end_of_text_re
                        |
-                       \*                 #   possible span markup
+                       \*                 #   possible span markup - bold or italics
                        |
-                       _
+                       _                  #   possible span markup - bold or italics
                        |
                        \p{SpaceSeparator}* \`
                        |
@@ -708,6 +765,15 @@ sub _match_plain_text {
     $self->_save_span_text($1);
 
     return 1;
+}
+
+sub _text_end_res {
+    my $self = shift;
+
+    return (
+        $self->_escape_re(),
+        $self->_line_break_re(),
+    );
 }
 
 sub _markup_event {
@@ -905,11 +971,11 @@ __PACKAGE__->meta()->make_immutable();
 
 =head1 NAME
 
-Markdent::Dialect::Standard::SpanParser - Span parser for standard Markdown
+Markdent::Parser::SpanParser - Span parser for standard Markdown
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 DESCRIPTION
 
@@ -920,7 +986,7 @@ Daring Fireball and mdtest).
 
 This class provides the following methods:
 
-=head2 Markdent::Dialect::Standard::SpanParser->new( handler => $handler )
+=head2 Markdent::Parser::SpanParser->new( handler => $handler )
 
 Creates a new span parser object. You must provide a span parser object.
 
@@ -949,7 +1015,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

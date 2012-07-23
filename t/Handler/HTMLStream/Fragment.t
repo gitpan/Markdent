@@ -131,7 +131,7 @@ EOF
 EOF
 
     html_output_ok(
-        { dialect => 'Theory' },
+        { dialects => 'Theory' },
         $markdown,
         $expect_html,
         'Complex Theory-style table'
@@ -162,10 +162,72 @@ EOF
 EOF
 
     html_output_ok(
-        { dialect => 'Theory' },
+        { dialects => 'Theory' },
         $markdown,
         $expect_html,
         'Simple Theory-style table with no header rows'
+    );
+}
+
+{
+    my $markdown = <<'EOF';
+This is a p.
+
+```
+my $foo = 'bar';
+```
+
+More p.
+EOF
+
+    my $expect_html = <<'EOF';
+<p>
+  This is a p.
+</p>
+
+<pre><code>my $foo = 'bar';</code></pre>
+
+<p>
+  More p.
+</p>
+EOF
+
+    html_output_ok(
+        { dialects => 'GitHub' },
+        $markdown,
+        $expect_html,
+        'GitHub dialect with fenced code block (no language)'
+    );
+}
+
+{
+    my $markdown = <<'EOF';
+This is a p.
+
+```Perl
+my $foo = 'bar';
+```
+
+More p.
+EOF
+
+    my $expect_html = <<'EOF';
+<p>
+  This is a p.
+</p>
+
+<pre><code class="language-Perl">my $foo = 'bar';</code></pre>
+
+<p>
+  More p.
+</p>
+EOF
+
+    html_output_ok(
+        { dialects => 'GitHub' },
+        $markdown,
+        $expect_html,
+        'GitHub dialect with fenced code block (language = Perl)'
     );
 }
 

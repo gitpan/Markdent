@@ -1,6 +1,6 @@
 package Markdent::Role::EventAsText;
 {
-  $Markdent::Role::EventAsText::VERSION = '0.21';
+  $Markdent::Role::EventAsText::VERSION = '0.22';
 }
 
 use strict;
@@ -25,7 +25,7 @@ Markdent::Role::EventAsText - Indicates that an event has an as_text method
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 DESCRIPTION
 
@@ -49,7 +49,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

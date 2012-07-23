@@ -1,6 +1,6 @@
 package Markdent::Types;
 {
-  $Markdent::Types::VERSION = '0.21';
+  $Markdent::Types::VERSION = '0.22';
 }
 
 use strict;

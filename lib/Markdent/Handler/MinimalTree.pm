@@ -1,6 +1,6 @@
 package Markdent::Handler::MinimalTree;
 {
-  $Markdent::Handler::MinimalTree::VERSION = '0.21';
+  $Markdent::Handler::MinimalTree::VERSION = '0.22';
 }
 
 use strict;
@@ -137,6 +137,25 @@ sub preformatted {
     my $pre_node
         = Tree::Simple->new( { type => 'preformatted', text => $text } );
     $self->_current_node()->addChild($pre_node);
+}
+
+sub code_block {
+    my $self = shift;
+    my ( $code, $language ) = validated_list(
+        \@_,
+        code     => { isa => Str },
+        language => { isa => Str, optional => 1 },
+    );
+
+    my $code_block_node = Tree::Simple->new(
+        {
+            type     => 'code_block',
+            code     => $code,
+            language => $language,
+        }
+    );
+
+    $self->_current_node()->addChild($code_block_node);
 }
 
 sub start_paragraph {
@@ -307,6 +326,14 @@ sub end_link {
     $self->_set_current_up_one_level();
 }
 
+sub line_break {
+    my $self = shift;
+
+    my $break_node = Tree::Simple->new( { type => 'line_break' } );
+
+    $self->_current_node()->addChild($break_node);
+}
+
 sub text {
     my $self = shift;
     my ($text) = validated_list( \@_, text => { isa => Str }, );
@@ -452,7 +479,7 @@ Markdent::Handler::MinimalTree - A Markdent handler which builds a tree
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 DESCRIPTION
 
@@ -488,7 +515,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

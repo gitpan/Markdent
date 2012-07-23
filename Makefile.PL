@@ -37,12 +37,14 @@ my %WriteMakefileArgs = (
     "Digest::SHA1" => 0,
     "Exporter" => 0,
     "File::Slurp" => 0,
-    "Getopt::Long" => 0,
+    "Getopt::Long::Descriptive" => 0,
     "HTML::Stream" => 0,
     "IO::Handle" => 0,
     "List::AllUtils" => 0,
     "Moose" => "0.92",
+    "Moose::Meta::Class" => 0,
     "Moose::Role" => 0,
+    "MooseX::Getopt::Dashes" => 0,
     "MooseX::Params::Validate" => 0,
     "MooseX::Role::Parameterized" => 0,
     "MooseX::SemiAffordanceAccessor" => "0.05",
@@ -59,9 +61,9 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.21",
+  "VERSION" => "0.22",
   "test" => {
-    "TESTS" => "t/*.t t/Handler/*.t t/Handler/HTMLStream/*.t t/Simple/*.t t/markup/standard/*.t t/markup/theory/*.t"
+    "TESTS" => "t/*.t t/Handler/*.t t/Handler/HTMLStream/*.t t/Simple/*.t t/markup/github/*.t t/markup/multi-dialect/*.t t/markup/standard/*.t t/markup/theory/*.t"
   }
 );
 

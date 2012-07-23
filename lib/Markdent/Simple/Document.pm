@@ -1,6 +1,6 @@
 package Markdent::Simple::Document;
 {
-  $Markdent::Simple::Document::VERSION = '0.21';
+  $Markdent::Simple::Document::VERSION = '0.22';
 }
 
 use strict;
@@ -8,37 +8,34 @@ use warnings;
 use namespace::autoclean;
 
 use Markdent::Handler::HTMLStream::Document;
-use Markdent::Parser;
-use Markdent::Types qw( Str );
+use Markdent::Types qw( ArrayRef Str );
 use MooseX::Params::Validate qw( validated_list );
 
 use Moose;
 use MooseX::StrictConstructor;
 
+with 'Markdent::Role::Simple';
+
 sub markdown_to_html {
     my $self = shift;
-    my ( $dialect, $title, $markdown ) = validated_list(
+    my ( $dialects, $title, $markdown ) = validated_list(
         \@_,
-        dialect  => { isa => Str, default => 'Standard' },
+        dialects => {
+            isa => Str | ( ArrayRef [Str] ), default => [],
+        },
         title    => { isa => Str },
         markdown => { isa => Str },
     );
 
-    my $capture = q{};
-    open my $fh, '>', \$capture
-        or die $!;
+    my $handler_class = 'Markdent::Handler::HTMLStream::Document';
+    my %handler_p = ( title => $title );
 
-    my $handler = Markdent::Handler::HTMLStream::Document->new(
-        title  => $title,
-        output => $fh,
+    return $self->_parse_markdown(
+        $markdown,
+        $dialects,
+        $handler_class,
+        \%handler_p
     );
-
-    my $parser
-        = Markdent::Parser->new( dialect => $dialect, handler => $handler );
-
-    $parser->parse( markdown => $markdown );
-
-    return $capture;
 }
 
 1;
@@ -55,7 +52,7 @@ Markdent::Simple::Document - Convert Markdown to an HTML Document
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 SYNOPSIS
 
@@ -87,6 +84,10 @@ will be used as the C<< <title> >> for the resulting HTML document.
 
 You can also provide an optional "dialect" parameter.
 
+=head1 ROLES
+
+This class does the L<Markdent::Role::Simple> role.
+
 =head1 BUGS
 
 See L<Markdent> for bug reporting details.
@@ -97,7 +98,7 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Dave Rolsky.
+This software is copyright (c) 2012 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

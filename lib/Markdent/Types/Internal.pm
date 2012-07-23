@@ -1,6 +1,6 @@
 package Markdent::Types::Internal;
 {
-  $Markdent::Types::Internal::VERSION = '0.21';
+  $Markdent::Types::Internal::VERSION = '0.22';
 }
 
 use strict;
@@ -11,13 +11,16 @@ use IO::Handle;
 use MooseX::Types 0.20 -declare => [
     qw(
         BlockParserClass
+        BlockParserDialectRole
         EventObject
+        ExistingFile
         HandlerObject
         HeaderLevel
         NonEmptyArrayRef
         OutputStream
         PosInt
         SpanParserClass
+        SpanParserDialectRole
         TableCellAlignment
         )
 ];
@@ -29,6 +32,7 @@ use MooseX::Types::Moose qw(
     Int
     Item
     Object
+    Str
 );
 
 #<<<
@@ -37,9 +41,13 @@ subtype HeaderLevel,
     where { $_ >= 1 && $_ <= 6 },
     message { "Header level must be a number from 1-6 (not $_)" };
 
+role_type BlockParserDialectRole, { role => 'Markdent::Role::Dialect::BlockParser' };
+
 subtype BlockParserClass,
     as ClassName,
     where { $_->can('does') && $_->does('Markdent::Role::BlockParser') };
+
+role_type SpanParserDialectRole, { role => 'Markdent::Role::Dialect::SpanParser' };
 
 subtype SpanParserClass,
     as ClassName,
@@ -48,6 +56,10 @@ subtype SpanParserClass,
 subtype EventObject,
     as Object,
     where { $_->can('does') && $_->does('Markdent::Role::Event') };
+
+subtype ExistingFile,
+    as Str,
+    where { -f $_ };
 
 subtype HandlerObject,
     as Object,
