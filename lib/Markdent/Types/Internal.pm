@@ -1,6 +1,9 @@
 package Markdent::Types::Internal;
 {
-  $Markdent::Types::Internal::VERSION = '0.22';
+  $Markdent::Types::Internal::VERSION = '0.23';
+}
+BEGIN {
+  $Markdent::Types::Internal::AUTHORITY = 'cpan:DROLSKY';
 }
 
 use strict;

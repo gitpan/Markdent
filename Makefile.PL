@@ -11,18 +11,7 @@ use ExtUtils::MakeMaker 6.30;
 my %WriteMakefileArgs = (
   "ABSTRACT" => "An event-based Markdown parser toolkit",
   "AUTHOR" => "Dave Rolsky <autarch\@urth.org>",
-  "BUILD_REQUIRES" => {
-    "Data::Dumper" => 0,
-    "File::Basename" => 0,
-    "File::Find" => 0,
-    "File::Temp" => 0,
-    "IO::File" => 0,
-    "Test::Deep" => 0,
-    "Test::Differences" => 0,
-    "Test::Fatal" => 0,
-    "Test::More" => "0.88",
-    "Tree::Simple::Visitor::ToNestedArray" => 0
-  },
+  "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
@@ -61,12 +50,39 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.22",
+  "TEST_REQUIRES" => {
+    "Data::Dumper" => 0,
+    "File::Basename" => 0,
+    "File::Find" => 0,
+    "File::Temp" => 0,
+    "HTML::Tidy" => 0,
+    "IO::File" => 0,
+    "Test::Deep" => 0,
+    "Test::Differences" => 0,
+    "Test::Fatal" => 0,
+    "Test::More" => "0.88",
+    "Tree::Simple::Visitor::ToNestedArray" => 0,
+    "lib" => 0
+  },
+  "VERSION" => "0.23",
   "test" => {
     "TESTS" => "t/*.t t/Handler/*.t t/Handler/HTMLStream/*.t t/Simple/*.t t/markup/github/*.t t/markup/multi-dialect/*.t t/markup/standard/*.t t/markup/theory/*.t"
   }
 );
 
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
+  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
+  for my $mod ( keys %$tr ) {
+    if ( exists $br->{$mod} ) {
+      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+    }
+    else {
+      $br->{$mod} = $tr->{$mod};
+    }
+  }
+}
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
   my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};

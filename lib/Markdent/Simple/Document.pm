@@ -1,6 +1,9 @@
 package Markdent::Simple::Document;
 {
-  $Markdent::Simple::Document::VERSION = '0.22';
+  $Markdent::Simple::Document::VERSION = '0.23';
+}
+BEGIN {
+  $Markdent::Simple::Document::AUTHORITY = 'cpan:DROLSKY';
 }
 
 use strict;
@@ -42,7 +45,7 @@ sub markdown_to_html {
 
 # ABSTRACT: Convert Markdown to an HTML Document
 
-
+__END__
 
 =pod
 
@@ -52,14 +55,14 @@ Markdent::Simple::Document - Convert Markdown to an HTML Document
 
 =head1 VERSION
 
-version 0.22
+version 0.23
 
 =head1 SYNOPSIS
 
     use Markdent::Simple::Document;
 
     my $mds  = Markdent::Simple::Document->new();
-    my $html = $mss->markdown_to_html(
+    my $html = $mds->markdown_to_html(
         title    => 'My Document',
         markdown => $markdown,
     );
@@ -96,15 +99,15 @@ See L<Markdent> for bug reporting details.
 
 Dave Rolsky <autarch@urth.org>
 
+=head1 CONTRIBUTOR
+
+Jason McIntosh <jmac@appleseed-sc.com>
+
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Dave Rolsky.
+This software is copyright (c) 2013 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

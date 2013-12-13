@@ -1,6 +1,9 @@
 package Markdent::CapturedEvents;
 {
-  $Markdent::CapturedEvents::VERSION = '0.22';
+  $Markdent::CapturedEvents::VERSION = '0.23';
+}
+BEGIN {
+  $Markdent::CapturedEvents::AUTHORITY = 'cpan:DROLSKY';
 }
 
 use strict;
@@ -49,7 +52,7 @@ __PACKAGE__->meta()->make_immutable();
 
 # ABSTRACT: Represents a series of captured events
 
-
+__END__
 
 =pod
 
@@ -59,7 +62,7 @@ Markdent::CapturedEvents - Represents a series of captured events
 
 =head1 VERSION
 
-version 0.22
+version 0.23
 
 =head1 DESCRIPTION
 
@@ -95,15 +98,15 @@ See L<Markdent> for bug reporting details.
 
 Dave Rolsky <autarch@urth.org>
 
+=head1 CONTRIBUTOR
+
+Jason McIntosh <jmac@appleseed-sc.com>
+
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Dave Rolsky.
+This software is copyright (c) 2013 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

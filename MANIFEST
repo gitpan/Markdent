@@ -96,6 +96,7 @@ lib/Markdent/Simple/Document.pm
 lib/Markdent/Simple/Fragment.pm
 lib/Markdent/Types.pm
 lib/Markdent/Types/Internal.pm
+t/00-compile.t
 t/CapturedEvents.t
 t/Handler/CaptureEvents.t
 t/Handler/HTMLFilter.t
@@ -105,6 +106,7 @@ t/Handler/Multiplexer.t
 t/Parser.t
 t/Simple/Document.t
 t/Simple/Fragment.t
+t/author-pod-spell.t
 t/lib/Example/Dialect/BlockParser.pm
 t/lib/Example/Dialect/SpanParser.pm
 t/lib/Test/Markdent.pm
@@ -178,7 +180,6 @@ t/parse-twice.t
 t/release-cpan-changes.t
 t/release-no-tabs.t
 t/release-pod-coverage.t
-t/release-pod-linkcheck.t
 t/release-pod-no404s.t
-t/release-pod-spell.t
 t/release-pod-syntax.t
+weaver.ini

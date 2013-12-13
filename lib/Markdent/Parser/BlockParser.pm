@@ -1,6 +1,9 @@
 package Markdent::Parser::BlockParser;
 {
-  $Markdent::Parser::BlockParser::VERSION = '0.22';
+  $Markdent::Parser::BlockParser::VERSION = '0.23';
+}
+BEGIN {
+  $Markdent::Parser::BlockParser::AUTHORITY = 'cpan:DROLSKY';
 }
 
 use strict;
@@ -566,7 +569,7 @@ sub _match_list {
 
     my @items = $self->_split_list_items($list);
 
-    $self->_handle_list_items(@items);
+    $self->_handle_list_items( $type, @items );
 
     $self->_dec_list_level();
 
@@ -600,11 +603,15 @@ sub _split_list_items {
 
 sub _handle_list_items {
     my $self  = shift;
+    my $type  = shift;
     my @items = @_;
 
+    my $ordinal_list_num = 1;
     for my $item (@items) {
         $item =~ s/^$Bullet//;
-        my $bullet = $1;
+
+        my $bullet
+            = $type eq 'OrderedList' ? ( $ordinal_list_num++ ) . q{.} : $1;
 
         $self->_send_event( StartListItem => bullet => $bullet );
 
@@ -781,7 +788,7 @@ __PACKAGE__->meta()->make_immutable();
 
 # ABSTRACT: Block parser for standard Markdown
 
-
+__END__
 
 =pod
 
@@ -791,7 +798,7 @@ Markdent::Parser::BlockParser - Block parser for standard Markdown
 
 =head1 VERSION
 
-version 0.22
+version 0.23
 
 =head1 DESCRIPTION
 
@@ -825,15 +832,15 @@ See L<Markdent> for bug reporting details.
 
 Dave Rolsky <autarch@urth.org>
 
+=head1 CONTRIBUTOR
+
+Jason McIntosh <jmac@appleseed-sc.com>
+
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Dave Rolsky.
+This software is copyright (c) 2013 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

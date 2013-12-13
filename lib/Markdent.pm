@@ -1,6 +1,9 @@
 package Markdent;
 {
-  $Markdent::VERSION = '0.22';
+  $Markdent::VERSION = '0.23';
+}
+BEGIN {
+  $Markdent::AUTHORITY = 'cpan:DROLSKY';
 }
 
 use strict;
@@ -10,7 +13,7 @@ use warnings;
 
 # ABSTRACT: An event-based Markdown parser toolkit
 
-
+__END__
 
 =pod
 
@@ -20,7 +23,7 @@ Markdent - An event-based Markdown parser toolkit
 
 =head1 VERSION
 
-version 0.22
+version 0.23
 
 =head1 SYNOPSIS
 
@@ -84,15 +87,15 @@ L<http://www.urth.org/~autarch/fs-donation.html>
 
 Dave Rolsky <autarch@urth.org>
 
+=head1 CONTRIBUTOR
+
+Jason McIntosh <jmac@appleseed-sc.com>
+
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Dave Rolsky.
+This software is copyright (c) 2013 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

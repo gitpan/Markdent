@@ -1,6 +1,9 @@
 package Markdent::Types;
 {
-  $Markdent::Types::VERSION = '0.22';
+  $Markdent::Types::VERSION = '0.23';
+}
+BEGIN {
+  $Markdent::Types::AUTHORITY = 'cpan:DROLSKY';
 }
 
 use strict;

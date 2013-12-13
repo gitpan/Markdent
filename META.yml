@@ -7,16 +7,18 @@ build_requires:
   File::Basename: 0
   File::Find: 0
   File::Temp: 0
+  HTML::Tidy: 0
   IO::File: 0
   Test::Deep: 0
   Test::Differences: 0
   Test::Fatal: 0
   Test::More: 0.88
   Tree::Simple::Visitor::ToNestedArray: 0
+  lib: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300016, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.131560'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -51,6 +53,10 @@ requires:
   strict: 0
   warnings: 0
 resources:
-  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Markdent
+  bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Markdent
+  homepage: http://metacpan.org/release/Markdent
   repository: git://git.urth.org/Markdent.git
-version: 0.22
+version: 0.23
+x_authority: cpan:DROLSKY
+x_contributors:
+  - 'Jason McIntosh <jmac@appleseed-sc.com>'

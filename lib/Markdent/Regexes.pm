@@ -1,6 +1,9 @@
 package Markdent::Regexes;
 {
-  $Markdent::Regexes::VERSION = '0.22';
+  $Markdent::Regexes::VERSION = '0.23';
+}
+BEGIN {
+  $Markdent::Regexes::AUTHORITY = 'cpan:DROLSKY';
 }
 
 use strict;

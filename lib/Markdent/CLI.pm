@@ -1,6 +1,9 @@
 package Markdent::CLI;
 {
-  $Markdent::CLI::VERSION = '0.22';
+  $Markdent::CLI::VERSION = '0.23';
+}
+BEGIN {
+  $Markdent::CLI::AUTHORITY = 'cpan:DROLSKY';
 }
 
 use strict;

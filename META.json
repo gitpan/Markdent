@@ -4,7 +4,7 @@
       "Dave Rolsky <autarch@urth.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300016, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "perl_5"
    ],
@@ -17,6 +17,12 @@
       "configure" : {
          "requires" : {
             "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::CPAN::Changes" : "0.19",
+            "Test::Pod" : "1.41"
          }
       },
       "runtime" : {
@@ -56,12 +62,14 @@
             "File::Basename" : "0",
             "File::Find" : "0",
             "File::Temp" : "0",
+            "HTML::Tidy" : "0",
             "IO::File" : "0",
             "Test::Deep" : "0",
             "Test::Differences" : "0",
             "Test::Fatal" : "0",
             "Test::More" : "0.88",
-            "Tree::Simple::Visitor::ToNestedArray" : "0"
+            "Tree::Simple::Visitor::ToNestedArray" : "0",
+            "lib" : "0"
          }
       }
    },
@@ -69,14 +77,19 @@
    "resources" : {
       "bugtracker" : {
          "mailto" : "bug-markdent@rt.cpan.org",
-         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Markdent"
+         "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=Markdent"
       },
+      "homepage" : "http://metacpan.org/release/Markdent",
       "repository" : {
          "type" : "git",
          "url" : "git://git.urth.org/Markdent.git",
          "web" : "http://git.urth.org/Markdent.git"
       }
    },
-   "version" : "0.22"
+   "version" : "0.23",
+   "x_authority" : "cpan:DROLSKY",
+   "x_contributors" : [
+      "Jason McIntosh <jmac@appleseed-sc.com>"
+   ]
 }
 
