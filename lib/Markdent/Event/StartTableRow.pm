@@ -1,11 +1,5 @@
 package Markdent::Event::StartTableRow;
-{
-  $Markdent::Event::StartTableRow::VERSION = '0.23';
-}
-BEGIN {
-  $Markdent::Event::StartTableRow::AUTHORITY = 'cpan:DROLSKY';
-}
-
+$Markdent::Event::StartTableRow::VERSION = '0.24';
 use strict;
 use warnings;
 use namespace::autoclean;
@@ -33,7 +27,7 @@ Markdent::Event::StartTableRow - An event for the start of a table row
 
 =head1 VERSION
 
-version 0.23
+version 0.24
 
 =head1 DESCRIPTION
 
@@ -57,7 +51,7 @@ Jason McIntosh <jmac@appleseed-sc.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Dave Rolsky.
+This software is copyright (c) 2014 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

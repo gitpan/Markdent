@@ -4,7 +4,7 @@
       "Dave Rolsky <autarch@urth.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.131560",
+   "generated_by" : "Dist::Zilla version 5.012, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "perl_5"
    ],
@@ -22,6 +22,8 @@
       "develop" : {
          "requires" : {
             "Test::CPAN::Changes" : "0.19",
+            "Test::More" : "0",
+            "Test::NoTabs" : "0",
             "Test::Pod" : "1.41"
          }
       },
@@ -86,7 +88,7 @@
          "web" : "http://git.urth.org/Markdent.git"
       }
    },
-   "version" : "0.23",
+   "version" : "0.24",
    "x_authority" : "cpan:DROLSKY",
    "x_contributors" : [
       "Jason McIntosh <jmac@appleseed-sc.com>"

@@ -1,11 +1,5 @@
 package Markdent::Types::Internal;
-{
-  $Markdent::Types::Internal::VERSION = '0.23';
-}
-BEGIN {
-  $Markdent::Types::Internal::AUTHORITY = 'cpan:DROLSKY';
-}
-
+$Markdent::Types::Internal::VERSION = '0.24';
 use strict;
 use warnings;
 
@@ -80,7 +74,7 @@ subtype OutputStream,
     },
     message { 'The output stream must be a Perl file handle or an object with a print method' };
 
-enum TableCellAlignment, qw( left right center );
+enum TableCellAlignment, [qw( left right center )];
 
 subtype PosInt,
     as Int,

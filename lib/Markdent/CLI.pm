@@ -1,11 +1,5 @@
 package Markdent::CLI;
-{
-  $Markdent::CLI::VERSION = '0.23';
-}
-BEGIN {
-  $Markdent::CLI::AUTHORITY = 'cpan:DROLSKY';
-}
-
+$Markdent::CLI::VERSION = '0.24';
 use strict;
 use warnings;
 use namespace::autoclean;

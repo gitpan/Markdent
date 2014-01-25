@@ -1,11 +1,5 @@
 package Markdent::Event::StartTableCell;
-{
-  $Markdent::Event::StartTableCell::VERSION = '0.23';
-}
-BEGIN {
-  $Markdent::Event::StartTableCell::AUTHORITY = 'cpan:DROLSKY';
-}
-
+$Markdent::Event::StartTableCell::VERSION = '0.24';
 use strict;
 use warnings;
 use namespace::autoclean;
@@ -51,7 +45,7 @@ Markdent::Event::StartTableCell - An event for the start of a table cell
 
 =head1 VERSION
 
-version 0.23
+version 0.24
 
 =head1 DESCRIPTION
 
@@ -93,7 +87,7 @@ Jason McIntosh <jmac@appleseed-sc.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Dave Rolsky.
+This software is copyright (c) 2014 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

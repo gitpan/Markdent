@@ -1,11 +1,5 @@
 package Markdent::Parser::BlockParser;
-{
-  $Markdent::Parser::BlockParser::VERSION = '0.23';
-}
-BEGIN {
-  $Markdent::Parser::BlockParser::AUTHORITY = 'cpan:DROLSKY';
-}
-
+$Markdent::Parser::BlockParser::VERSION = '0.24';
 use strict;
 use warnings;
 use namespace::autoclean;
@@ -798,7 +792,7 @@ Markdent::Parser::BlockParser - Block parser for standard Markdown
 
 =head1 VERSION
 
-version 0.23
+version 0.24
 
 =head1 DESCRIPTION
 
@@ -838,7 +832,7 @@ Jason McIntosh <jmac@appleseed-sc.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Dave Rolsky.
+This software is copyright (c) 2014 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
