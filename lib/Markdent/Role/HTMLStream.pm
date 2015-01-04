@@ -1,5 +1,5 @@
 package Markdent::Role::HTMLStream;
-$Markdent::Role::HTMLStream::VERSION = '0.24';
+$Markdent::Role::HTMLStream::VERSION = '0.25';
 use strict;
 use warnings;
 use namespace::autoclean;
@@ -216,7 +216,10 @@ sub start_table_cell {
 
     my $tag = $is_header ? 'th' : 'td';
 
-    my %attr = ( align => $alignment );
+    my %attr;
+    $attr{style} = "text-align: $alignment"
+        if $alignment;
+
     $attr{colspan} = $colspan
         if $colspan != 1;
 
@@ -225,7 +228,7 @@ sub start_table_cell {
 
 sub end_table_cell {
     my $self = shift;
-    my ($is_header) = validated_hash(
+    my ($is_header) = validated_list(
         \@_,
         is_header_cell => { isa => Bool },
     );
@@ -416,14 +419,13 @@ sub _wrapped_output {
     my $self = shift;
 
     my $output = $self->_output();
-    return $output if blessed $output && ! $output->isa('IO::Handle');
+    return $output if blessed $output && !$output->isa('IO::Handle');
 
     return _CheckedOutput->new($output);
 }
 
-package
-    _CheckedOutput;
-
+package _CheckedOutput;
+$_CheckedOutput::VERSION = '0.25';
 use strict;
 use warnings;
 
@@ -457,7 +459,7 @@ Markdent::Role::HTMLStream - A role for handlers which generate HTML
 
 =head1 VERSION
 
-version 0.24
+version 0.25
 
 =head1 DESCRIPTION
 
@@ -482,13 +484,9 @@ See L<Markdent> for bug reporting details.
 
 Dave Rolsky <autarch@urth.org>
 
-=head1 CONTRIBUTOR
-
-Jason McIntosh <jmac@appleseed-sc.com>
-
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Dave Rolsky.
+This software is copyright (c) 2015 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -1,5 +1,5 @@
 package Markdent::Simple::Fragment;
-$Markdent::Simple::Fragment::VERSION = '0.24';
+$Markdent::Simple::Fragment::VERSION = '0.25';
 use strict;
 use warnings;
 use namespace::autoclean;
@@ -47,7 +47,7 @@ Markdent::Simple::Fragment - Convert Markdown to an HTML Fragment
 
 =head1 VERSION
 
-version 0.24
+version 0.25
 
 =head1 SYNOPSIS
 
@@ -70,11 +70,11 @@ This class provides the following methods:
 
 Creates a new Markdent::Simple::Fragment object.
 
-=head2 $mds->markdown_to_html( markdown => $markdown )
+=head2 $mdf->markdown_to_html( markdown => $markdown )
 
 This method turns Markdown into HTML.
 
-You can also provide an optional "dialect" parameter.
+You can also provide an optional "dialects" parameter.
 
 =head1 ROLES
 
@@ -88,13 +88,9 @@ See L<Markdent> for bug reporting details.
 
 Dave Rolsky <autarch@urth.org>
 
-=head1 CONTRIBUTOR
-
-Jason McIntosh <jmac@appleseed-sc.com>
-
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Dave Rolsky.
+This software is copyright (c) 2015 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

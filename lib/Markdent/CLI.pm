@@ -1,11 +1,11 @@
 package Markdent::CLI;
-$Markdent::CLI::VERSION = '0.24';
+$Markdent::CLI::VERSION = '0.25';
 use strict;
 use warnings;
 use namespace::autoclean;
 
-use Class::Load qw( load_optional_class );
 use File::Slurp qw( read_file );
+
 # We need to make this a prereq so we have --help
 use Getopt::Long::Descriptive;
 use Markdent::Simple::Document;
@@ -39,8 +39,22 @@ has text => (
 has title => (
     is            => 'ro',
     isa           => Str,
-    predicate     => 'has_title',
+    predicate     => '_has_title',
     documentation => 'The title for the created document. Optional.',
+);
+
+has charset => (
+    is            => 'ro',
+    isa           => Str,
+    predicate     => '_has_charset',
+    documentation => 'The charset for the created document. Optional.',
+);
+
+has language => (
+    is            => 'ro',
+    isa           => Str,
+    predicate     => '_has_language',
+    documentation => 'The language for the created document. Optional.',
 );
 
 has dialects => (
@@ -71,8 +85,13 @@ sub run {
         : $self->text();
 
     my ( $class, %p )
-        = $self->has_title()
-        ? ( 'Markdent::Simple::Document', title => $self->title() )
+        = $self->_has_title()
+        ? (
+        'Markdent::Simple::Document',
+        title => $self->title(),
+        ( $self->_has_charset()  ? ( charset  => $self->charset() )  : () ),
+        ( $self->_has_language() ? ( language => $self->language() ) : () ),
+        )
         : ('Markdent::Simple::Fragment');
 
     my $html = $class->new()->markdown_to_html(
@@ -80,15 +99,6 @@ sub run {
         dialects => $self->dialects(),
         %p,
     );
-
-    if ( load_optional_class('HTML::Tidy') ) {
-        $html = HTML::Tidy->new(
-            {
-                doctype => 'transitional',
-                indent  => 1,
-            }
-        )->clean($html);
-    }
 
     print $html;
 

@@ -1,5 +1,5 @@
 package Mardent::Dialect::GitHub;
-
+$Mardent::Dialect::GitHub::VERSION = '0.25';
 =pod
 
 =head1 NAME

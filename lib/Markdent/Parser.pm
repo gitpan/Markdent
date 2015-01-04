@@ -1,14 +1,14 @@
 package Markdent::Parser;
-$Markdent::Parser::VERSION = '0.24';
+$Markdent::Parser::VERSION = '0.25';
 use strict;
 use warnings;
 use namespace::autoclean 0.09;
 
-use Class::Load qw( load_optional_class );
 use Markdent::Parser::BlockParser;
 use Markdent::Parser::SpanParser;
 use Markdent::Types
     qw( ArrayRef HashRef BlockParserClass BlockParserDialectRole SpanParserClass SpanParserDialectRole Str );
+use Module::Runtime qw( require_module );
 use Moose::Meta::Class;
 use MooseX::Params::Validate qw( validated_list );
 use Try::Tiny;
@@ -87,7 +87,7 @@ sub BUILD {
 
     my %sp_args;
     for my $key (
-        grep { defined }
+        grep {defined}
         map  { $_->init_arg() }
         $self->_span_parser_class()->meta()->get_all_attributes()
         ) {
@@ -102,7 +102,7 @@ sub BUILD {
 
     my %bp_args;
     for my $key (
-        grep { defined }
+        grep {defined}
         map  { $_->init_arg() }
         $self->_block_parser_class()->meta()->get_all_attributes()
         ) {
@@ -133,8 +133,7 @@ sub _set_classes_for_dialects {
 
             my $role = $self->_role_name_for_dialect( $dialect, $thing );
 
-            load_optional_class($role)
-                or next;
+            require_module($role);
 
             my $specified_class = $args->{ $thing . '_class' };
 
@@ -166,7 +165,7 @@ sub _role_name_for_dialect {
     my $dialect = shift;
     my $type    = shift;
 
-    my $suffix = join q{}, map { ucfirst } split /_/, $type;
+    my $suffix = join q{}, map {ucfirst} split /_/, $type;
 
     if ( $dialect =~ /::/ ) {
         return join '::', $dialect, $suffix;
@@ -233,7 +232,7 @@ Markdent::Parser - A markdown parser
 
 =head1 VERSION
 
-version 0.24
+version 0.25
 
 =head1 SYNOPSIS
 
@@ -315,13 +314,9 @@ See L<Markdent> for bug reporting details.
 
 Dave Rolsky <autarch@urth.org>
 
-=head1 CONTRIBUTOR
-
-Jason McIntosh <jmac@appleseed-sc.com>
-
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Dave Rolsky.
+This software is copyright (c) 2015 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

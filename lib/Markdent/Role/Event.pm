@@ -1,5 +1,5 @@
 package Markdent::Role::Event;
-$Markdent::Role::Event::VERSION = '0.24';
+$Markdent::Role::Event::VERSION = '0.25';
 use strict;
 use warnings;
 use namespace::autoclean;
@@ -20,19 +20,19 @@ role {
 
     $name =~ s/(^|.)([A-Z])/$1 ? "$1\L_$2" : "\L$2"/ge;
 
-    my $event_name = join q{_}, map { lc } grep { defined } $type, $name;
-    method event_name => sub { $event_name };
+    my $event_name = join q{_}, map {lc} grep {defined} $type, $name;
+    method event_name => sub {$event_name};
 
-    method name => sub { $name };
+    method name => sub {$name};
 
     my $is_start = ( $type || q{} ) eq 'Start';
-    method is_start => sub { $is_start };
+    method is_start => sub {$is_start};
 
     my $is_end = ( $type || q{} ) eq 'End';
-    method is_end => sub { $is_end };
+    method is_end => sub {$is_end};
 
     my $is_inline = !defined $type;
-    method is_inline => sub { $is_inline };
+    method is_inline => sub {$is_inline};
 
     my @required;
     my @optional;
@@ -49,8 +49,8 @@ role {
             die
                 "All optional attributes for an event must have a predicate or default value ($class - $name)"
                 unless $attr->has_predicate()
-                    || $attr->has_default()
-                    || $attr->has_builder();
+                || $attr->has_default()
+                || $attr->has_builder();
 
             push @optional,
                 [
@@ -153,7 +153,7 @@ Markdent::Role::Event - Implements behavior shared by all events
 
 =head1 VERSION
 
-version 0.24
+version 0.25
 
 =head1 DESCRIPTION
 
@@ -196,13 +196,9 @@ See L<Markdent> for bug reporting details.
 
 Dave Rolsky <autarch@urth.org>
 
-=head1 CONTRIBUTOR
-
-Jason McIntosh <jmac@appleseed-sc.com>
-
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Dave Rolsky.
+This software is copyright (c) 2015 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

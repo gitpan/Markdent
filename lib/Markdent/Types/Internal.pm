@@ -1,5 +1,5 @@
 package Markdent::Types::Internal;
-$Markdent::Types::Internal::VERSION = '0.24';
+$Markdent::Types::Internal::VERSION = '0.25';
 use strict;
 use warnings;
 

@@ -1,5 +1,5 @@
 package Mardent::Manual;
-
+$Mardent::Manual::VERSION = '0.25';
 =pod
 
 =head1 NAME

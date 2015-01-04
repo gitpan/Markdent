@@ -1,5 +1,5 @@
 package Markdent::Handler::HTMLStream::Document;
-$Markdent::Handler::HTMLStream::Document::VERSION = '0.24';
+$Markdent::Handler::HTMLStream::Document::VERSION = '0.25';
 use strict;
 use warnings;
 use namespace::autoclean;
@@ -17,17 +17,33 @@ has title => (
     required => 1,
 );
 
+has charset => (
+    is        => 'ro',
+    isa       => Str,
+    predicate => '_has_charset',
+);
+
+has language => (
+    is        => 'ro',
+    isa       => Str,
+    predicate => '_has_language',
+);
+
 my $Doctype = <<'EOF';
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 EOF
 
 sub start_document {
     my $self = shift;
 
     $self->_output()->print($Doctype);
-    $self->_stream()->tag('html');
+    $self->_stream()->tag(
+        'html',
+        $self->_has_language() ? ( lang => $self->language() ) : (),
+    );
     $self->_stream()->tag('head');
+    $self->_stream()->tag( 'meta', charset => $self->charset() )
+        if $self->_has_charset();
     $self->_stream()->tag('title');
     $self->_stream()->text( $self->title() );
     $self->_stream()->tag('_title');
@@ -58,7 +74,7 @@ Markdent::Handler::HTMLStream::Document - Turns Markdent events into a complete 
 
 =head1 VERSION
 
-version 0.24
+version 0.25
 
 =head1 DESCRIPTION
 
@@ -77,6 +93,16 @@ This method creates a new handler. It accepts the following parameters:
 =item * title => $title
 
 The title of the document. This is required.
+
+=item * charset => $charset
+
+If provided, a C<< <meta charset="..."> >> tag will be added to the document's
+C<< <head> >>.
+
+=item * language => $language
+
+If provided, a "lang" attribute will be added to the document's C<< <html> >>
+tag.
 
 =item * output => $fh
 
@@ -107,13 +133,9 @@ See L<Markdent> for bug reporting details.
 
 Dave Rolsky <autarch@urth.org>
 
-=head1 CONTRIBUTOR
-
-Jason McIntosh <jmac@appleseed-sc.com>
-
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Dave Rolsky.
+This software is copyright (c) 2015 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -1,5 +1,5 @@
 package Mardent::Dialect::Theory;
-
+$Mardent::Dialect::Theory::VERSION = '0.25';
 =pod
 
 =head1 NAME

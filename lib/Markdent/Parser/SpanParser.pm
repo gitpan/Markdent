@@ -1,5 +1,5 @@
 package Markdent::Parser::SpanParser;
-$Markdent::Parser::SpanParser::VERSION = '0.24';
+$Markdent::Parser::SpanParser::VERSION = '0.25';
 use strict;
 use warnings;
 use namespace::autoclean;
@@ -145,7 +145,7 @@ sub _parse_uri_and_title {
     $uri = q{}
         unless defined $uri;
 
-    $uri   =~ s/^<|>$//g;
+    $uri =~ s/^<|>$//g;
     $title =~ s/^"|"$//g
         if defined $title;
 
@@ -726,9 +726,10 @@ sub _match_plain_text {
     my $self = shift;
     my $text = shift;
 
-    my $end_of_text_re = join '|', grep { defined } (
+    my $end_of_text_re = join '|',
+        grep {defined} (
         $self->_text_end_res(),
-    );
+        );
 
     # Note that we're careful not to consume any of the characters marking the
     # (possible) end of the plain text. If those things turn out to _not_ be
@@ -926,7 +927,7 @@ sub _splice_merged_text_event {
 
     $self->_print_debug(
         "Merging consecutive text events ($start-$end) for: \n"
-            . ( join q{}, map { "  - [$_]\n" } @to_merge ) )
+            . ( join q{}, map {"  - [$_]\n"} @to_merge ) )
         if $self->debug();
 
     my $merged_text = join q{}, @to_merge;
@@ -972,7 +973,7 @@ Markdent::Parser::SpanParser - Span parser for standard Markdown
 
 =head1 VERSION
 
-version 0.24
+version 0.25
 
 =head1 DESCRIPTION
 
@@ -1010,13 +1011,9 @@ See L<Markdent> for bug reporting details.
 
 Dave Rolsky <autarch@urth.org>
 
-=head1 CONTRIBUTOR
-
-Jason McIntosh <jmac@appleseed-sc.com>
-
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Dave Rolsky.
+This software is copyright (c) 2015 by Dave Rolsky.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
